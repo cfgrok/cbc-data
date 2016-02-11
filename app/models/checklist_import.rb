@@ -21,6 +21,7 @@ class ChecklistImport
     set_survey
     set_sector
     set_area
+    set_feeder_watch
     set_time
     set_hours
     set_miles
@@ -68,6 +69,10 @@ class ChecklistImport
     @worksheet.rows.each do |row|
       return row[3] if row[2] == "Area"
     end
+  end
+
+  def set_feeder_watch
+    @checklist.feeder_watch = true if @checklist.area.nil?
   end
 
   def set_time
