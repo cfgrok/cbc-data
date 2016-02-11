@@ -10,20 +10,7 @@
   <%= @survey.year %>
 </p>
 
-<p>
-  <strong>Species Count:</strong>
-  <%= @survey.species_total %>
-</p>
-
-<p>
-  <strong>Individual Count:</strong>
-  <%= @survey.individual_total %>
-</p>
-
-<p>
-  <strong>Observers:</strong>
-  <%= @survey.observer_total %>
-</p>
+<%= render partial: 'shared/summary', locals: { group: @survey } %>
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>

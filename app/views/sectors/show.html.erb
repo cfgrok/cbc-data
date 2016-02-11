@@ -10,15 +10,7 @@
   <%= @sector.code %>
 </p>
 
-<p>
-  <strong>Species Count:</strong>
-  <%= @sector.species_total %>
-</p>
-
-<p>
-  <strong>Individual Count:</strong>
-  <%= @sector.individual_total %>
-</p>
+<%= render partial: 'shared/summary', locals: { group: @sector } %>
 
 <%= link_to 'Edit', edit_sector_path(@sector) %> |
 <%= link_to 'Back', sectors_path %>
