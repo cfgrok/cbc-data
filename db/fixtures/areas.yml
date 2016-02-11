@@ -1,0 +1,73 @@
+---
+  -
+    name: "Three Tree Point"
+    code: "VN"
+  -
+    name: "East"
+    code: "VN"
+  -
+    name: "Central"
+    code: "VN"
+  -
+    name: "West"
+    code: "VN"
+  -
+    name: "South"
+    code: "VN"
+  -
+    name: "VCC/Shinglemill"
+    code: "VN"
+  -
+    name: "KVI Beach"
+    code: "VN"
+  -
+    name: "Wax Orchards"
+    code: "VS"
+  -
+    name: "Monument"
+    code: "VS"
+  -
+    name: "Tahlequah"
+    code: "VS"
+  -
+    name: "Christensen Pond"
+    code: "VS"
+  -
+    name: "Paradise Cove/Camp Sealth"
+    code: "VS"
+  -
+    name: "Point Robinson"
+    code: "MT"
+  -
+    name: "Tramp Harbor"
+    code: "MT"
+  -
+    name: "Dockton"
+    code: "MT"
+  -
+    name: "Quartermaster Harbor"
+    code: "QH"
+  -
+    name: "North"
+    code: "KE"
+  -
+    name: "South"
+    code: "KE"
+  -
+    name: "Salmonberry Creek"
+    code: "KE"
+  -
+    name: "West"
+    code: "KW"
+  -
+    name: "East"
+    code: "KW"
+  -
+    name: "Long Lake"
+    code: "KW"
+  -
+    name: "Wayne Jackson"
+    code: "KW"
+  -
+    name: "Combined"
+    code: "PN"

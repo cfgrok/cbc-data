@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Taxons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Common name</th>
+      <th>Cbc name</th>
+      <th>Scientific name</th>
+      <th>Taxonomic order</th>
+      <th>Generic</th>
+      <th>Active</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taxons.each do |taxon| %>
+      <tr>
+        <td><%= taxon.common_name %></td>
+        <td><%= taxon.cbc_name %></td>
+        <td><%= taxon.scientific_name %></td>
+        <td><%= taxon.taxonomic_order %></td>
+        <td><%= taxon.generic %></td>
+        <td><%= taxon.active %></td>
+        <td><%= link_to 'Show', taxon %></td>
+        <td><%= link_to 'Edit', edit_taxon_path(taxon) %></td>
+        <td><%= link_to 'Destroy', taxon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Taxon', new_taxon_path %>

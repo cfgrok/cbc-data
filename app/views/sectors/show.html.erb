@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sector.name %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @sector.code %>
+</p>
+
+<p>
+  <strong>Species Count:</strong>
+  <%= @sector.species_total %>
+</p>
+
+<p>
+  <strong>Individual Count:</strong>
+  <%= @sector.individual_total %>
+</p>
+
+<%= link_to 'Edit', edit_sector_path(@sector) %> |
+<%= link_to 'Back', sectors_path %>

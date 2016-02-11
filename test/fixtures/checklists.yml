@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  survey_id: 
+  sector_id: 
+  area_id: 
+  feeder_watch: false
+  start_time: 2016-02-10 15:26:21
+  end_time: 2016-02-10 15:26:21
+  hours_foot: 1.5
+  hours_car: 1.5
+  hours_boat: 1.5
+  hours_owling: 1.5
+  hours_total: 1.5
+  miles_foot: 1.5
+  miles_car: 1.5
+  miles_boat: 1.5
+  miles_owling: 1.5
+  miles_total: 1.5
+
+two:
+  survey_id: 
+  sector_id: 
+  area_id: 
+  feeder_watch: false
+  start_time: 2016-02-10 15:26:21
+  end_time: 2016-02-10 15:26:21
+  hours_foot: 1.5
+  hours_car: 1.5
+  hours_boat: 1.5
+  hours_owling: 1.5
+  hours_total: 1.5
+  miles_foot: 1.5
+  miles_car: 1.5
+  miles_boat: 1.5
+  miles_owling: 1.5
+  miles_total: 1.5

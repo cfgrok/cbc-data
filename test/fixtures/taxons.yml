@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  common_name: MyString
+  cbc_name: MyString
+  scientific_name: MyString
+  taxonomic_order: 1
+  generic: false
+  active: false
+
+two:
+  common_name: MyString
+  cbc_name: MyString
+  scientific_name: MyString
+  taxonomic_order: 1
+  generic: false
+  active: false

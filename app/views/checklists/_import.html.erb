@@ -1,0 +1,6 @@
+<h4>Import Checklist</h4>
+
+<%= form_tag import_checklists_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Import' %>
+<% end %>

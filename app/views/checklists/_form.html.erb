@@ -1,0 +1,84 @@
+<%= form_for(@checklist) do |f| %>
+  <% if @checklist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@checklist.errors.count, "error") %> prohibited this checklist from being saved:</h2>
+
+      <ul>
+      <% @checklist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :survey_id %><br>
+    <%= f.collection_select :survey_id, Survey.all, :id, :to_s, prompt: 'Select Survey' %>
+  </div>
+  <div class="field">
+    <%= f.label :sector_id %><br>
+    <%= f.collection_select :sector_id, Sector.all, :id, :to_s, prompt: 'Select Sector' %>
+  </div>
+  <div class="field">
+    <%= f.label :area_id %><br>
+    <%= f.collection_select :area_id, Area.all, :id, :to_s, include_blank: 'None' %>
+  </div>
+  <div class="field">
+    <%= f.label :feeder_watch %><br>
+    <%= f.check_box :feeder_watch %>
+  </div>
+  <div class="field">
+    <%= f.label :start_time %><br>
+    <%= f.time_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %><br>
+    <%= f.time_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :hours_foot %><br>
+    <%= f.text_field :hours_foot %>
+  </div>
+  <div class="field">
+    <%= f.label :hours_car %><br>
+    <%= f.text_field :hours_car %>
+  </div>
+  <div class="field">
+    <%= f.label :hours_boat %><br>
+    <%= f.text_field :hours_boat %>
+  </div>
+  <div class="field">
+    <%= f.label :hours_owling %><br>
+    <%= f.text_field :hours_owling %>
+  </div>
+  <div class="field">
+    <%= f.label :hours_total %><br>
+    <%= f.text_field :hours_total %>
+  </div>
+  <div class="field">
+    <%= f.label :miles_foot %><br>
+    <%= f.text_field :miles_foot %>
+  </div>
+  <div class="field">
+    <%= f.label :miles_car %><br>
+    <%= f.text_field :miles_car %>
+  </div>
+  <div class="field">
+    <%= f.label :miles_boat %><br>
+    <%= f.text_field :miles_boat %>
+  </div>
+  <div class="field">
+    <%= f.label :miles_owling %><br>
+    <%= f.text_field :miles_owling %>
+  </div>
+  <div class="field">
+    <%= f.label :miles_total %><br>
+    <%= f.text_field :miles_total %>
+  </div>
+
+  <%= render partial: 'shared/observations/form', locals: { f: f } %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

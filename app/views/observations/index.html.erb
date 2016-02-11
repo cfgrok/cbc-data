@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Observations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Taxon</th>
+      <th>Checklist</th>
+      <th>Count week</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @observations.each do |observation| %>
+      <tr>
+        <td><%= observation.number %></td>
+        <td><%= observation.taxon %></td>
+        <td><%= observation.checklist %></td>
+        <td><%= observation.count_week %></td>
+        <td><%= observation.notes %></td>
+        <td><%= link_to 'Show', observation %></td>
+        <td><%= link_to 'Edit', edit_observation_path(observation) %></td>
+        <td><%= link_to 'Destroy', observation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Observation', new_observation_path %>

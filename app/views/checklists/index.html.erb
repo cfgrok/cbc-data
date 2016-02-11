@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Checklists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Survey</th>
+      <th>Sector</th>
+      <th>Area</th>
+      <th>Feeder watch</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th>Hours foot</th>
+      <th>Hours car</th>
+      <th>Hours boat</th>
+      <th>Hours owling</th>
+      <th>Hours total</th>
+      <th>Miles foot</th>
+      <th>Miles car</th>
+      <th>Miles boat</th>
+      <th>Miles owling</th>
+      <th>Miles total</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @checklists.each do |checklist| %>
+      <tr>
+        <td><%= checklist.survey %></td>
+        <td><%= checklist.sector %></td>
+        <td><%= checklist.area %></td>
+        <td><%= checklist.feeder_watch %></td>
+        <td><%= time_12_format checklist.start_time %></td>
+        <td><%= time_12_format checklist.end_time %></td>
+        <td><%= checklist.hours_foot %></td>
+        <td><%= checklist.hours_car %></td>
+        <td><%= checklist.hours_boat %></td>
+        <td><%= checklist.hours_owling %></td>
+        <td><%= checklist.hours_total %></td>
+        <td><%= checklist.miles_foot %></td>
+        <td><%= checklist.miles_car %></td>
+        <td><%= checklist.miles_boat %></td>
+        <td><%= checklist.miles_owling %></td>
+        <td><%= checklist.miles_total %></td>
+        <td><%= link_to 'Show', checklist %></td>
+        <td><%= link_to 'Edit', edit_checklist_path(checklist) %></td>
+        <td><%= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Checklist', new_checklist_path %>
+
+<%= render 'import' %>

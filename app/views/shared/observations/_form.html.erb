@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <th>Taxon</th>
+    <th>Number</th>
+    <th>Count Week</th>
+  </tr>
+  <%= f.fields_for :observations, @checklist.rows do |o| %>
+    <tr>
+      <td>
+        <%= o.label :number, o.object.common_name %>
+        <%= o.hidden_field :id %>
+        <%= o.hidden_field :taxon_id %>
+      </td>
+      <td><%= o.text_field :number %></td>
+      <td><%= o.check_box :count_week %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,713 @@
+---
+  -
+    common_name: "Greater White-fronted Goose"
+    cbc_name: "Greater White-fronted Goose"
+    scientific_name: "Anser albifrons"
+  -
+    common_name: "Snow Goose"
+    cbc_name: "Snow Goose"
+    scientific_name: "Chen caerulescens"
+  -
+    common_name: "Brant"
+    cbc_name: "Brant"
+    scientific_name: "Branta bernicla"
+  -
+    common_name: "Cackling Goose"
+    cbc_name: "Cackling Goose"
+    scientific_name: "Branta hutchinsii"
+  -
+    common_name: "Canada Goose"
+    cbc_name: "Canada Goose"
+    scientific_name: "Branta canadensis"
+  -
+    common_name: "Trumpeter Swan"
+    cbc_name: "Trumpeter Swan"
+    scientific_name: "Cygnus buccinator"
+  -
+    common_name: "Wood Duck"
+    cbc_name: "Wood Duck"
+    scientific_name: "Aix sponsa"
+  -
+    common_name: "Gadwall"
+    cbc_name: "Gadwall"
+    scientific_name: "Anas strepera"
+  -
+    common_name: "Eurasian Wigeon"
+    cbc_name: "Eurasian Wigeon"
+    scientific_name: "Anas penelope"
+  -
+    common_name: "American Wigeon"
+    cbc_name: "American Wigeon"
+    scientific_name: "Anas americana"
+  -
+    common_name: "Mallard"
+    cbc_name: "Mallard"
+    scientific_name: "Anas platyrhynchos"
+  -
+    common_name: "Northern Shoveler"
+    cbc_name: "Northern Shoveler"
+    scientific_name: "Anas clypeata"
+  -
+    common_name: "Northern Pintail"
+    cbc_name: "Northern Pintail"
+    scientific_name: "Anas acuta"
+  -
+    common_name: "Green-winged Teal"
+    cbc_name: "Green-winged Teal (American)"
+    scientific_name: "Anas crecca carolinensis"
+  -
+    common_name: "dabbling duck sp."
+    cbc_name: "dabbling duck sp."
+    scientific_name: "Anas sp."
+  -
+    common_name: "Canvasback"
+    cbc_name: "Canvasback"
+    scientific_name: "Aythya valisineria"
+  -
+    common_name: "Redhead"
+    cbc_name: "Redhead"
+    scientific_name: "Aythya americana"
+  -
+    common_name: "Ring-necked Duck"
+    cbc_name: "Ring-necked Duck"
+    scientific_name: "Aythya collaris"
+  -
+    common_name: "Greater Scaup"
+    cbc_name: "Greater Scaup"
+    scientific_name: "Aythya marila"
+  -
+    common_name: "Lesser Scaup"
+    cbc_name: "Lesser Scaup"
+    scientific_name: "Aythya affinis"
+  -
+    common_name: "scaup sp."
+    cbc_name: "Greater/Lesser Scaup"
+    scientific_name: "Aythya marila/affinis"
+  -
+    common_name: "Harlequin Duck"
+    cbc_name: "Harlequin Duck"
+    scientific_name: "Histrionicus histrionicus"
+  -
+    common_name: "Surf Scoter"
+    cbc_name: "Surf Scoter"
+    scientific_name: "Melanitta perspicillata"
+  -
+    common_name: "White-winged Scoter"
+    cbc_name: "White-winged Scoter"
+    scientific_name: "Melanitta fusca"
+  -
+    common_name: "Black Scoter"
+    cbc_name: "Black Scoter"
+    scientific_name: "Melanitta americana"
+  -
+    common_name: "scoter sp."
+    cbc_name: "scoter sp."
+    scientific_name: "Melanitta sp."
+  -
+    common_name: "Long-tailed Duck"
+    cbc_name: "Long-tailed Duck"
+    scientific_name: "Clangula hyemalis"
+  -
+    common_name: "Bufflehead"
+    cbc_name: "Bufflehead"
+    scientific_name: "Bucephala albeola"
+  -
+    common_name: "Common Goldeneye"
+    cbc_name: "Common Goldeneye"
+    scientific_name: "Bucephala clangula"
+  -
+    common_name: "Barrow's Goldeneye"
+    cbc_name: "Barrow's Goldeneye"
+    scientific_name: "Bucephala islandica"
+  -
+    common_name: "goldeneye sp."
+    cbc_name: "Common/Barrow's Goldeneye"
+    scientific_name: "Bucephala clangula/islandica"
+  -
+    common_name: "Hooded Merganser"
+    cbc_name: "Hooded Merganser"
+    scientific_name: "Lophodytes cucullatus"
+  -
+    common_name: "Common Merganser"
+    cbc_name: "Common Merganser"
+    scientific_name: "Mergus merganser"
+  -
+    common_name: "Red-breasted Merganser"
+    cbc_name: "Red-breasted Merganser"
+    scientific_name: "Mergus serrator"
+  -
+    common_name: "merganser sp."
+    cbc_name: "Common/Red-breasted Merganser"
+    scientific_name: "Mergus merganser/serrator"
+  -
+    common_name: "Ruddy Duck"
+    cbc_name: "Ruddy Duck"
+    scientific_name: "Oxyura jamaicensis"
+  -
+    common_name: "Mountain Quail"
+    cbc_name: "Mountain Quail"
+    scientific_name: "Oreortyx pictus"
+  -
+    common_name: "California Quail"
+    cbc_name: "California Quail"
+    scientific_name: "Callipepla californica"
+  -
+    common_name: "Ring-necked Pheasant"
+    cbc_name: "Ring-necked Pheasant"
+    scientific_name: "Phasianus colchicus"
+  -
+    common_name: "Ruffed Grouse"
+    cbc_name: "Ruffed Grouse"
+    scientific_name: "Bonasa umbellus"
+  -
+    common_name: "Red-throated Loon"
+    cbc_name: "Red-throated Loon"
+    scientific_name: "Gavia stellata"
+  -
+    common_name: "Pacific Loon"
+    cbc_name: "Pacific Loon"
+    scientific_name: "Gavia pacifica"
+  -
+    common_name: "Common Loon"
+    cbc_name: "Common Loon"
+    scientific_name: "Gavia immer"
+  -
+    common_name: "Yellow-billed Loon"
+    cbc_name: "Yellow-billed Loon"
+    scientific_name: "Gavia adamsii"
+  -
+    common_name: "loon sp."
+    cbc_name: "loon sp."
+    scientific_name: "Gavia sp."
+  -
+    common_name: "Pied-billed Grebe"
+    cbc_name: "Pied-billed Grebe"
+    scientific_name: "Podilymbus podiceps"
+  -
+    common_name: "Horned Grebe"
+    cbc_name: "Horned Grebe"
+    scientific_name: "Podiceps auritus"
+  -
+    common_name: "Red-necked Grebe"
+    cbc_name: "Red-necked Grebe"
+    scientific_name: "Podiceps grisegena"
+  -
+    common_name: "Eared Grebe"
+    cbc_name: "Eared Grebe"
+    scientific_name: "Podiceps nigricollis"
+  -
+    common_name: "Western Grebe"
+    cbc_name: "Western Grebe"
+    scientific_name: "Aechmophorus occidentalis"
+  -
+    common_name: "Clark's Grebe"
+    cbc_name: "Clark's Grebe"
+    scientific_name: "Aechmophorus clarkii"
+  -
+    common_name: "Brandt's Cormorant"
+    cbc_name: "Brandt's Cormorant"
+    scientific_name: "Phalacrocorax penicillatus"
+  -
+    common_name: "Double-crested Cormorant"
+    cbc_name: "Double-crested Cormorant"
+    scientific_name: "Phalacrocorax auritus"
+  -
+    common_name: "Pelagic Cormorant"
+    cbc_name: "Pelagic Cormorant"
+    scientific_name: "Phalacrocorax pelagicus"
+  -
+    common_name: "cormorant sp."
+    cbc_name: "cormorant sp."
+    scientific_name: "Phalacrocorax sp."
+  -
+    common_name: "Great Blue Heron"
+    cbc_name: "Great Blue Heron (Blue form)"
+    scientific_name: "Ardea herodias [herodias Group]"
+  -
+    common_name: "Green Heron"
+    cbc_name: "Green Heron"
+    scientific_name: "Butorides virescens"
+  -
+    common_name: "Northern Harrier"
+    cbc_name: "Northern Harrier"
+    scientific_name: "Circus cyaneus"
+  -
+    common_name: "Sharp-shinned Hawk"
+    cbc_name: "Sharp-shinned Hawk"
+    scientific_name: "Accipiter striatus"
+  -
+    common_name: "Cooper's Hawk"
+    cbc_name: "Cooper's Hawk"
+    scientific_name: "Accipiter cooperii"
+  -
+    common_name: "Northern Goshawk"
+    cbc_name: "Northern Goshawk"
+    scientific_name: "Accipiter gentilis"
+  -
+    common_name: "Accipiter sp."
+    cbc_name: "Accipiter sp."
+    scientific_name: "Accipiter sp."
+  -
+    common_name: "Bald Eagle adult"
+    cbc_name: "Bald Eagle"
+    scientific_name: "Haliaeetus leucocephalus"
+  -
+    common_name: "Bald Eagle immature"
+    cbc_name: "Bald Eagle"
+    scientific_name: "Haliaeetus leucocephalus"
+  -
+    common_name: "Red-tailed Hawk"
+    cbc_name: "Red-tailed Hawk"
+    scientific_name: "Buteo jamaicensis"
+  -
+    common_name: "Rough-legged Hawk"
+    cbc_name: "Rough-legged Hawk"
+    scientific_name: "Buteo lagopus"
+  -
+    common_name: "Buteo sp."
+    cbc_name: "Buteo sp."
+    scientific_name: "Buteo sp."
+  -
+    common_name: "Virginia Rail"
+    cbc_name: "Virginia Rail"
+    scientific_name: "Rallus limicola"
+  -
+    common_name: "American Coot"
+    cbc_name: "American Coot"
+    scientific_name: "Fulica americana"
+  -
+    common_name: "Killdeer"
+    cbc_name: "Killdeer"
+    scientific_name: "Charadrius vociferus"
+  -
+    common_name: "Spotted Sandpiper"
+    cbc_name: "Spotted Sandpiper"
+    scientific_name: "Actitis macularius"
+  -
+    common_name: "Greater Yellowlegs"
+    cbc_name: "Greater Yellowlegs"
+    scientific_name: "Tringa melanoleuca"
+  -
+    common_name: "Black Turnstone"
+    cbc_name: "Black Turnstone"
+    scientific_name: "Arenaria melanocephala"
+  -
+    common_name: "Surfbird"
+    cbc_name: "Surfbird"
+    scientific_name: "Calidris virgata"
+  -
+    common_name: "Sanderling"
+    cbc_name: "Sanderling"
+    scientific_name: "Calidris alba"
+  -
+    common_name: "Dunlin"
+    cbc_name: "Dunlin"
+    scientific_name: "Calidris alpina"
+  -
+    common_name: "Least Sandpiper"
+    cbc_name: "Least Sandpiper"
+    scientific_name: "Calidris minutilla"
+  -
+    common_name: "Western Sandpiper"
+    cbc_name: "Western Sandpiper"
+    scientific_name: "Calidris mauri"
+  -
+    common_name: "Wilson's Snipe"
+    cbc_name: "Wilson's Snipe"
+    scientific_name: "Gallinago delicata"
+  -
+    common_name: "Wilson's/Common Snipe"
+    cbc_name: "Wilson's/Common Snipe"
+    scientific_name: "Gallinago delicata/gallinago"
+  -
+    common_name: "Red Phalarope"
+    cbc_name: "Red Phalarope"
+    scientific_name: "Phalaropus fulicarius"
+  -
+    common_name: "sandpiper sp."
+    cbc_name: "Scolopacidae sp."
+    scientific_name: "Scolopacidae sp."
+  -
+    common_name: "Common Murre"
+    cbc_name: "Common Murre"
+    scientific_name: "Uria aalge"
+  -
+    common_name: "Pigeon Guillemot"
+    cbc_name: "Pigeon Guillemot"
+    scientific_name: "Cepphus columba"
+  -
+    common_name: "Marbled Murrelet"
+    cbc_name: "Marbled Murrelet"
+    scientific_name: "Brachyramphus marmoratus"
+  -
+    common_name: "Rhinoceros Auklet"
+    cbc_name: "Rhinoceros Auklet"
+    scientific_name: "Cerorhinca monocerata"
+  -
+    common_name: "alcid sp."
+    cbc_name: "alcid sp."
+    scientific_name: "Alcidae sp."
+  -
+    common_name: "Bonaparte's Gull"
+    cbc_name: "Bonaparte's Gull"
+    scientific_name: "Chroicocephalus philadelphia"
+  -
+    common_name: "Mew Gull"
+    cbc_name: "Mew Gull"
+    scientific_name: "Larus canus"
+  -
+    common_name: "Ring-billed Gull"
+    cbc_name: "Ring-billed Gull"
+    scientific_name: "Larus delawarensis"
+  -
+    common_name: "Western Gull"
+    cbc_name: "Western Gull"
+    scientific_name: "Larus occidentalis"
+  -
+    common_name: "California Gull"
+    cbc_name: "California Gull"
+    scientific_name: "Larus californicus"
+  -
+    common_name: "Herring Gull"
+    cbc_name: "Herring Gull"
+    scientific_name: "Larus argentatus"
+  -
+    common_name: "Thayer's Gull"
+    cbc_name: "Thayer's Gull"
+    scientific_name: "Larus thayeri"
+  -
+    common_name: "Glaucous-winged Gull"
+    cbc_name: "Glaucous-winged Gull"
+    scientific_name: "Larus glaucescens"
+  -
+    common_name: "Western x Glaucous-winged Gull"
+    cbc_name: "Western x Glaucous-winged Gull (hybrid)"
+    scientific_name: "Larus occidentalis x glaucescens"
+  -
+    common_name: "Glaucous Gull"
+    cbc_name: "Glaucous Gull"
+    scientific_name: "Larus hyperboreus"
+  -
+    common_name: "gull sp."
+    cbc_name: "gull sp."
+    scientific_name: "Larinae sp."
+  -
+    common_name: "Rock Pigeon"
+    cbc_name: "Rock Pigeon (Feral Pigeon)"
+    scientific_name: "Columba livia (Feral Pigeon)"
+  -
+    common_name: "Band-tailed Pigeon"
+    cbc_name: "Band-tailed Pigeon"
+    scientific_name: "Patagioenas fasciata"
+  -
+    common_name: "Eurasian Collared-Dove"
+    cbc_name: "Eurasian Collared-Dove"
+    scientific_name: "Streptopelia decaocto"
+  -
+    common_name: "Mourning Dove"
+    cbc_name: "Mourning Dove"
+    scientific_name: "Zenaida macroura"
+  -
+    common_name: "Barn Owl"
+    cbc_name: "Barn Owl"
+    scientific_name: "Tyto alba"
+  -
+    common_name: "Western Screech-Owl"
+    cbc_name: "Western Screech-Owl"
+    scientific_name: "Megascops kennicottii"
+  -
+    common_name: "Great Horned Owl"
+    cbc_name: "Great Horned Owl"
+    scientific_name: "Bubo virginianus"
+  -
+    common_name: "Northern Pygmy-Owl"
+    cbc_name: "Northern Pygmy-Owl"
+    scientific_name: "Glaucidium gnoma"
+  -
+    common_name: "Barred Owl"
+    cbc_name: "Barred Owl"
+    scientific_name: "Strix varia"
+  -
+    common_name: "Short-eared Owl"
+    cbc_name: "Short-eared Owl"
+    scientific_name: "Asio flammeus"
+  -
+    common_name: "Northern Saw-whet Owl"
+    cbc_name: "Northern Saw-whet Owl"
+    scientific_name: "Aegolius acadicus"
+  -
+    common_name: "owl sp."
+    cbc_name: "owl sp."
+    scientific_name: "Strigiformes sp."
+  -
+    common_name: "Anna's Hummingbird"
+    cbc_name: "Anna's Hummingbird"
+    scientific_name: "Calypte anna"
+  -
+    common_name: "Belted Kingfisher"
+    cbc_name: "Belted Kingfisher"
+    scientific_name: "Megaceryle alcyon"
+  -
+    common_name: "Red-breasted Sapsucker"
+    cbc_name: "Red-breasted Sapsucker"
+    scientific_name: "Sphyrapicus ruber"
+  -
+    common_name: "Downy Woodpecker"
+    cbc_name: "Downy Woodpecker"
+    scientific_name: "Picoides pubescens"
+  -
+    common_name: "Hairy Woodpecker"
+    cbc_name: "Hairy Woodpecker"
+    scientific_name: "Picoides villosus"
+  -
+    common_name: "Northern Flicker (Yellow-shafted)"
+    cbc_name: "Northern Flicker (Yellow-shafted)"
+    scientific_name: "Colaptes auratus auratus/luteus"
+  -
+    common_name: "Northern Flicker"
+    cbc_name: "Northern Flicker (Red-shafted)"
+    scientific_name: "Colaptes auratus [cafer Group]"
+  -
+    common_name: "Pileated Woodpecker"
+    cbc_name: "Pileated Woodpecker"
+    scientific_name: "Dryocopus pileatus"
+  -
+    common_name: "American Kestrel"
+    cbc_name: "American Kestrel"
+    scientific_name: "Falco sparverius"
+  -
+    common_name: "Merlin"
+    cbc_name: "Merlin"
+    scientific_name: "Falco columbarius"
+  -
+    common_name: "Peregrine Falcon"
+    cbc_name: "Peregrine Falcon"
+    scientific_name: "Falco peregrinus"
+  -
+    common_name: "falcon sp."
+    cbc_name: "small falcon sp."
+    scientific_name: "Falco sp. (small falcon sp.)"
+  -
+    common_name: "Northern Shrike"
+    cbc_name: "Northern Shrike"
+    scientific_name: "Lanius excubitor"
+  -
+    common_name: "Hutton's Vireo"
+    cbc_name: "Hutton's Vireo"
+    scientific_name: "Vireo huttoni"
+  -
+    common_name: "Gray Jay"
+    cbc_name: "Gray Jay"
+    scientific_name: "Perisoreus canadensis"
+  -
+    common_name: "Steller's Jay"
+    cbc_name: "Steller's Jay"
+    scientific_name: "Cyanocitta stelleri"
+  -
+    common_name: "Western Scrub-Jay"
+    cbc_name: "Western Scrub-Jay"
+    scientific_name: "Aphelocoma californica"
+  -
+    common_name: "American Crow"
+    cbc_name: "American Crow"
+    scientific_name: "Corvus brachyrhynchos"
+  -
+    common_name: "Common Raven"
+    cbc_name: "Common Raven"
+    scientific_name: "Corvus corax"
+  -
+    common_name: "Black-capped Chickadee"
+    cbc_name: "Black-capped Chickadee"
+    scientific_name: "Poecile atricapillus"
+  -
+    common_name: "Mountain Chickadee"
+    cbc_name: "Mountain Chickadee"
+    scientific_name: "Poecile gambeli"
+  -
+    common_name: "Chestnut-backed Chickadee"
+    cbc_name: "Chestnut-backed Chickadee"
+    scientific_name: "Poecile rufescens"
+  -
+    common_name: "Bushtit"
+    cbc_name: "Bushtit"
+    scientific_name: "Psaltriparus minimus"
+  -
+    common_name: "Red-breasted Nuthatch"
+    cbc_name: "Red-breasted Nuthatch"
+    scientific_name: "Sitta canadensis"
+  -
+    common_name: "White-breasted Nuthatch"
+    cbc_name: "White-breasted Nuthatch"
+    scientific_name: "Sitta carolinensis"
+  -
+    common_name: "Brown Creeper"
+    cbc_name: "Brown Creeper"
+    scientific_name: "Certhia americana"
+  -
+    common_name: "Pacific Wren"
+    cbc_name: "Pacific Wren"
+    scientific_name: "Troglodytes pacificus"
+  -
+    common_name: "Pacific/Winter Wren"
+    cbc_name: "Pacific/Winter Wren"
+    scientific_name: "Troglodytes pacificus/hiemalis"
+  -
+    common_name: "Marsh Wren"
+    cbc_name: "Marsh Wren"
+    scientific_name: "Cistothorus palustris"
+  -
+    common_name: "Bewick's Wren"
+    cbc_name: "Bewick's Wren"
+    scientific_name: "Thryomanes bewickii"
+  -
+    common_name: "wren sp."
+    cbc_name: "wren sp."
+    scientific_name: "Troglodytidae sp."
+  -
+    common_name: "American Dipper"
+    cbc_name: "American Dipper"
+    scientific_name: "Cinclus mexicanus"
+  -
+    common_name: "Golden-crowned Kinglet"
+    cbc_name: "Golden-crowned Kinglet"
+    scientific_name: "Regulus satrapa"
+  -
+    common_name: "Ruby-crowned Kinglet"
+    cbc_name: "Ruby-crowned Kinglet"
+    scientific_name: "Regulus calendula"
+  -
+    common_name: "Townsend's Solitaire"
+    cbc_name: "Townsend's Solitaire"
+    scientific_name: "Myadestes townsendi"
+  -
+    common_name: "Hermit Thrush"
+    cbc_name: "Hermit Thrush"
+    scientific_name: "Catharus guttatus"
+  -
+    common_name: "American Robin"
+    cbc_name: "American Robin"
+    scientific_name: "Turdus migratorius"
+  -
+    common_name: "Varied Thrush"
+    cbc_name: "Varied Thrush"
+    scientific_name: "Ixoreus naevius"
+  -
+    common_name: "European Starling"
+    cbc_name: "European Starling"
+    scientific_name: "Sturnus vulgaris"
+  -
+    common_name: "Cedar Waxwing"
+    cbc_name: "Cedar Waxwing"
+    scientific_name: "Bombycilla cedrorum"
+  -
+    common_name: "Orange-crowned Warbler"
+    cbc_name: "Orange-crowned Warbler"
+    scientific_name: "Oreothlypis celata"
+  -
+    common_name: "Palm Warbler"
+    cbc_name: "Palm Warbler"
+    scientific_name: "Setophaga palmarum"
+  -
+    common_name: "Yellow-rumped Warbler"
+    cbc_name: "Yellow-rumped Warbler (Audubon's)"
+    scientific_name: "Setophaga coronata auduboni"
+  -
+    common_name: "Townsend's Warbler"
+    cbc_name: "Townsend's Warbler"
+    scientific_name: "Setophaga townsendi"
+  -
+    common_name: "warbler sp."
+    cbc_name: "warbler sp. (Parulidae sp.)"
+    scientific_name: "Parulidae sp."
+  -
+    common_name: "Fox Sparrow"
+    cbc_name: "Fox Sparrow"
+    scientific_name: "Passerella iliaca"
+  -
+    common_name: "Dark-eyed Junco (Slate-colored)"
+    cbc_name: "Dark-eyed Junco (Slate-colored)"
+    scientific_name: "Junco hyemalis hyemalis/carolinensis"
+  -
+    common_name: "Dark-eyed Junco (Oregon)"
+    cbc_name: "Dark-eyed Junco (Oregon)"
+    scientific_name: "Junco hyemalis [oreganus Group]"
+  -
+    common_name: "White-crowned Sparrow"
+    cbc_name: "White-crowned Sparrow"
+    scientific_name: "Zonotrichia leucophrys"
+  -
+    common_name: "Golden-crowned Sparrow"
+    cbc_name: "Golden-crowned Sparrow"
+    scientific_name: "Zonotrichia atricapilla"
+  -
+    common_name: "Harris's Sparrow"
+    cbc_name: "Harris's Sparrow"
+    scientific_name: "Zonotrichia querula"
+  -
+    common_name: "White-throated Sparrow"
+    cbc_name: "White-throated Sparrow"
+    scientific_name: "Zonotrichia albicollis"
+  -
+    common_name: "Song Sparrow"
+    cbc_name: "Song Sparrow"
+    scientific_name: "Melospiza melodia"
+  -
+    common_name: "Lincoln's Sparrow"
+    cbc_name: "Lincoln's Sparrow"
+    scientific_name: "Melospiza lincolnii"
+  -
+    common_name: "Spotted Towhee"
+    cbc_name: "Spotted Towhee"
+    scientific_name: "Pipilo maculatus"
+  -
+    common_name: "Black-headed Grosbeak"
+    cbc_name: "Black-headed Grosbeak"
+    scientific_name: "Pheucticus melanocephalus"
+  -
+    common_name: "Red-winged Blackbird"
+    cbc_name: "Red-winged Blackbird"
+    scientific_name: "Agelaius phoeniceus"
+  -
+    common_name: "Brewer's Blackbird"
+    cbc_name: "Brewer's Blackbird"
+    scientific_name: "Euphagus cyanocephalus"
+  -
+    common_name: "Brown-headed Cowbird"
+    cbc_name: "Brown-headed Cowbird"
+    scientific_name: "Molothrus ater"
+  -
+    common_name: "blackbird sp."
+    cbc_name: "blackbird sp."
+    scientific_name: "Icteridae sp."
+  -
+    common_name: "House Finch"
+    cbc_name: "House Finch"
+    scientific_name: "Haemorhous mexicanus"
+  -
+    common_name: "Purple Finch"
+    cbc_name: "Purple Finch"
+    scientific_name: "Haemorhous purpureus"
+  -
+    common_name: "Red Crossbill"
+    cbc_name: "Red Crossbill"
+    scientific_name: "Loxia curvirostra"
+  -
+    common_name: "Pine Siskin"
+    cbc_name: "Pine Siskin"
+    scientific_name: "Spinus pinus"
+  -
+    common_name: "American Goldfinch"
+    cbc_name: "American Goldfinch"
+    scientific_name: "Spinus tristis"
+  -
+    common_name: "Evening Grosbeak"
+    cbc_name: "Evening Grosbeak"
+    scientific_name: "Coccothraustes vespertinus"
+  -
+    common_name: "finch sp."
+    cbc_name: "finch sp."
+    scientific_name: "Fringillidae sp."
+  -
+    common_name: "House Sparrow"
+    cbc_name: "House Sparrow"
+    scientific_name: "Passer domesticus"

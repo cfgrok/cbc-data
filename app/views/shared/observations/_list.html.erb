@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th>Taxon</th>
+    <th>Number</th>
+    <th>Count Week</th>
+  </tr>
+  <% @checklist.observations.each do |observation| %>
+    <tr>
+      <td class='observation_name'><%= observation.common_name %></td>
+      <td><%= observation.number %></td>
+      <td><% if observation.count_week %>Count Week<% end %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>Species Count</th>
+    <th><%= @checklist.species_total %></th>
+    <th></th>
+  </tr>
+  <tr>
+    <th>Individual Count</th>
+    <th><%= @checklist.individual_total %></th>
+    <th></th>
+  </tr>
+</table>

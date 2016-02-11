@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Survey:</strong>
+  <%= @checklist.survey %>
+</p>
+
+<p>
+  <strong>Sector:</strong>
+  <%= @checklist.sector %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @checklist.area %>
+</p>
+
+<p>
+  <strong>Feeder watch:</strong>
+  <%= @checklist.feeder_watch %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= time_12_format @checklist.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= time_12_format @checklist.end_time %>
+</p>
+
+<p>
+  <strong>Hours foot:</strong>
+  <%= @checklist.hours_foot %>
+</p>
+
+<p>
+  <strong>Hours car:</strong>
+  <%= @checklist.hours_car %>
+</p>
+
+<p>
+  <strong>Hours boat:</strong>
+  <%= @checklist.hours_boat %>
+</p>
+
+<p>
+  <strong>Hours owling:</strong>
+  <%= @checklist.hours_owling %>
+</p>
+
+<p>
+  <strong>Hours total:</strong>
+  <%= @checklist.hours_total %>
+</p>
+
+<p>
+  <strong>Miles foot:</strong>
+  <%= @checklist.miles_foot %>
+</p>
+
+<p>
+  <strong>Miles car:</strong>
+  <%= @checklist.miles_car %>
+</p>
+
+<p>
+  <strong>Miles boat:</strong>
+  <%= @checklist.miles_boat %>
+</p>
+
+<p>
+  <strong>Miles owling:</strong>
+  <%= @checklist.miles_owling %>
+</p>
+
+<p>
+  <strong>Miles total:</strong>
+  <%= @checklist.miles_total %>
+</p>
+
+<%= render 'shared/observations/list' %>
+
+<%= link_to 'Edit', edit_checklist_path(@checklist) %> |
+<%= link_to 'Back', checklists_path %>

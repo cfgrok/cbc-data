@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: 1
+  taxon_id: 
+  checklist_id: 
+  count_week: false
+  notes: MyString
+
+two:
+  number: 1
+  taxon_id: 
+  checklist_id: 
+  count_week: false
+  notes: MyString

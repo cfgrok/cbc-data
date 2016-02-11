@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @survey.date %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @survey.year %>
+</p>
+
+<p>
+  <strong>Species Count:</strong>
+  <%= @survey.species_total %>
+</p>
+
+<p>
+  <strong>Individual Count:</strong>
+  <%= @survey.individual_total %>
+</p>
+
+<%= link_to 'Edit', edit_survey_path(@survey) %> |
+<%= link_to 'Back', surveys_path %>

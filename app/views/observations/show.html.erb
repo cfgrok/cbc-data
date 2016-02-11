@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @observation.number %>
+</p>
+
+<p>
+  <strong>Taxon:</strong>
+  <%= @observation.taxon %>
+</p>
+
+<p>
+  <strong>Checklist:</strong>
+  <%= @observation.checklist %>
+</p>
+
+<p>
+  <strong>Count week:</strong>
+  <%= @observation.count_week %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @observation.notes %>
+</p>
+
+<%= link_to 'Edit', edit_observation_path(@observation) %> |
+<%= link_to 'Back', observations_path %>

@@ -1,0 +1,41 @@
+<%= form_for(@taxon) do |f| %>
+  <% if @taxon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@taxon.errors.count, "error") %> prohibited this taxon from being saved:</h2>
+
+      <ul>
+      <% @taxon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :common_name %><br>
+    <%= f.text_field :common_name %>
+  </div>
+  <div class="field">
+    <%= f.label :cbc_name %><br>
+    <%= f.text_field :cbc_name %>
+  </div>
+  <div class="field">
+    <%= f.label :scientific_name %><br>
+    <%= f.text_field :scientific_name %>
+  </div>
+  <div class="field">
+    <%= f.label :taxonomic_order %><br>
+    <%= f.number_field :taxonomic_order %>
+  </div>
+  <div class="field">
+    <%= f.label :generic %><br>
+    <%= f.check_box :generic %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br>
+    <%= f.check_box :active %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
