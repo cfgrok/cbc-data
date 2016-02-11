@@ -64,8 +64,6 @@ class ChecklistImport
     return if area.nil?
 
     @checklist.area = area
-    @checklist.max_parties = 1
-    @checklist.min_parties = 1
   end
 
   def find_area
@@ -78,6 +76,10 @@ class ChecklistImport
     if @checklist.area.nil?
       @checklist.feeder_watch = true
       @checklist.location = find_area
+    else
+      @checklist.feeder_watch = false
+      @checklist.max_parties = 1
+      @checklist.min_parties = 1
     end
   end
 

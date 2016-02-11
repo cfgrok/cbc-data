@@ -11,7 +11,7 @@ class Checklist < ActiveRecord::Base
 
   has_and_belongs_to_many :observers, -> { order 'last_name, first_name' }
 
-  scope :field, -> { where(feeder_watch: nil) }
+  scope :field, -> { where(feeder_watch: false) }
   scope :feeder, -> { where(feeder_watch: true) }
 
   scope :has_start_time, -> { where('start_time is not null') }

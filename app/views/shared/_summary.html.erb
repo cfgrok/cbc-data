@@ -1,4 +1,4 @@
-<p>
+<p class='summary'>
   <strong>Species Count:</strong>
   <%= group.species_total %>
 </p>
@@ -8,7 +8,7 @@
   <%= group.individual_total %>
 </p>
 
-<p>
+<p class='summary'>
   <strong>Start Time:</strong>
   <%= time_12_format group.first_start_time %>
 </p>
@@ -18,17 +18,63 @@
   <%= time_12_format group.last_end_time %>
 </p>
 
-<p>
+<p class='summary'>
   <strong>Field Observers:</strong>
   <%= group.field_observer_total %>
 </p>
 
 <p>
-  <strong>Parties:</strong>
-  <%= group.parties_total %>
+  <strong>Max Parties:</strong>
+  <%= group.max_parties_total %>
+</p>
+
+<p>
+  <strong>Min Parties:</strong>
+  <%= group.min_parties_total %>
 </p>
 
 <p>
   <strong>Feeder Watch Observers:</strong>
-  <%= group.feeder_watch_observer_total %>
+  <%= group.feeder_observer_total %>
 </p>
+
+<table class='summary'>
+  <caption>Effort</caption>
+  <tr>
+  	<th>Transportation</th>
+  	<th>Hours</th>
+  	<th>Miles</th>
+  </tr>
+  <tr>
+  	<td>Foot</td>
+  	<td><%= group.hours_foot_total %></td>
+  	<td><%= group.miles_foot_total %></td>
+  </tr>
+  <tr>
+  	<td>Car</td>
+  	<td><%= group.hours_car_total %></td>
+  	<td><%= group.miles_car_total %></td>
+  </tr>
+  <tr>
+  	<td>Boat</td>
+  	<td><%= group.hours_boat_total %></td>
+  	<td><%= group.miles_boat_total %></td>
+  </tr>
+</table>
+
+<p class='summary'>
+  <strong>Feeder Watch Hours:</strong>
+  <%= group.feeder_hours_total %>
+</p>
+
+<table class='summary'>
+  <caption>Owling</caption>
+  <tr>
+  	<th>Hours</th>
+  	<th>Miles</th>
+  </tr>
+  <tr>
+  	<td><%= group.hours_owling_total %></td>
+  	<td><%= group.miles_owling_total %></td>
+  </tr>
+</table>

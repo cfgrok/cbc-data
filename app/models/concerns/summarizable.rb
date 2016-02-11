@@ -3,24 +3,18 @@ module Summarizable
 
   def species_total
     list = observations.includes(:taxon).map { |o| o }.uniq { |o| o.taxon }
+      .reject { |o| o.common_name =~ /sp.$/ || o.common_name == 'Western x Glaucous-winged Gull' }
 
-    total = list.reduce(0) do |count, o|
-      count += 1 unless o.common_name.match(/sp.$/)
-      count
-    end
+    total = list.count
 
-    total -= 1 if list.find { |o| o.common_name == 'Western x Glaucous-winged Gull' }
-    total -= 1 if list.count { |o| o.common_name =~ /^Bald Eagle/ } == 2
-    total -= 1 if list.count { |o| o.common_name =~ /^Dark-eyed Junco/ } == 2
+    total -= 1 if list.count { |o| o.common_name =~ /^Bald Eagle/ } > 1
+    total -= 1 if list.count { |o| o.common_name =~ /^Dark-eyed Junco/ } > 1
 
     total
   end
 
   def individual_total
-    observations.reduce(0) do |count, o|
-      count += o.number unless o.number.nil?
-      count
-    end
+    observations.reduce(0) { |count, o| count += o.number.to_i }
   end
 
   def first_start_time
@@ -35,24 +29,26 @@ module Summarizable
       .reduce { |last, time| last && last > time ? last : time }
   end
 
-  def field_observer_total
-    checklists.field
-      .map { |c| c.observers }
-      .flatten
-      .uniq
-      .length
-  end
-
-  def parties_total
-    checklists.field
-      .reduce(0) {|total, c| total + c.parties}
-  end
-
-  def feeder_watch_observer_total
+  def feeder_hours_total
     checklists.feeder
-      .map { |c| c.observers }
-      .flatten
-      .uniq
-      .length
+      .reduce(0) { |total, checklist| total += checklist.hours_total.to_f }
+  end
+
+  def method_missing(method_name, *args, &block)
+    if name = method_name.to_s.match(/^(.+)_observer_total$/)
+      observer_total name[1]
+    elsif name = method_name.to_s.match(/^(.+)_total$/)
+      checklist_total name[1]
+    end
+  end
+
+  def observer_total(scope)
+    scoped = checklists.send scope
+    scoped.map { |c| c.observers }.flatten.uniq.length
+  end
+
+  def checklist_total(property)
+    checklists.field
+      .reduce(0) { |total, checklist| total += checklist.send(property).to_f }
   end
 end
