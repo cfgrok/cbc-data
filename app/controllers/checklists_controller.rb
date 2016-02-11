@@ -106,8 +106,8 @@ class ChecklistsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def checklist_params
       params.require(:checklist).permit(:survey_id, :sector_id, :area_id,
-        :feeder_watch, :location, :start_time, :end_time, :hours_foot, :hours_car,
-        :hours_boat, :hours_owling, :hours_total, :miles_foot, :miles_car,
+        :feeder_watch, :location, :parties, :start_time, :end_time, :hours_foot,
+        :hours_car, :hours_boat, :hours_owling, :hours_total, :miles_foot, :miles_car,
         :miles_boat, :miles_owling, :miles_total, observations_attributes:
         [:id, :number, :count_week, :taxon_id, :_destroy])
     end
