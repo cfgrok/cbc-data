@@ -24,16 +24,20 @@
     <%= f.collection_select :area_id, Area.all, :id, :to_s, include_blank: 'None' %>
   </div>
   <div class="field">
+    <%= f.label :max_parties %><br>
+    <%= f.number_field :max_parties %>
+  </div>
+  <div class="field">
+    <%= f.label :min_parties %><br>
+    <%= f.number_field :min_parties %>
+  </div>
+  <div class="field">
     <%= f.label :feeder_watch %><br>
     <%= f.check_box :feeder_watch %>
   </div>
   <div class="field">
     <%= f.label :location %><br>
     <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :parties %><br>
-    <%= f.number_field :parties %>
   </div>
   <div class="field">
     <%= f.label :start_time %><br>

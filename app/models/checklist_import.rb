@@ -59,10 +59,13 @@ class ChecklistImport
   def set_area
     name = find_area
 
-    return if name.nil?
-
     area = @checklist.sector.areas.where('name LIKE ?', "%#{name}%").first
+
+    return if area.nil?
+
     @checklist.area = area
+    @checklist.max_parties = 1
+    @checklist.min_parties = 1
   end
 
   def find_area

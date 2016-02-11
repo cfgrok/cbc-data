@@ -4,9 +4,10 @@ class CreateChecklists < ActiveRecord::Migration
       t.references :survey, index: true, foreign_key: true
       t.references :sector, index: true, foreign_key: true
       t.references :area, index: true, foreign_key: true
+      t.integer :max_parties
+      t.integer :min_parties
       t.boolean :feeder_watch
       t.string :location
-      t.integer :parties
       t.time :start_time
       t.time :end_time
       t.float :hours_foot

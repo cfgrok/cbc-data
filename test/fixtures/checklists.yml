@@ -4,11 +4,12 @@ one:
   survey_id: 
   sector_id: 
   area_id: 
+  max_parties: 1
+  min_parties: 1
   feeder_watch: false
   location: MyString
-  parties: 1
-  start_time: 2016-02-11 00:57:15
-  end_time: 2016-02-11 00:57:15
+  start_time: 2016-02-11 02:25:00
+  end_time: 2016-02-11 02:25:00
   hours_foot: 1.5
   hours_car: 1.5
   hours_boat: 1.5
@@ -24,11 +25,12 @@ two:
   survey_id: 
   sector_id: 
   area_id: 
+  max_parties: 1
+  min_parties: 1
   feeder_watch: false
   location: MyString
-  parties: 1
-  start_time: 2016-02-11 00:57:15
-  end_time: 2016-02-11 00:57:15
+  start_time: 2016-02-11 02:25:00
+  end_time: 2016-02-11 02:25:00
   hours_foot: 1.5
   hours_car: 1.5
   hours_boat: 1.5
