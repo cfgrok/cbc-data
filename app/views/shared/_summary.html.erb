@@ -9,6 +9,21 @@
 </p>
 
 <p>
-  <strong>Observers:</strong>
-  <%= group.observer_total %>
+  <strong>Field Observers:</strong>
+  <%= group.field_observer_total %>
+</p>
+
+<p>
+  <strong>Feeder Watch Observers:</strong>
+  <%= group.feeder_watch_observer_total %>
+</p>
+
+<p>
+  <strong>Start Time:</strong>
+  <%= time_12_format group.first_start_time %>
+</p>
+
+<p>
+  <strong>End Time:</strong>
+  <%= time_12_format group.last_end_time %>
 </p>

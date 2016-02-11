@@ -23,12 +23,29 @@ module Summarizable
     end
   end
 
-  def observer_total
-    observations.map { |o| o.checklist }
-      .uniq
+  def field_observer_total
+    checklists.where(feeder_watch: nil)
       .map { |o| o.observers }
       .flatten
       .uniq
       .length
+  end
+
+  def feeder_watch_observer_total
+    checklists.where(feeder_watch: true)
+      .map { |o| o.observers }
+      .flatten
+      .uniq
+      .length
+  end
+
+  def first_start_time
+    checklists.where(feeder_watch: nil).map { |checklist| checklist.start_time }
+      .reduce { |first, time| first && first < time ? first : time }
+  end
+
+  def last_end_time
+    checklists.where(feeder_watch: nil).map { |checklist| checklist.end_time }
+      .reduce { |last, time| last && last > time ? last : time }
   end
 end
