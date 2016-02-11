@@ -9,6 +9,8 @@ class Checklist < ActiveRecord::Base
 
   accepts_nested_attributes_for :observations, allow_destroy: true
 
+  has_and_belongs_to_many :observers
+
   def to_s
     "#{survey.to_s}: #{area.to_s}"
   end

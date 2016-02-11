@@ -22,4 +22,13 @@ module Summarizable
       count
     end
   end
+
+  def observer_total
+    observations.map { |o| o.checklist }
+      .uniq
+      .map { |o| o.observers }
+      .flatten
+      .uniq
+      .length
+  end
 end

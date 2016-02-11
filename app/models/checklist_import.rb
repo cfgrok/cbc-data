@@ -24,7 +24,7 @@ class ChecklistImport
     set_time
     set_hours
     set_miles
-    #set_observers
+    set_observers
     set_observations
   end
 
@@ -218,6 +218,35 @@ class ChecklistImport
     @worksheet.rows.each do |row|
       return row[3] if row[2] == "TOTAL PARTY MILES"
     end
+  end
+
+  def set_observers
+    rows = @worksheet.rows.to_a[find_observers_start..find_page_2_start - 1]
+
+    rows.each do |row|
+      set_observer row
+    end
+  end
+
+  def find_observers_start
+    @worksheet.rows.index {|row| row[0] == "PARTY MEMBERS & EMAIL ADDRESSES"} + 1
+  end
+
+  def set_observer(row)
+    email = row[1]
+    names = row[0]
+
+    return if names.nil?
+
+    first_name = names.split(' ')[0]
+    last_name = names.split(' ')[1..-1].join(' ')
+
+    observer = Observer.find_by(email: email) || Observer.new(email: email)
+
+    observer.first_name = first_name
+    observer.last_name = last_name
+
+    @checklist.observers << observer
   end
 
   def set_observations

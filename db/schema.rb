@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210232546) do
+ActiveRecord::Schema.define(version: 20160211043421) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 20160210232546) do
   add_index "checklists", ["area_id"], name: "index_checklists_on_area_id"
   add_index "checklists", ["sector_id"], name: "index_checklists_on_sector_id"
   add_index "checklists", ["survey_id"], name: "index_checklists_on_survey_id"
+
+  create_table "checklists_observers", id: false, force: :cascade do |t|
+    t.integer "checklist_id", null: false
+    t.integer "observer_id",  null: false
+  end
 
   create_table "observations", force: :cascade do |t|
     t.integer  "number"

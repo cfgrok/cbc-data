@@ -80,6 +80,11 @@
   <%= @checklist.miles_total %>
 </p>
 
+<p>
+  <strong>Observers:</strong>
+  <%= @checklist.observers.join(', ') %>
+</p>
+
 <%= render 'shared/observations/list' %>
 
 <%= link_to 'Edit', edit_checklist_path(@checklist) %> |

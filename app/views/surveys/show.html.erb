@@ -20,5 +20,10 @@
   <%= @survey.individual_total %>
 </p>
 
+<p>
+  <strong>Observers:</strong>
+  <%= @survey.observer_total %>
+</p>
+
 <%= link_to 'Edit', edit_survey_path(@survey) %> |
 <%= link_to 'Back', surveys_path %>
