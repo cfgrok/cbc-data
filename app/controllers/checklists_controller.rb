@@ -5,6 +5,9 @@ class ChecklistsController < ApplicationController
   # GET /checklists.json
   def index
     @checklists = Checklist.all
+                    .joins('LEFT OUTER JOIN areas ON areas.id = checklists.area_id')
+                    .joins('LEFT OUTER JOIN sectors ON sectors.id = checklists.sector_id')
+                    .order('sectors.id, checklists.feeder_watch, areas.name')
   end
 
   # GET /checklists/1
