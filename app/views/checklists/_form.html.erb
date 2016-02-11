@@ -82,7 +82,7 @@
 
   <div class="field">
     <%= f.label :observers %><br>
-    <%= f.collection_select :observer_ids, Observer.all, :id, :to_s, { prompt: 'Select Observers' }, { multiple: true } %>
+    <%= f.collection_select :observer_ids, Observer.sorted, :id, :to_s, { prompt: 'Select Observers' }, { multiple: true } %>
   </div>
 
   <%= render partial: 'shared/observations/form', locals: { f: f } %>
