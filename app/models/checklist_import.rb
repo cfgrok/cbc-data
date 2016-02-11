@@ -72,7 +72,10 @@ class ChecklistImport
   end
 
   def set_feeder_watch
-    @checklist.feeder_watch = true if @checklist.area.nil?
+    if @checklist.area.nil?
+      @checklist.feeder_watch = true
+      @checklist.location = find_area
+    end
   end
 
   def set_time

@@ -5,8 +5,9 @@ one:
   sector_id: 
   area_id: 
   feeder_watch: false
-  start_time: 2016-02-10 15:26:21
-  end_time: 2016-02-10 15:26:21
+  location: MyString
+  start_time: 2016-02-10 23:51:48
+  end_time: 2016-02-10 23:51:48
   hours_foot: 1.5
   hours_car: 1.5
   hours_boat: 1.5
@@ -23,8 +24,9 @@ two:
   sector_id: 
   area_id: 
   feeder_watch: false
-  start_time: 2016-02-10 15:26:21
-  end_time: 2016-02-10 15:26:21
+  location: MyString
+  start_time: 2016-02-10 23:51:48
+  end_time: 2016-02-10 23:51:48
   hours_foot: 1.5
   hours_car: 1.5
   hours_boat: 1.5

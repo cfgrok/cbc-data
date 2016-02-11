@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211043421) do
+ActiveRecord::Schema.define(version: 20160211075148) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160211043421) do
     t.integer  "sector_id"
     t.integer  "area_id"
     t.boolean  "feeder_watch"
+    t.string   "location"
     t.time     "start_time"
     t.time     "end_time"
     t.float    "hours_foot"

@@ -5,6 +5,7 @@ class CreateChecklists < ActiveRecord::Migration
       t.references :sector, index: true, foreign_key: true
       t.references :area, index: true, foreign_key: true
       t.boolean :feeder_watch
+      t.string :location
       t.time :start_time
       t.time :end_time
       t.float :hours_foot
