@@ -4,7 +4,7 @@ class ObserversController < ApplicationController
   # GET /observers
   # GET /observers.json
   def index
-    @observers = Observer.all
+    @observers = Observer.sorted
   end
 
   # GET /observers/1
