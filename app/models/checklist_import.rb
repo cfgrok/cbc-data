@@ -57,7 +57,10 @@ class ChecklistImport
 
   def set_area
     name = find_area
-    area = Area.where('name LIKE ?', "%#{name}%").first
+
+    return if name.nil?
+
+    area = @checklist.sector.areas.where('name LIKE ?', "%#{name}%").first
     @checklist.area = area
   end
 
