@@ -5,9 +5,11 @@ class ChecklistsController < ApplicationController
   # GET /checklists.json
   def index
     @checklists = Checklist.all
+                    .joins('INNER JOIN surveys ON surveys.id = checklists.survey_id')
+                    .joins('INNER JOIN years ON years.id = surveys.year_id')
                     .joins('LEFT OUTER JOIN areas ON areas.id = checklists.area_id')
                     .joins('LEFT OUTER JOIN sectors ON sectors.id = checklists.sector_id')
-                    .order('sectors.id, checklists.feeder_watch, areas.name')
+                    .order('years.id, sectors.id, checklists.feeder_watch, areas.name, checklists.location')
   end
 
   # GET /checklists/1
@@ -65,8 +67,14 @@ class ChecklistsController < ApplicationController
   end
 
   def import
-    ChecklistImport.new.import params[:file]
+    ChecklistImport.new.import params[:file].tempfile
     flash[:notice] = 'Checklist was successfully imported.'
+    redirect_to checklists_url
+  end
+
+  def import_downloaded
+    DownloadedChecklistImport.new.import params[:file].tempfile
+    flash[:notice] = 'Downloaded checklist was successfully imported.'
     redirect_to checklists_url
   end
 

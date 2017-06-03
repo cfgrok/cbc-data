@@ -2,21 +2,28 @@
   -
     name: "Vashon North"
     code: "VN"
+    on_island: true
   -
     name: "Vashon South"
     code: "VS"
+    on_island: true
   -
     name: "Maury/Tramp"
     code: "MT"
+    on_island: true
   -
     name: "Quartermaster Harbor"
     code: "QH"
+    on_island: true
   -
     name: "Kitsap East"
     code: "KE"
+    on_island: false
   -
     name: "Kitsap West"
     code: "KW"
+    on_island: false
   -
     name: "Pierce North"
     code: "PN"
+    on_island: false

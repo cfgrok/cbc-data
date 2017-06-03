@@ -7,6 +7,7 @@ class CreateChecklists < ActiveRecord::Migration
       t.integer :max_parties
       t.integer :min_parties
       t.boolean :feeder_watch
+      t.boolean :on_island
       t.string :location
       t.time :start_time
       t.time :end_time

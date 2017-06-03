@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20160211102500) do
 
   create_table "areas", force: :cascade do |t|
     t.string   "name"
+    t.boolean  "on_island"
     t.integer  "sector_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160211102500) do
     t.integer  "max_parties"
     t.integer  "min_parties"
     t.boolean  "feeder_watch"
+    t.boolean  "on_island"
     t.string   "location"
     t.time     "start_time"
     t.time     "end_time"
@@ -79,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160211102500) do
   create_table "sectors", force: :cascade do |t|
     t.string   "name"
     t.string   "code"
+    t.boolean  "on_island"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,24 +1,135 @@
-<table>
-  <tr>
-    <th>Taxon</th>
-    <th>Number</th>
-    <th>Count Week</th>
+<table class='list_summary'>
+  <tr class="header_row">
+    <th class='observation_text'>Taxon</th>
+    <th>Count</th>
+    <% if group.respond_to?(:sector) && group.sector %>
+      <th>Sector Count</th>
+      <th>Sector Ratio</th>
+    <% end %>
+    <% if group.respond_to? :survey %>
+      <th>Survey Count</th>
+      <th>Survey Ratio</th>
+    <% end %>
+    <% if group.is_a? Checklist %>
+      <th class='observation_text'>Notes</th>
+    <% end %>
+    <% if group.is_a? Survey %>
+      <th>Historical Average</th>
+      <th>%&nbsp;Change</th>
+      <th>High Count</th>
+      <th class="cell-divider-right">Low Count</th>
+      <th>Years Present</th>
+      <th class="cell-divider-right">Overall Average</th>
+      <% @surveys.each do |survey| %>
+        <% style = survey.to_s == @survey.to_s ? "selected_year" : "" %>
+        <th class="<%= style %>"><%= survey.to_s %></th>
+      <% end %>
+    <% end %>
   </tr>
-  <% @checklist.observations.each do |observation| %>
+  <% group.aggregate_observations.each do |observation| %>
+    <% if group.is_a? Survey
+         data = @surveys_data.fetch(observation.taxon_id, {})
+         hist_avg = data.fetch("hist_avg", nil)
+         change_style = data.fetch("change_style", "")
+         percent_change = number_to_percentage(data.fetch("percent_change", ""), precision: 2)
+         high_style = data.fetch("high_style", "")
+         high = data.fetch("high", "")
+         low_style = data.fetch("low_style", "")
+         low = data.fetch("low", "")
+         all_years = data.fetch("all_years", "")
+         all_avg = data.fetch("all_avg", "")
+       else
+         high_style = ""
+         low_style = ""
+       end %>
     <tr>
-      <td class='observation_name'><%= observation.common_name %></td>
-      <td><%= observation.number %></td>
-      <td><% if observation.count_week %>Count Week<% end %></td>
+      <td class='observation_text'><%= observation.common_name %></td>
+      <% if observation.count_week %>
+        <td class='count_week'>Count Week</td>
+      <% else %>
+        <td class="<%= high_style %><%= low_style %>"><%= observation.number %></td>
+      <% end %>
+      <% if group.respond_to?(:sector) && group.sector %>
+        <td<%= ratio_class observation.sector_ratio %>><%= observation.sector_number %></td>
+        <td<%= ratio_class observation.sector_ratio %>><%= ratio_percent observation.sector_ratio %></td>
+      <% end %>
+      <% if group.respond_to? :survey %>
+        <td<%= ratio_class observation.survey_ratio %>><%= observation.survey_number %></td>
+        <td<%= ratio_class observation.survey_ratio %>><%= ratio_percent observation.survey_ratio %></td>
+      <% end %>
+      <% if group.is_a? Checklist %>
+        <td class='observation_text'><%= observation.notes %></td>
+      <% end %>
+      <% if group.is_a? Survey %>
+        <td><%= hist_avg %></td>
+        <td class="<%= change_style %>"><%= percent_change %></td>
+        <td class="<%= high_style %>"><%= high %></td>
+        <td class="cell-divider-right <%= low_style %>"><%= low %></td>
+        <td><%= all_years %></td>
+        <td class="cell-divider-right"><%= all_avg %></td>
+        <% @surveys.each do |survey| %>
+          <% data = @surveys_data.fetch(observation.taxon_id, {})
+               count = data.fetch(survey.to_s, nil)
+               style = []
+               style << "count_week" if count == "Count Week"
+               style << "selected_year" if survey.to_s == @survey.to_s
+               if count == low
+                 style << "bold red"
+               elsif count == high
+                 style << "bold"
+               end
+               style = style.join(' ') %>
+          <td class="<%= style %>"><%= count %></td>
+        <% end %>
+      <% end %>
     </tr>
   <% end %>
   <tr>
-    <th>Species Count</th>
-    <th><%= @checklist.species_total %></th>
-    <th></th>
+    <th class='observation_text'>Species Count</th>
+    <th class="<%= @species_high_style %><%= @species_low_style %>"><%= group.species_total %><%= count_week_helper group.count_week_total %></th>
+    <% if group.respond_to?(:sector) && group.sector %>
+      <th<%= ratio_class group.species_total_sector_ratio %>><%= group.sector.species_total %></th>
+      <th<%= ratio_class group.species_total_sector_ratio %>><%= ratio_percent group.species_total_sector_ratio %></th>
+    <% end %>
+    <% if group.respond_to? :survey %>
+      <th<%= ratio_class group.species_total_survey_ratio %>><%= group.survey.species_total %></th>
+      <th<%= ratio_class group.species_total_survey_ratio %>><%= ratio_percent group.species_total_survey_ratio %></th>
+    <% end %>
+    <% if group.is_a? Survey %>
+      <th><%= @hist_species_avg %></th>
+      <th class="<%= @species_change_style %>"><%= number_to_percentage(@species_percent_change, precision: 2) %></th>
+      <th class="<%= @species_high_style %>"><%= @species_high %></th>
+      <th class="cell-divider-right <%= @species_low_style %>"><%= @species_low %></th>
+      <th><%= @surveys.size %></th>
+      <th class="cell-divider-right"><%= @all_species_avg %></th>
+      <% @surveys.each do |survey| %>
+        <% style = survey.to_s == @survey.to_s ? "selected_year" : "" %>
+        <th class="<%= style %>"><%= survey.species_total %><%= count_week_helper survey.count_week_total %></th>
+      <% end %>
+    <% end %>
   </tr>
   <tr>
-    <th>Individual Count</th>
-    <th><%= @checklist.individual_total %></th>
-    <th></th>
+    <th class='observation_text'>Individual Count</th>
+    <th class="<%= @individual_high_style %><%= @individual_low_style %>"><%= group.individual_total %></th>
+    <% if group.respond_to?(:sector) && group.sector %>
+      <th<%= ratio_class group.individual_total_sector_ratio %>><%= group.sector.individual_total %></th>
+      <th<%= ratio_class group.individual_total_sector_ratio %>><%= ratio_percent group.individual_total_sector_ratio %></th>
+    <% end %>
+    <% if group.respond_to? :survey %>
+      <th<%= ratio_class group.individual_total_survey_ratio %>><%= group.survey.individual_total %></th>
+      <th<%= ratio_class group.individual_total_survey_ratio %>><%= ratio_percent group.individual_total_survey_ratio %></th>
+    <% end %>
+    <% if group.is_a? Survey %>
+      <th><%= @hist_individual_avg %></th>
+      <th class="<%= @individual_change_style %>"><%= number_to_percentage(@individual_percent_change, precision: 2) %></th>
+      <th class="<%= @individual_high_style %>"><%= @individual_high %></th>
+      <th class="cell-divider-right <%= @individual_low_style %>"><%= @individual_low %></th>
+      <th><%= @surveys.size %></th>
+      <th class="cell-divider-right"><%= @all_individual_avg %></th>
+      <% @surveys.each do |survey| %>
+        <% style = survey.to_s == @survey.to_s ? "selected_year" : "" %>
+        <th class="<%= style %>"><%= survey.individual_total %></th>
+      <% end %>
+    <% end %>
   </tr>
 </table>

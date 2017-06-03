@@ -6,4 +6,8 @@ class Observer < ActiveRecord::Base
   def to_s
     "#{first_name} #{last_name}"
   end
+
+  def has_email?
+    email && email.match(/@/)
+  end
 end

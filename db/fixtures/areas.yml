@@ -1,73 +1,113 @@
 ---
   -
     name: "Three Tree Point"
+    on_island: false
     code: "VN"
   -
     name: "East"
+    on_island: true
     code: "VN"
   -
     name: "Central"
+    on_island: true
     code: "VN"
   -
     name: "West"
+    on_island: true
     code: "VN"
   -
     name: "South"
+    on_island: true
     code: "VN"
   -
-    name: "VCC/Shinglemill"
+    name: "VCC - Shinglemill"
+    on_island: true
     code: "VN"
   -
     name: "KVI Beach"
+    on_island: true
+    code: "VN"
+  -
+    name: "Roseballen"
+    on_island: true
+    code: "VN"
+  -
+    name: "Owling"
+    on_island: true
     code: "VN"
   -
     name: "Wax Orchards"
+    on_island: true
     code: "VS"
   -
     name: "Monument"
+    on_island: true
     code: "VS"
   -
     name: "Tahlequah"
+    on_island: true
     code: "VS"
   -
     name: "Christensen Pond"
+    on_island: true
     code: "VS"
   -
-    name: "Paradise Cove/Camp Sealth"
+    name: "Paradise Cove - Camp Sealth"
+    on_island: true
     code: "VS"
   -
     name: "Point Robinson"
+    on_island: true
     code: "MT"
   -
     name: "Tramp Harbor"
+    on_island: true
     code: "MT"
   -
     name: "Dockton"
+    on_island: true
+    code: "MT"
+  -
+    name: "Manzanita"
+    on_island: true
     code: "MT"
   -
     name: "Boat"
+    on_island: true
     code: "QH"
   -
     name: "North"
+    on_island: false
     code: "KE"
   -
     name: "South"
+    on_island: false
     code: "KE"
-  -
-    name: "Salmonberry Creek"
-    code: "KE"
+#  -
+#    name: "Salmonberry Creek"
+#    on_island: false
+#    code: "KE"
   -
     name: "West"
+    on_island: false
     code: "KW"
   -
     name: "East"
+    on_island: false
     code: "KW"
   -
     name: "Long Lake"
+    on_island: false
     code: "KW"
   -
     name: "Wayne Jackson"
+    on_island: false
+    code: "KW"
+  -
+    name: "Owling"
+    on_island: false
     code: "KW"
   -
     name: "Combined"
+    on_island: false
     code: "PN"

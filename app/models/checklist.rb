@@ -18,7 +18,7 @@ class Checklist < ActiveRecord::Base
   scope :has_end_time, -> { where('end_time is not null') }
 
   def to_s
-    "#{survey.to_s}: #{area.to_s}"
+    "#{survey.to_s}: #{feeder_watch ? location : area.to_s}"
   end
 
   def rows
@@ -26,5 +26,49 @@ class Checklist < ActiveRecord::Base
     @rows ||= Taxon.all.map do |taxon|
       Row.new(taxon, @row_observations.find {|o| o.taxon == taxon})
     end
+  end
+
+  def aggregate_observations
+    aggregated = super
+
+    sector_observations = sector.aggregate_observations if sector
+    survey_observations = survey.aggregate_observations
+
+    aggregated.each do |observation|
+      observation.sector_number = sector_observations.find { |o| o.taxon == observation.taxon }.number if sector
+      observation.survey_number = survey_observations.find { |o| o.taxon == observation.taxon }.number
+    end
+  end
+
+  def hours_match?
+    hours_total &&
+    [hours_foot, hours_car, hours_boat, hours_owling].compact.reduce(:+) == hours_total
+  end
+
+  def miles_match?
+    !no_field_miles? &&
+    [miles_foot, miles_car, miles_boat, miles_owling].compact.reduce(:+) == miles_total
+  end
+
+  def field_hours
+    unless hours_total
+      'MISSING'
+    else
+      hours_total
+    end
+  end
+
+  def field_miles
+    if no_field_miles?
+      'MISSING'
+    else
+      miles_total
+    end
+  end
+
+  private
+
+  def no_field_miles?
+    !feeder_watch && !miles_total
   end
 end

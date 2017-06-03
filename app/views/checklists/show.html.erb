@@ -100,7 +100,7 @@
   <%= @checklist.observers.join(', ') %>
 </p>
 
-<%= render 'shared/observations/list' %>
+<%= render partial: 'shared/observations/list', locals: { group: @checklist } %>
 
 <%= link_to 'Edit', edit_checklist_path(@checklist) %> |
 <%= link_to 'Back', checklists_path %>

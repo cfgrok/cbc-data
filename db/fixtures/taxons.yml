@@ -44,6 +44,10 @@
     cbc_name: "Mallard"
     scientific_name: "Anas platyrhynchos"
   -
+    common_name: "Mallard (Domestic type)"
+    cbc_name: "Mallard (Domestic type)"
+    scientific_name: "Anas platyrhynchos (Domestic type)"
+  -
     common_name: "Northern Shoveler"
     cbc_name: "Northern Shoveler"
     scientific_name: "Anas clypeata"
@@ -83,6 +87,10 @@
     common_name: "scaup sp."
     cbc_name: "Greater/Lesser Scaup"
     scientific_name: "Aythya marila/affinis"
+  -
+    common_name: "Common Eider"
+    cbc_name: "Common Eider"
+    scientific_name: "Somateria mollissima"
   -
     common_name: "Harlequin Duck"
     cbc_name: "Harlequin Duck"
@@ -256,6 +264,10 @@
     cbc_name: "Bald Eagle"
     scientific_name: "Haliaeetus leucocephalus"
   -
+    common_name: "Red-shouldered Hawk"
+    cbc_name: "Red-shouldered Hawk"
+    scientific_name: "Buteo lineatus"
+  -
     common_name: "Red-tailed Hawk"
     cbc_name: "Red-tailed Hawk"
     scientific_name: "Buteo jamaicensis"
@@ -275,6 +287,10 @@
     common_name: "American Coot"
     cbc_name: "American Coot"
     scientific_name: "Fulica americana"
+  -
+    common_name: "Semipalmated Plover"
+    cbc_name: "Semipalmated Plover"
+    scientific_name: "Charadrius semipalmatus"
   -
     common_name: "Killdeer"
     cbc_name: "Killdeer"
@@ -488,6 +504,10 @@
     cbc_name: "small falcon sp."
     scientific_name: "Falco sp. (small falcon sp.)"
   -
+    common_name: "Ash-throated Flycatcher"
+    cbc_name: "Ash-throated Flycatcher"
+    scientific_name: "Myiarchus cinerascens"
+  -
     common_name: "Northern Shrike"
     cbc_name: "Northern Shrike"
     scientific_name: "Lanius excubitor"
@@ -516,6 +536,10 @@
     cbc_name: "Common Raven"
     scientific_name: "Corvus corax"
   -
+    common_name: "Violet-green Swallow"
+    cbc_name: "Violet-green Swallow"
+    scientific_name: "Tachycineta thalassina"
+  -
     common_name: "Black-capped Chickadee"
     cbc_name: "Black-capped Chickadee"
     scientific_name: "Poecile atricapillus"
@@ -527,6 +551,10 @@
     common_name: "Chestnut-backed Chickadee"
     cbc_name: "Chestnut-backed Chickadee"
     scientific_name: "Poecile rufescens"
+  -
+    common_name: "chickadee sp."
+    cbc_name: "chickadee sp."
+    scientific_name: "Poecile sp."
   -
     common_name: "Bushtit"
     cbc_name: "Bushtit"
@@ -660,6 +688,10 @@
     cbc_name: "Spotted Towhee"
     scientific_name: "Pipilo maculatus"
   -
+    common_name: "sparrow sp."
+    cbc_name: "sparrow sp."
+    scientific_name: "Emberizidae sp."
+  -
     common_name: "Black-headed Grosbeak"
     cbc_name: "Black-headed Grosbeak"
     scientific_name: "Pheucticus melanocephalus"
@@ -667,6 +699,10 @@
     common_name: "Red-winged Blackbird"
     cbc_name: "Red-winged Blackbird"
     scientific_name: "Agelaius phoeniceus"
+  -
+    common_name: "Western Meadowlark"
+    cbc_name: "Western Meadowlark"
+    scientific_name: "Sturnella neglecta"
   -
     common_name: "Brewer's Blackbird"
     cbc_name: "Brewer's Blackbird"

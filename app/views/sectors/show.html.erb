@@ -11,6 +11,7 @@
 </p>
 
 <%= render partial: 'shared/summary', locals: { group: @sector } %>
+<%= render partial: 'shared/observations/list', locals: { group: @sector } %>
 
 <%= link_to 'Edit', edit_sector_path(@sector) %> |
 <%= link_to 'Back', sectors_path %>

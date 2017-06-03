@@ -44,12 +44,12 @@
         <td><%= checklist.hours_car %></td>
         <td><%= checklist.hours_boat %></td>
         <td><%= checklist.hours_owling %></td>
-        <td><%= checklist.hours_total %></td>
+        <td<% unless checklist.hours_match? %> class='review'<% end %>><%= checklist.field_hours %></td>
         <td><%= checklist.miles_foot %></td>
         <td><%= checklist.miles_car %></td>
         <td><%= checklist.miles_boat %></td>
         <td><%= checklist.miles_owling %></td>
-        <td><%= checklist.miles_total %></td>
+        <td<% unless checklist.miles_match? %> class='review'<% end %>><%= checklist.field_miles %></td>
         <td><%= link_to 'Show', checklist %></td>
         <td><%= link_to 'Edit', edit_checklist_path(checklist) %></td>
         <td><%= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' } %></td>

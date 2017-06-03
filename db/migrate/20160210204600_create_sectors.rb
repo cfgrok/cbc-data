@@ -3,6 +3,7 @@ class CreateSectors < ActiveRecord::Migration
     create_table :sectors do |t|
       t.string :name
       t.string :code
+      t.boolean :on_island
 
       t.timestamps null: false
     end

@@ -1,5 +1,15 @@
 class ChecklistImport
+  class NoSectorError < StandardError; end
+
+  def import_all(directory)
+    Dir.glob("#{directory}/*.xls").sort.each do |file|
+      import File.open(file)
+    end
+  end
+
   def import(file)
+    puts "Importing #{file.path}"
+    @file = file
     create_worksheet file
     create_checklist
     set_checklist_attributes
@@ -9,7 +19,7 @@ class ChecklistImport
   private
 
   def create_worksheet(file)
-    @workbook = Spreadsheet.open file.tempfile
+    @workbook = Spreadsheet.open file
     @worksheet = @workbook.worksheet 0
   end
 
@@ -22,6 +32,8 @@ class ChecklistImport
     set_sector
     set_area
     set_feeder_watch
+    set_on_island
+    set_parties
     set_time
     set_hours
     set_miles
@@ -47,6 +59,9 @@ class ChecklistImport
   def set_sector
     name = find_sector
     sector = Sector.where(name: name).first
+
+    fail NoSectorError, "Sector #{name} not found - #{@file.path.split('/').last}" if sector.nil?
+
     @checklist.sector = sector
   end
 
@@ -59,7 +74,7 @@ class ChecklistImport
   def set_area
     name = find_area
 
-    area = @checklist.sector.areas.where('name LIKE ?', "%#{name}%").first
+    area = @checklist.sector.areas.where('name = ?', name).first
 
     return if area.nil?
 
@@ -78,9 +93,42 @@ class ChecklistImport
       @checklist.location = find_area
     else
       @checklist.feeder_watch = false
-      @checklist.max_parties = 1
-      @checklist.min_parties = 1
     end
+  end
+
+  def set_on_island
+    @checklist.on_island = find_on_island ? true : false
+  end
+
+  def find_on_island
+    @worksheet.rows.each do |row|
+      return row[1] if row[0] == "On Island"
+    end
+
+    @checklist.sector.on_island
+  end
+
+  def set_parties
+    unless @checklist.feeder_watch
+      @checklist.max_parties = find_max_parties
+      @checklist.min_parties = find_min_parties
+    end
+  end
+
+  def find_max_parties
+    @worksheet.rows.each do |row|
+      return row[1] if row[0] == "Max Parties"
+    end
+
+    1
+  end
+
+  def find_min_parties
+    @worksheet.rows.each do |row|
+      return row[1] if row[0] == "Min Parties"
+    end
+
+    1
   end
 
   def set_time
@@ -254,8 +302,8 @@ class ChecklistImport
 
     return if names.nil?
 
-    first_name = names.split(' ')[0]
-    last_name = names.split(' ')[1..-1].join(' ')
+    first_name = names.split(' ')[0..-2].join(' ')
+    last_name = names.split(' ')[-1]
 
     observer = Observer.find_by(email: email) || Observer.new(email: email)
 
@@ -272,14 +320,14 @@ class ChecklistImport
 
   def set_page_1_observations
     rows = @worksheet.rows.to_a[find_page_1_start..find_page_1_end]
-    set_column_observations(rows, 0)
-    set_column_observations(rows, 2)
+    set_column_observations(rows, 0, 4)
+    set_column_observations(rows, 2, 5)
   end
 
   def set_page_2_observations
     rows = @worksheet.rows.to_a[find_page_2_start..find_page_2_end]
-    set_column_observations(rows, 0)
-    set_column_observations(rows, 2)
+    set_column_observations(rows, 0, 4)
+    set_column_observations(rows, 2, 5)
   end
 
   def find_page_1_start
@@ -298,10 +346,10 @@ class ChecklistImport
     @worksheet.rows.index {|row| row[0] == "wren sp."}
   end
 
-  def set_column_observations(rows, start)
+  def set_column_observations(rows, taxon_index, notes_index)
     rows.each do |row|
-      taxon = find_taxon row[start]
-      set_observation(taxon, row[start + 1])
+      taxon = find_taxon row[taxon_index]
+      set_observation(taxon, row[taxon_index + 1], row[notes_index])
     end
   end
 
@@ -313,10 +361,10 @@ class ChecklistImport
     taxon
   end
 
-  def set_observation(taxon, value)
+  def set_observation(taxon, value, notes)
     return if taxon.nil? || value.nil?
 
-    observation = @checklist.observations.build(taxon: taxon)
+    observation = @checklist.observations.build(taxon: taxon, notes: notes)
 
     if value.is_a? Fixnum
       observation.number = value

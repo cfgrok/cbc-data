@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   resources :areas
   resources :checklists do
-    collection { post :import }
+    collection do
+      post :import
+      post :import_downloaded
+    end
   end
   resources :observations
   resources :observers

@@ -1,16 +1,51 @@
 module Summarizable
   extend ActiveSupport::Concern
 
+  def aggregate_observations
+    observations.reduce([]) do |aggregated, o|
+      if existing = aggregated.find {|e| e.common_name == o.common_name}
+        update_existing_observation(existing, o)
+      else
+        aggregated << o.dup
+      end
+
+      aggregated
+    end
+  end
+
   def species_total
-    list = observations.includes(:taxon).map { |o| o }.uniq { |o| o.taxon }
-      .reject { |o| o.common_name =~ /sp.$/ || o.common_name == 'Western x Glaucous-winged Gull' }
+    list = species_list.uniq { |o| o.taxon }
 
     total = list.count
 
+    total -= 1 if list.count { |o| o.common_name =~ /^Mallard/ } > 1
     total -= 1 if list.count { |o| o.common_name =~ /^Bald Eagle/ } > 1
     total -= 1 if list.count { |o| o.common_name =~ /^Dark-eyed Junco/ } > 1
 
     total
+  end
+
+  def count_week_total
+    cw_list = count_week_list.uniq { |o| o.taxon }.map { |o| o.taxon }
+    s_list = species_list.uniq { |o| o.taxon }.map { |o| o.taxon }
+
+    cw_list.reject { |t| s_list.include? t }.count
+  end
+
+  def species_list
+    list = observations.includes(:taxon).map { |o| o }.reject { |o|
+      o.number.nil? ||
+        o.common_name =~ /sp.$/ ||
+        o.common_name == 'Western x Glaucous-winged Gull'
+    }
+  end
+
+  def count_week_list
+    list = observations.includes(:taxon).map { |o| o }.reject { |o|
+      o.count_week.nil? ||
+        o.common_name =~ /sp.$/ ||
+        o.common_name == 'Western x Glaucous-winged Gull'
+    }
   end
 
   def individual_total
@@ -34,21 +69,41 @@ module Summarizable
       .reduce(0) { |total, checklist| total += checklist.hours_total.to_f }
   end
 
-  def method_missing(method_name, *args, &block)
-    if name = method_name.to_s.match(/^(.+)_observer_total$/)
-      observer_total name[1]
-    elsif name = method_name.to_s.match(/^(.+)_total$/)
-      checklist_total name[1]
+  private
+
+  def update_existing_observation(existing, current)
+    if existing.number
+      existing.number += current.number if current.number
+    elsif current.number
+      existing.number = current.number
+      existing.count_week = false
     end
   end
 
-  def observer_total(scope)
+  def method_missing(method_name, *args, &block)
+    if name = method_name.to_s.match(/^(.+)_observers$/)
+      checklist_observers name[1]
+    elsif name = method_name.to_s.match(/^(.+)_total$/)
+      checklist_total name[1]
+    elsif name = method_name.to_s.match(/^(.+)_([^_]+)_ratio$/)
+      ratio name[1], name[2]
+    else
+      super
+    end
+  end
+
+  def checklist_observers(scope)
     scoped = checklists.send scope
-    scoped.map { |c| c.observers }.flatten.uniq.length
+    scoped.map { |c| c.observers unless !c.feeder_watch && c.max_parties == 0 }.flatten.compact.uniq
   end
 
   def checklist_total(property)
     checklists.field
       .reduce(0) { |total, checklist| total += checklist.send(property).to_f }
+  end
+
+  def ratio(method, base)
+    association = self.send(base)
+    self.send(method).fdiv(association.send(method))
   end
 end

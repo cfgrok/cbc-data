@@ -1,0 +1,13 @@
+<table class='summary'>
+  <caption>Observers</caption>
+  <tr>
+  	<th>Name</th>
+  	<th>Email</th>
+  </tr>
+  <% group.all_observers.select {|observer| observer.has_email?}.each do |observer| %>
+    <tr>
+    	<td><%= observer.to_s %></td>
+    	<td><%= observer.email %></td>
+    </tr>
+  <% end %>
+</table>
