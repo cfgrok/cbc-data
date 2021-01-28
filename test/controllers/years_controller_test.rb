@@ -2,7 +2,7 @@ require 'test_helper'
 
 class YearsControllerTest < ActionController::TestCase
   setup do
-    @year = years(:one)
+    @year = years(:year_one)
   end
 
   test "should get index" do

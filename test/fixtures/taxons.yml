@@ -12,6 +12,6 @@ two:
   common_name: MyString
   cbc_name: MyString
   scientific_name: MyString
-  taxonomic_order: 1
+  taxonomic_order: 2
   generic: false
   active: false

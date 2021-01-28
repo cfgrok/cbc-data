@@ -18,7 +18,7 @@ class TaxonsControllerTest < ActionController::TestCase
 
   test "should create taxon" do
     assert_difference('Taxon.count') do
-      post :create, taxon: { active: @taxon.active, cbc_name: @taxon.cbc_name, common_name: @taxon.common_name, generic: @taxon.generic, scientific_name: @taxon.scientific_name, taxonomic_order: @taxon.taxonomic_order }
+      post :create, taxon: { active: @taxon.active, cbc_name: @taxon.cbc_name, common_name: @taxon.common_name, generic: @taxon.generic, scientific_name: @taxon.scientific_name, taxonomic_order: get_taxonomic_order_index }
     end
 
     assert_redirected_to taxon_path(assigns(:taxon))
@@ -35,7 +35,7 @@ class TaxonsControllerTest < ActionController::TestCase
   end
 
   test "should update taxon" do
-    patch :update, id: @taxon, taxon: { active: @taxon.active, cbc_name: @taxon.cbc_name, common_name: @taxon.common_name, generic: @taxon.generic, scientific_name: @taxon.scientific_name, taxonomic_order: @taxon.taxonomic_order }
+    patch :update, id: @taxon, taxon: { active: @taxon.active, cbc_name: @taxon.cbc_name, common_name: @taxon.common_name, generic: @taxon.generic, scientific_name: @taxon.scientific_name, taxonomic_order: get_taxonomic_order_index }
     assert_redirected_to taxon_path(assigns(:taxon))
   end
 
@@ -45,5 +45,11 @@ class TaxonsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to taxons_path
+  end
+
+  private
+
+  def get_taxonomic_order_index
+    Taxon.order(:taxonomic_order).last.taxonomic_order + 1
   end
 end

@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  survey_id: 
+  survey: survey_one
   sector_id: 
   area_id: 
   max_parties: 1
@@ -22,7 +22,7 @@ one:
   miles_total: 1.5
 
 two:
-  survey_id: 
+  survey: survey_two
   sector_id: 
   area_id: 
   max_parties: 1

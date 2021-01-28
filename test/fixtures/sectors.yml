@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  code: MyString
+sector_one:
+  name: Sector One
+  code: one
 
-two:
-  name: MyString
-  code: MyString
+sector_two:
+  name: Sector Two
+  code: two

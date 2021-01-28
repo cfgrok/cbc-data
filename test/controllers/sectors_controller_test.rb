@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SectorsControllerTest < ActionController::TestCase
   setup do
-    @sector = sectors(:one)
+    @sector = sectors(:sector_one)
   end
 
   test "should get index" do
