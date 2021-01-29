@@ -114,7 +114,7 @@ module Summarizable
 
   def checklist_observers(scope)
     scoped = checklists.send scope
-    scoped.map { |c| c.observers unless !c.feeder_watch && c.max_parties == 0 }.flatten.compact.uniq
+    scoped.map { |c| c.observers }.flatten.compact.uniq.sort_by { |o| [o.last_name, o.first_name] }
   end
 
   def checklist_total(property)
