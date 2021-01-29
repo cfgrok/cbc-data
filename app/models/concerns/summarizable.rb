@@ -71,6 +71,24 @@ module Summarizable
       .reduce(0) { |total, checklist| total += checklist.hours_total.to_f }
   end
 
+  def participant_total
+    checklists
+      .reduce([]) { |observers, checklist| observers << checklist.observers}
+      .flatten.uniq.count
+  end
+
+  def participant_hours_total
+    checklists
+      .reduce(0) do |total, checklist|
+        if checklist.min_parties && checklist.min_parties > 1
+          hours = checklist.hours_total.to_f / checklist.min_parties
+        else
+          hours = checklist.hours_total.to_f
+        end
+        total += hours * checklist.observers.count
+      end
+  end
+
   private
 
   def update_existing_observation(existing, current)
