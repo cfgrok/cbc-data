@@ -18,9 +18,11 @@ module Summarizable
 
     total = list.count
 
-    total -= 1 if list.count { |o| o.common_name =~ /^Mallard/ } > 1
-    total -= 1 if list.count { |o| o.common_name =~ /^Bald Eagle/ } > 1
-    total -= 1 if list.count { |o| o.common_name =~ /^Dark-eyed Junco/ } > 1
+    total -= list.count { |o| o.common_name =~ /Domestic/ }
+
+    total -= list.count { |o| o.common_name =~ /^Bald Eagle/ } - 1
+    total -= list.count { |o| o.common_name =~ /^Dark-eyed Junco/ } - 1
+    total -= list.count { |o| o.common_name =~ /^Northern Flicker/ } - 1
 
     total
   end
