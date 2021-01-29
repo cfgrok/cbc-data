@@ -1,8 +1,16 @@
 ---
   -
+    common_name: "Swan Goose (Domestic type)"
+    cbc_name: "Swan Goose (Domestic type)"
+    scientific_name: "Anser cygnoides"
+  -
     common_name: "Greater White-fronted Goose"
     cbc_name: "Greater White-fronted Goose"
     scientific_name: "Anser albifrons"
+  -
+    common_name: "Domestic goose sp."
+    cbc_name: "Domestic goose sp."
+    scientific_name: "Anser sp."
   -
     common_name: "Snow Goose"
     cbc_name: "Snow Goose"
@@ -23,6 +31,10 @@
     common_name: "Trumpeter Swan"
     cbc_name: "Trumpeter Swan"
     scientific_name: "Cygnus buccinator"
+  -
+    common_name: "Trumpeter/Tundra Swan"
+    cbc_name: "Trumpeter/Tundra Swan"
+    scientific_name: "Cygnus buccinator/columbianus"
   -
     common_name: "Wood Duck"
     cbc_name: "Wood Duck"
@@ -288,6 +300,10 @@
     cbc_name: "American Coot"
     scientific_name: "Fulica americana"
   -
+    common_name: "Sandhill Crane"
+    cbc_name: "Sandhill Crane"
+    scientific_name: "Antigone canadensis"
+  -
     common_name: "Semipalmated Plover"
     cbc_name: "Semipalmated Plover"
     scientific_name: "Charadrius semipalmatus"
@@ -424,6 +440,10 @@
     cbc_name: "Mourning Dove"
     scientific_name: "Zenaida macroura"
   -
+    common_name: "pigeon/dove sp."
+    cbc_name: "pigeon/dove sp."
+    scientific_name: "Columbidae sp."
+  -
     common_name: "Barn Owl"
     cbc_name: "Barn Owl"
     scientific_name: "Tyto alba"
@@ -483,6 +503,10 @@
     common_name: "Northern Flicker"
     cbc_name: "Northern Flicker (Red-shafted)"
     scientific_name: "Colaptes auratus [cafer Group]"
+  -
+    common_name: "Northern Flicker (intergrade)"
+    cbc_name: "Northern Flicker (intergrade)"
+    scientific_name: "Colaptes auratus luteus x cafer"
   -
     common_name: "Pileated Woodpecker"
     cbc_name: "Pileated Woodpecker"

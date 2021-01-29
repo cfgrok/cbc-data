@@ -28,7 +28,11 @@
     on_island: true
     code: "VN"
   -
-    name: "Roseballen"
+    name: "Vashon Town"
+    on_island: true
+    code: "VN"
+  -
+    name: "CoHousing"
     on_island: true
     code: "VN"
   -
@@ -36,15 +40,15 @@
     on_island: true
     code: "VN"
   -
-    name: "Wax Orchards"
+    name: "East"
     on_island: true
     code: "VS"
   -
-    name: "Monument"
+    name: "West"
     on_island: true
     code: "VS"
   -
-    name: "Tahlequah"
+    name: "South"
     on_island: true
     code: "VS"
   -
@@ -56,19 +60,19 @@
     on_island: true
     code: "VS"
   -
-    name: "Point Robinson"
+    name: "East"
     on_island: true
     code: "MT"
   -
-    name: "Tramp Harbor"
+    name: "West"
     on_island: true
     code: "MT"
   -
-    name: "Dockton"
+    name: "South"
     on_island: true
     code: "MT"
   -
-    name: "Manzanita"
+    name: "Dockton Town"
     on_island: true
     code: "MT"
   -
@@ -83,10 +87,10 @@
     name: "South"
     on_island: false
     code: "KE"
-#  -
-#    name: "Salmonberry Creek"
-#    on_island: false
-#    code: "KE"
+  -
+    name: "Salmonberry Creek"
+    on_island: false
+    code: "KE"
   -
     name: "West"
     on_island: false
