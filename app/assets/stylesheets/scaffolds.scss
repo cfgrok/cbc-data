@@ -76,6 +76,12 @@ div {
   margin-top: 2em;
 }
 
+table.checklist {
+  td {
+    white-space: nowrap;
+  }
+}
+
 table.list_summary {
   border-collapse: collapse;
 

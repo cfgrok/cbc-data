@@ -2,12 +2,13 @@
 
 <h1>Listing Checklists</h1>
 
-<table>
+<table class="checklist">
   <thead>
     <tr>
       <th>Survey</th>
       <th>Sector</th>
       <th>Area</th>
+      <th>Species</th>
       <th>Max parties</th>
       <th>Min parties</th>
       <th>Feeder watch</th>
@@ -19,6 +20,8 @@
       <th>Hours boat</th>
       <th>Hours owling</th>
       <th>Hours total</th>
+      <th>Duration</th>
+      <th>Break hours</th>
       <th>Miles foot</th>
       <th>Miles car</th>
       <th>Miles boat</th>
@@ -34,6 +37,7 @@
         <td><%= checklist.survey %></td>
         <td><%= checklist.sector %></td>
         <td><%= checklist.area %></td>
+        <td><%= checklist.species_total %></td>
         <td><%= checklist.max_parties %></td>
         <td><%= checklist.min_parties %></td>
         <td><%= checklist.feeder_watch %></td>
@@ -45,6 +49,8 @@
         <td><%= checklist.hours_boat %></td>
         <td><%= checklist.hours_owling %></td>
         <td<% unless checklist.hours_match? %> class='review'<% end %>><%= checklist.field_hours %></td>
+        <td<% unless checklist.times_match? %> class='review'<% end %>><%= checklist.duration %></td>
+        <td><%= checklist.break_hours %></td>
         <td><%= checklist.miles_foot %></td>
         <td><%= checklist.miles_car %></td>
         <td><%= checklist.miles_boat %></td>

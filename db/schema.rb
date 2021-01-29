@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160211102500) do
     t.string   "location"
     t.time     "start_time"
     t.time     "end_time"
+    t.float    "break_hours"
     t.float    "hours_foot"
     t.float    "hours_car"
     t.float    "hours_boat"

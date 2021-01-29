@@ -40,6 +40,14 @@ class Checklist < ActiveRecord::Base
     end
   end
 
+  def times_match?
+    duration && duration - (break_hours ? break_hours : 0) == hours_total
+  end
+
+  def duration
+    end_time && ((end_time - start_time) / 900).round.fdiv(4) * (min_parties && min_parties > 0 ? min_parties : 1)
+  end
+
   def hours_match?
     hours_total &&
     [hours_foot, hours_car, hours_boat, hours_owling].compact.reduce(:+) == hours_total
