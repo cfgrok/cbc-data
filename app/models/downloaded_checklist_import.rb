@@ -1,8 +1,9 @@
 class DownloadedChecklistImport < ChecklistImport
-  def import(file)
-    puts "Importing #{file.path}"
-    @file = file
-    create_worksheet file
+
+  def import(path)
+    @file = File.open(path)
+    puts "Importing #{@file.path}"
+    create_worksheet
     import_checklists
   end
 
@@ -109,4 +110,5 @@ class DownloadedChecklistImport < ChecklistImport
 
     taxon
   end
+
 end

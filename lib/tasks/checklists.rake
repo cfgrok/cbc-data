@@ -1,6 +1,8 @@
 namespace :checklists do
-  desc 'TODO'
+
+  desc 'Import a checklist spreadsheet'
   task import: :environment do
+    ChecklistImport.new.import ENV['file']
   end
 
   desc 'Import all checklist spreadsheets in a directory'

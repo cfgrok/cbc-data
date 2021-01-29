@@ -1,16 +1,17 @@
 class ChecklistImport
   class NoSectorError < StandardError; end
+  class NoAreaError < StandardError; end
 
   def import_all(directory)
-    Dir.glob("#{directory}/*.xls").sort.each do |file|
-      import File.open(file)
+    Dir.glob("#{directory}/*.xls").sort.each do |path|
+      import path
     end
   end
 
-  def import(file)
-    puts "Importing #{file.path}"
-    @file = file
-    create_worksheet file
+  def import(path)
+    @file = File.open(path)
+    puts "Importing #{@file.path}"
+    create_worksheet
     create_checklist
     set_checklist_attributes
     @checklist.save!
@@ -18,8 +19,8 @@ class ChecklistImport
 
   private
 
-  def create_worksheet(file)
-    @workbook = Spreadsheet.open file
+  def create_worksheet
+    @workbook = Spreadsheet.open @file
     @worksheet = @workbook.worksheet 0
   end
 
@@ -60,7 +61,7 @@ class ChecklistImport
     name = find_sector
     sector = Sector.where(name: name).first
 
-    fail NoSectorError, "Sector #{name} not found - #{@file.path.split('/').last}" if sector.nil?
+    fail NoSectorError, "Sector #{name} not found - #{@file.path.split('/').last}" unless sector
 
     @checklist.sector = sector
   end
@@ -76,9 +77,11 @@ class ChecklistImport
 
     area = @checklist.sector.areas.where('name = ?', name).first
 
-    return if area.nil?
-
-    @checklist.area = area
+    if area
+      @checklist.area = area
+    else
+      fail NoAreaError, "Area #{name} not found - #{@file.path.split('/').last}" unless @file.path =~ /feeder/
+    end
   end
 
   def find_area
@@ -88,11 +91,11 @@ class ChecklistImport
   end
 
   def set_feeder_watch
-    if @checklist.area.nil?
+    if @checklist.area
+      @checklist.feeder_watch = false
+    else
       @checklist.feeder_watch = true
       @checklist.location = find_area
-    else
-      @checklist.feeder_watch = false
     end
   end
 
@@ -134,6 +137,7 @@ class ChecklistImport
   def set_time
     set_start_time
     set_end_time
+    set_break_hours
   end
 
   def set_start_time
@@ -155,6 +159,12 @@ class ChecklistImport
   def find_end_time
     @worksheet.rows.each do |row|
       return row[1] if row[0] == "End Time"
+    end
+  end
+
+  def set_break_hours
+    @worksheet.rows.each do |row|
+      @checklist.break_hours = row[1] if row[0] == "Break Hours"
     end
   end
 
@@ -297,20 +307,30 @@ class ChecklistImport
   end
 
   def set_observer(row)
-    email = row[1]
-    names = row[0]
+    return unless row[0]
 
-    return if names.nil?
+    names = row[0].strip
+    email = row[1].strip.downcase if row[1]
 
-    first_name = names.split(' ')[0..-2].join(' ')
-    last_name = names.split(' ')[-1]
+    first_name = names.split(' ')[0..-2].join(' ').strip
+    last_name = names.split(' ')[-1].strip
 
-    observer = Observer.find_by(email: email) || Observer.new(email: email)
+    observer = Observer.find_by(first_name: first_name, last_name: last_name) ||
+      Observer.new(first_name: first_name, last_name: last_name)
 
-    observer.first_name = first_name
-    observer.last_name = last_name
+    set_observer_email observer, email if email
 
     @checklist.observers << observer
+  end
+
+  def set_observer_email(observer, email)
+    if observer.persisted? && observer.email != email
+      puts "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}"
+    end
+
+    observer.email = email
+
+    observer.save!
   end
 
   def set_observations
@@ -356,13 +376,13 @@ class ChecklistImport
   def find_taxon(name)
     taxon = Taxon.where(common_name: name).first
 
-    raise "Taxon #{name} not found" if !name.nil? && taxon.nil?
+    raise "Taxon #{name} not found" if name && taxon.nil?
 
     taxon
   end
 
   def set_observation(taxon, value, notes)
-    return if taxon.nil? || value.nil?
+    return unless taxon && value
 
     observation = @checklist.observations.build(taxon: taxon, notes: notes)
 
@@ -372,4 +392,5 @@ class ChecklistImport
       observation.count_week = true
     end
   end
+
 end
