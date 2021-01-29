@@ -15,3 +15,51 @@ two:
   taxonomic_order: 2
   generic: false
   active: false
+
+cang:
+  common_name: Canada Goose
+  taxonomic_order: 3
+
+doma:
+  common_name: Domestic Mallard
+  taxonomic_order: 4
+
+baea:
+  common_name: Bald Eagle Adult
+  taxonomic_order: 5
+
+baea_i:
+  common_name: Bald Eagle Immature
+  taxonomic_order: 6
+
+nofl:
+  common_name: Northern Flicker
+  taxonomic_order: 7
+
+nofl_ys:
+  common_name: Northern Flicker (Yellow-shafted)
+  taxonomic_order: 8
+
+nofl_in:
+  common_name: Northern Flicker (intergrade)
+  taxonomic_order: 9
+
+deju:
+  common_name: Dark-eyed Junco (Oregon)
+  taxonomic_order: 10
+
+deju_sc:
+  common_name: Dark-eyed Junco (Slate-colored)
+  taxonomic_order: 11
+
+olgu:
+  common_name: Western x Glaucous-winged Gull
+  taxonomic_order: 12
+
+spuh:
+  common_name: gull sp.
+  taxonomic_order: 13
+
+cacg_cang:
+  common_name: Cackling/Canada Goose
+  taxonomic_order: 14

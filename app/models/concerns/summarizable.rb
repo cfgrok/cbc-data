@@ -16,38 +16,47 @@ module Summarizable
   def species_total
     list = species_list.uniq { |o| o.taxon }
 
-    total = list.count
+    remove_spuhs list
+    remove_slashes list
 
-    total -= list.count { |o| o.common_name =~ /Domestic/ }
-
-    total -= list.count { |o| o.common_name =~ /^Bald Eagle/ } - 1
-    total -= list.count { |o| o.common_name =~ /^Dark-eyed Junco/ } - 1
-    total -= list.count { |o| o.common_name =~ /^Northern Flicker/ } - 1
-
-    total
+    list.count
   end
 
   def count_week_total
-    cw_list = count_week_list.uniq { |o| o.taxon }.map { |o| o.taxon }
-    s_list = species_list.uniq { |o| o.taxon }.map { |o| o.taxon }
+    s_list = species_list.uniq { |o| o.taxon }.map { |o| o.common_name }
+    cw_list = count_week_list.uniq { |o| o.taxon }
 
-    cw_list.reject { |t| s_list.include? t }.count
+    remove_spuhs cw_list
+    remove_slashes cw_list
+
+    cw_list.reject { |o| s_list.include? o.common_name }.count
   end
 
   def species_list
-    list = observations.includes(:taxon).map { |o| o }.reject { |o|
-      o.number.nil? ||
-        o.common_name =~ /sp.$/ ||
-        o.common_name == 'Western x Glaucous-winged Gull'
-    }
+    observations.reject { |o| o.number.nil? || o.number == 0 }
   end
 
   def count_week_list
-    list = observations.includes(:taxon).map { |o| o }.reject { |o|
-      o.count_week.nil? ||
-        o.common_name =~ /sp.$/ ||
-        o.common_name == 'Western x Glaucous-winged Gull'
-    }
+    observations.reject { |o| o.count_week.nil? }
+  end
+
+  def remove_spuhs(list)
+    list.reject! { |o| o.common_name =~ /(Domestic|sp.$| x )/ }
+
+    exclude_duplicate_taxon list, /^Bald Eagle/
+    exclude_duplicate_taxon list, /^Northern Flicker/
+    exclude_duplicate_taxon list, /^Dark-eyed Junco/
+  end
+
+  def remove_slashes(list)
+    slashes = list.select { |o| o.common_name =~ /\// }
+    slashes.each do |observation|
+      names = observation.common_name.split /[ \/]/
+      group = names.reverse!.shift
+      names.each do |name|
+        list.delete observation if list.index { |o| o.common_name == name + ' ' + group }
+      end
+    end
   end
 
   def individual_total
@@ -98,6 +107,11 @@ module Summarizable
       existing.number = current.number
       existing.count_week = false
     end
+  end
+
+  def exclude_duplicate_taxon(list, regexp)
+    duplicates = list.select { |o| o.common_name =~ regexp }.drop 1
+    list.reject! { |o| duplicates.include? o }
   end
 
   def method_missing(method_name, *args, &block)

@@ -13,3 +13,39 @@ two:
   checklist_id: 
   count_week: false
   notes: MyString
+
+cang:
+  taxon: cang
+
+doma:
+  taxon: doma
+
+baea:
+  taxon: baea
+
+baea_i:
+  taxon: baea_i
+
+nofl:
+  taxon: nofl
+
+nofl_ys:
+  taxon: nofl_ys
+
+nofl_in:
+  taxon: nofl_in
+
+deju:
+  taxon: deju
+
+deju_sc:
+  taxon: deju_sc
+
+olgu:
+  taxon: olgu
+
+spuh:
+  taxon: spuh
+
+cacg_cang:
+  taxon: cacg_cang
