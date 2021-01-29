@@ -11,11 +11,11 @@ module ApplicationHelper
   def ratio_class(value)
     return unless value.is_a? Float
     case
-      when value > 0.75
+      when value >= 0.75
         ' class=''ratio_red'''
-      when value > 0.5
+      when value >= 0.5
         ' class=''ratio_green'''
-      when value > 0.25
+      when value >= 0.25
         ' class=''ratio_blue'''
     end
   end
