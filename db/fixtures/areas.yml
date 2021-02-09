@@ -1,18 +1,10 @@
 ---
   -
-    name: "Three Tree Point"
-    on_island: false
-    code: "VN"
-  -
-    name: "East"
-    on_island: true
-    code: "VN"
-  -
     name: "Central"
     on_island: true
     code: "VN"
   -
-    name: "West"
+    name: "East"
     on_island: true
     code: "VN"
   -
@@ -20,7 +12,11 @@
     on_island: true
     code: "VN"
   -
-    name: "VCC - Shinglemill"
+    name: "West"
+    on_island: true
+    code: "VN"
+  -
+    name: "CoHousing"
     on_island: true
     code: "VN"
   -
@@ -28,11 +24,15 @@
     on_island: true
     code: "VN"
   -
+    name: "Three Tree Point"
+    on_island: false
+    code: "VN"
+  -
     name: "Vashon Town"
     on_island: true
     code: "VN"
   -
-    name: "CoHousing"
+    name: "VCC - Shinglemill"
     on_island: true
     code: "VN"
   -
@@ -44,11 +44,11 @@
     on_island: true
     code: "VS"
   -
-    name: "West"
+    name: "South"
     on_island: true
     code: "VS"
   -
-    name: "South"
+    name: "West"
     on_island: true
     code: "VS"
   -
@@ -64,11 +64,11 @@
     on_island: true
     code: "MT"
   -
-    name: "West"
+    name: "South"
     on_island: true
     code: "MT"
   -
-    name: "South"
+    name: "West"
     on_island: true
     code: "MT"
   -
@@ -92,11 +92,11 @@
     on_island: false
     code: "KE"
   -
-    name: "West"
+    name: "East"
     on_island: false
     code: "KW"
   -
-    name: "East"
+    name: "West"
     on_island: false
     code: "KW"
   -

@@ -58,7 +58,7 @@
         <td<%= ratio_class observation.survey_ratio %>><%= ratio_percent observation.survey_ratio %></td>
       <% end %>
       <% if group.is_a? Checklist %>
-        <td class='observation_text'><%= observation.notes %></td>
+        <%= simple_format(observation.notes, {class: 'observation_text'}, wrapper_tag: 'td') %>
       <% end %>
       <% if group.is_a? Survey %>
         <td><%= hist_avg %></td>

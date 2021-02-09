@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-(100..120).each do |number|
+(100..121).each do |number|
   year = Year.create([{ audubon_year: number, vashon_year: number - 99 }])
 end
 
@@ -31,22 +31,25 @@ end
 
 DownloadedChecklistImport.new.import '/home/ezra/pCloud Sync/CBC/Vashon Documents/WAVA-2000-2015.xls'
 
-Survey.create([{ date: '2016-01-03', year: Year.all[-5] }])
-Survey.create([{ date: '2017-01-02', year: Year.all[-4] }])
-Survey.create([{ date: '2017-12-31', year: Year.all[-3] }])
-Survey.create([{ date: '2018-12-30', year: Year.all[-2] }])
-Survey.create([{ date: '2020-01-05', year: Year.all.last }])
+Survey.create([{ date: '2016-01-03', year: Year.all[-6] }])
+Survey.create([{ date: '2017-01-02', year: Year.all[-5] }])
+Survey.create([{ date: '2017-12-31', year: Year.all[-4] }])
+Survey.create([{ date: '2018-12-30', year: Year.all[-3] }])
+Survey.create([{ date: '2020-01-05', year: Year.all[-2] }])
+Survey.create([{ date: '2021-01-03', year: Year.all.last }])
 
-ChecklistImport.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 116 - 01-03-2016/Data'
+ChecklistSpreadsheet::File.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 116 - 01-03-2016/Data'
 
 Taxon.where(common_name: 'Western Scrub-Jay').update_all(common_name: 'California Scrub-Jay')
 
-ChecklistImport.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 117 - 01-02-2017/Data'
+ChecklistSpreadsheet::File.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 117 - 01-02-2017/Data'
 
 Taxon.where(common_name: 'Thayer\'s Gull').update_all(common_name: 'Iceland Gull (Thayer\'s)')
 
-ChecklistImport.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 118 - 12-31-2017/Data'
+ChecklistSpreadsheet::File.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 118 - 12-31-2017/Data'
 
-ChecklistImport.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 119 - 12-30-2018/Data'
+ChecklistSpreadsheet::File.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 119 - 12-30-2018/Data'
 
-ChecklistImport.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 120 - 01-05-2020/Data'
+ChecklistSpreadsheet::File.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 120 - 01-05-2020/Data'
+
+ChecklistSpreadsheet::File.new.import_all '/home/ezra/pCloud Sync/CBC/Vashon 121 - 01-03-2021/Data'

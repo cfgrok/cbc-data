@@ -67,7 +67,7 @@ class ChecklistsController < ApplicationController
   end
 
   def import
-    ChecklistImport.new.import params[:file].tempfile
+    ChecklistSpreadsheet::File.new.import params[:file].tempfile, params[:file].original_filename
     flash[:notice] = 'Checklist was successfully imported.'
     redirect_to checklists_url
   end
@@ -80,10 +80,6 @@ class ChecklistsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_checklist
-      @checklist = Checklist.find(params[:id])
-    end
-
     def set_checklist
       @checklist = Checklist.find(params[:id])
     end

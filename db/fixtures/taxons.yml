@@ -28,9 +28,21 @@
     cbc_name: "Canada Goose"
     scientific_name: "Branta canadensis"
   -
+    common_name: "Cackling/Canada Goose"
+    cbc_name: "Cackling/Canada Goose"
+    scientific_name: "Branta hutchinsii/canadensis"
+  -
+    common_name: "goose sp."
+    cbc_name: "goose sp."
+    scientific_name: "Anser/Chen/Branta sp."
+  -
     common_name: "Trumpeter Swan"
     cbc_name: "Trumpeter Swan"
     scientific_name: "Cygnus buccinator"
+  -
+    common_name: "Tundra Swan"
+    cbc_name: "Tundra Swan"
+    scientific_name: "Cygnus columbianus"
   -
     common_name: "Trumpeter/Tundra Swan"
     cbc_name: "Trumpeter/Tundra Swan"
@@ -224,6 +236,10 @@
     cbc_name: "Clark's Grebe"
     scientific_name: "Aechmophorus clarkii"
   -
+    common_name: "grebe sp."
+    cbc_name: "grebe sp."
+    scientific_name: "Podicipedidae sp."
+  -
     common_name: "Brandt's Cormorant"
     cbc_name: "Brandt's Cormorant"
     scientific_name: "Phalacrocorax penicillatus"
@@ -372,6 +388,10 @@
     cbc_name: "Marbled Murrelet"
     scientific_name: "Brachyramphus marmoratus"
   -
+    common_name: "Ancient Murrelet"
+    cbc_name: "Ancient Murrelet"
+    scientific_name: "Synthliboramphus antiquus"
+  -
     common_name: "Rhinoceros Auklet"
     cbc_name: "Rhinoceros Auklet"
     scientific_name: "Cerorhinca monocerata"
@@ -415,6 +435,10 @@
     common_name: "Western x Glaucous-winged Gull"
     cbc_name: "Western x Glaucous-winged Gull (hybrid)"
     scientific_name: "Larus occidentalis x glaucescens"
+  -
+    common_name: "Western/Glaucous-winged Gull"
+    cbc_name: "Western/Glaucous-winged Gull"
+    scientific_name: "Larus occidentalis/glaucescens"
   -
     common_name: "Glaucous Gull"
     cbc_name: "Glaucous Gull"

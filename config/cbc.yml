@@ -1,0 +1,80 @@
+production:
+  :count_name: Vashon CBC
+  :checklist_year_type: audubon_year
+  :custom_rows:
+    - Please provide data to your sector leader or the count compiler by \d+\/\d+\/\d+\.
+  :custom_row_format:
+    - [0, 1, 4]
+    - [2, 3, 5]
+  :ebird_taxon_mapping:
+    Domestic goose sp. (Domestic type): Domestic goose sp.
+    Greater/Lesser Scaup: scaup sp.
+    Common/Barrow's Goldeneye: goldeneye sp.
+    Rock Pigeon (Feral Pigeon): Rock Pigeon
+    Mew Gull (American): Mew Gull
+    Western x Glaucous-winged Gull (hybrid): Western x Glaucous-winged Gull
+    Larus sp.: gull sp.
+    Downy Woodpecker (Pacific): Downy Woodpecker
+    Northern Flicker (Red-shafted): Northern Flicker
+    Northern Flicker (Yellow-shafted x Red-shafted): Northern Flicker (intergrade)
+    Steller's Jay (Coastal): Steller's Jay
+    Purple Finch (Western): Purple Finch
+    Fox Sparrow (Sooty): Fox Sparrow
+    Dark-eyed Junco: Dark-eyed Junco (Oregon)
+    White-crowned Sparrow (pugetensis): White-crowned Sparrow
+    Spotted Towhee (oregonus Group): Spotted Towhee
+    Yellow-rumped Warbler (Audubon's): Yellow-rumped Warbler
+
+development:
+  :count_name: Vashon CBC
+  :checklist_year_type: audubon_year
+  :custom_rows:
+    - Please provide data to your sector leader or the count compiler by \d+\/\d+\/\d+\.
+  :custom_row_format:
+    - [0, 1, 4]
+    - [2, 3, 5]
+  :ebird_taxon_mapping:
+    Domestic goose sp. (Domestic type): Domestic goose sp.
+    Greater/Lesser Scaup: scaup sp.
+    Common/Barrow's Goldeneye: goldeneye sp.
+    Rock Pigeon (Feral Pigeon): Rock Pigeon
+    Mew Gull (American): Mew Gull
+    Western x Glaucous-winged Gull (hybrid): Western x Glaucous-winged Gull
+    Larus sp.: gull sp.
+    Downy Woodpecker (Pacific): Downy Woodpecker
+    Northern Flicker (Red-shafted): Northern Flicker
+    Northern Flicker (Yellow-shafted x Red-shafted): Northern Flicker (intergrade)
+    Steller's Jay (Coastal): Steller's Jay
+    Purple Finch (Western): Purple Finch
+    Fox Sparrow (Sooty): Fox Sparrow
+    Dark-eyed Junco: Dark-eyed Junco (Oregon)
+    White-crowned Sparrow (pugetensis): White-crowned Sparrow
+    Spotted Towhee (oregonus Group): Spotted Towhee
+    Yellow-rumped Warbler (Audubon's): Yellow-rumped Warbler
+
+test:
+  :count_name: Vashon CBC
+  :checklist_year_type: audubon_year
+  :custom_rows:
+    - Please provide data to your sector leader or the count compiler by \d+\/\d+\/\d+\.
+  :custom_row_format:
+    - [0, 1, 4]
+    - [2, 3, 5]
+  :ebird_taxon_mapping:
+    Domestic goose sp. (Domestic type): Domestic goose sp.
+    Greater/Lesser Scaup: scaup sp.
+    Common/Barrow's Goldeneye: goldeneye sp.
+    Rock Pigeon (Feral Pigeon): Rock Pigeon
+    Mew Gull (American): Mew Gull
+    Western x Glaucous-winged Gull (hybrid): Western x Glaucous-winged Gull
+    Larus sp.: gull sp.
+    Downy Woodpecker (Pacific): Downy Woodpecker
+    Northern Flicker (Red-shafted): Northern Flicker
+    Northern Flicker (Yellow-shafted x Red-shafted): Northern Flicker (intergrade)
+    Steller's Jay (Coastal): Steller's Jay
+    Purple Finch (Western): Purple Finch
+    Fox Sparrow (Sooty): Fox Sparrow
+    Dark-eyed Junco: Dark-eyed Junco (Oregon)
+    White-crowned Sparrow (pugetensis): White-crowned Sparrow
+    Spotted Towhee (oregonus Group): Spotted Towhee
+    Yellow-rumped Warbler (Audubon's): Yellow-rumped Warbler
