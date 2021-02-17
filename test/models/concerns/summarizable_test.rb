@@ -166,6 +166,20 @@ class SummarizableTest < ActiveSupport::TestCase
 
     assert_equal 10, summarizable.observations.length
     assert_equal 4, summarizable.count_week_total, "Count week total not accurate with slash observation"
+
+    observation11 = observations(:cang)
+    observation11.number = 1
+    summarizable.observations << observation11
+
+    assert_equal 11, summarizable.observations.length
+    assert_equal 3, summarizable.count_week_total, "Count week total not accurate with duplicate species observation"
+
+    observation12 = observations(:deju_sc)
+    observation12.number = 1
+    summarizable.observations << observation12
+
+    assert_equal 12, summarizable.observations.length
+    assert_equal 2, summarizable.count_week_total, "Count week total not accurate with duplicate species observation"
   end
 
   private

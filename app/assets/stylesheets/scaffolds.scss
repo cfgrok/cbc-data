@@ -99,6 +99,10 @@ table.list_summary {
     text-align: left;
   }
 
+  td {
+    white-space: nowrap;
+  }
+
   td.count_week {
     text-align: center;
   }

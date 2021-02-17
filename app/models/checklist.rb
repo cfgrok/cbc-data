@@ -31,12 +31,21 @@ class Checklist < ActiveRecord::Base
   def aggregate_observations
     aggregated = super
 
-    sector_observations = sector.aggregate_observations if sector
+    if sector
+      sector.sector_survey = survey 
+      sector_observations = sector.aggregate_observations
+    end
+
     survey_observations = survey.aggregate_observations
 
     aggregated.each do |observation|
-      observation.sector_number = sector_observations.find { |o| o.taxon == observation.taxon }.number if sector
-      observation.survey_number = survey_observations.find { |o| o.taxon == observation.taxon }.number
+      if sector
+        sector_observation = sector_observations.find { |o| o.taxon == observation.taxon }
+        observation.sector_number = sector_observation.count_week ? 'Count Week' : sector_observation.number
+      end
+
+      survey_observation = survey_observations.find { |o| o.taxon == observation.taxon }
+      observation.survey_number = survey_observation.count_week ? 'Count Week' : survey_observation.number
     end
   end
 

@@ -2,7 +2,7 @@ module Summarizable
   extend ActiveSupport::Concern
 
   def aggregate_observations
-    observations.reduce([]) do |aggregated, o|
+    @aggregate_observations ||= observations.reduce([]) do |aggregated, o|
       if existing = aggregated.find {|e| e.common_name == o.common_name}
         update_existing_observation(existing, o)
       else
@@ -14,22 +14,24 @@ module Summarizable
   end
 
   def species_total
-    list = species_list.uniq { |o| o.taxon }
+    list = species_list.map { |o| o.common_name }.uniq
 
     remove_spuhs list
     remove_slashes list
+    remove_duplicates list
 
-    list.count
+    list.size
   end
 
   def count_week_total
-    s_list = species_list.uniq { |o| o.taxon }.map { |o| o.common_name }
-    cw_list = count_week_list.uniq { |o| o.taxon }
+    s_list = species_list.map { |o| o.common_name }.uniq
+    cw_list = count_week_list.map { |o| o.common_name }.uniq
 
     remove_spuhs cw_list
     remove_slashes cw_list
+    remove_duplicates cw_list, s_list
 
-    cw_list.reject { |o| s_list.include? o.common_name }.count
+    cw_list.reject { |common_name| s_list.include? common_name }.size
   end
 
   def species_list
@@ -41,21 +43,25 @@ module Summarizable
   end
 
   def remove_spuhs(list)
-    list.reject! { |o| o.common_name =~ /(Domestic|sp.$| x )/ }
-
-    exclude_duplicate_taxon list, /^Bald Eagle/
-    exclude_duplicate_taxon list, /^Northern Flicker/
-    exclude_duplicate_taxon list, /^Dark-eyed Junco/
+    list.reject! { |common_name| common_name =~ /(Domestic|sp.$| x )/ }
   end
 
   def remove_slashes(list)
-    slashes = list.select { |o| o.common_name =~ /\// }
-    slashes.each do |observation|
-      names = observation.common_name.split /[ \/]/
+    slashes = list.select { |common_name| common_name =~ /\// }
+    slashes.each do |common_name|
+      names = common_name.split /[ \/]/
       group = names.reverse!.shift
       names.each do |name|
-        list.delete observation if list.index { |o| o.common_name == name + ' ' + group }
+        list.delete common_name if list.index { |cn| cn == name + ' ' + group }
       end
+    end
+  end
+
+  def remove_duplicates(list, alternate_list=[])
+    patterns = ['Bald Eagle', 'Northern Flicker', 'Dark-eyed Junco']
+
+    patterns.each do |pattern|
+      exclude_duplicate_taxon pattern, list, alternate_list
     end
   end
 
@@ -83,18 +89,18 @@ module Summarizable
   def participant_total
     checklists
       .reduce([]) { |observers, checklist| observers << checklist.observers}
-      .flatten.uniq.count
+      .flatten.uniq.size
   end
 
   def participant_hours_total
     checklists
       .reduce(0) do |total, checklist|
         if checklist.min_parties && checklist.min_parties > 1
-          hours = checklist.hours_total.to_f / checklist.min_parties
+          hours = (checklist.hours_total.to_f / checklist.min_parties * 4).round / 4.0
         else
           hours = checklist.hours_total.to_f
         end
-        total += hours * checklist.observers.count
+        total += hours * checklist.observers.size
       end
   end
 
@@ -109,9 +115,14 @@ module Summarizable
     end
   end
 
-  def exclude_duplicate_taxon(list, regexp)
-    duplicates = list.select { |o| o.common_name =~ regexp }.drop 1
-    list.reject! { |o| duplicates.include? o }
+  def exclude_duplicate_taxon(pattern, list, alternate_list)
+    regexp = /^#{pattern}/
+    duplicates = list.grep(regexp).drop 1
+    list.reject! { |common_name| duplicates.include? common_name } unless duplicates.empty?
+
+    if !alternate_list.empty? && !alternate_list.grep(regexp).empty?
+      list.reject! { |common_name| common_name =~ regexp }
+    end
   end
 
   def method_missing(method_name, *args, &block)

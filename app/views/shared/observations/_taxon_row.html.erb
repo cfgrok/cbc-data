@@ -1,0 +1,19 @@
+<tr>
+  <td class='observation_text'><%= observation.common_name %></td>
+  <% if observation.count_week %>
+    <td class='count_week'>Count&nbsp;Week</td>
+  <% else %>
+    <td><%= observation.number %></td>
+  <% end %>
+  <% if group.respond_to?(:sector) && group.sector %>
+    <td<%= ratio_style observation.sector_ratio %>><%= observation.sector_number %></td>
+    <td<%= ratio_style observation.sector_ratio %>><%= ratio_percent observation.sector_ratio %></td>
+  <% end %>
+  <% if group.respond_to? :survey %>
+    <td<%= ratio_style observation.survey_ratio %>><%= observation.survey_number %></td>
+    <td<%= ratio_style observation.survey_ratio %>><%= ratio_percent observation.survey_ratio %></td>
+  <% end %>
+  <% if group.is_a? Checklist %>
+    <%= simple_format(observation.notes, {class: 'observation_text'}, wrapper_tag: 'td') %>
+  <% end %>
+</tr>

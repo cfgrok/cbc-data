@@ -2,15 +2,15 @@
 
 one:
   number: 1
-  taxon_id: 
-  checklist_id: 
+  taxon: one
+  checklist: one
   count_week: false
   notes: MyString
 
 two:
   number: 1
-  taxon_id: 
-  checklist_id: 
+  taxon: two
+  checklist: two
   count_week: false
   notes: MyString
 

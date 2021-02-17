@@ -11,7 +11,7 @@
 </p>
 
 <%= render partial: 'shared/summary', locals: { group: @survey } %>
-<%= render partial: 'shared/observations/list', locals: { group: @survey } %>
+<%= render partial: 'list', locals: { group: @survey } %>
 <%= render partial: 'shared/observers', locals: { group: @survey } %>
 
 <%= link_to 'Edit', edit_survey_path(@survey) %> |

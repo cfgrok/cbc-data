@@ -1,0 +1,15 @@
+<tr>
+  <td class='observation_text'><%= observation.name %></td>
+  <td class="<%= count_class observation.count, observation.high, observation.low %>"><%= observation.count %></td>
+  <td><%= observation.ten_year_avg %></td>
+  <td<%= change_style observation.ten_year_change %>><%= change_percent observation.ten_year_change %></td>
+  <td><%= observation.prior_year_avg %></td>
+  <td<%= change_style observation.prior_year_change %>><%= change_percent observation.prior_year_change %></td>
+  <td class="<%= high_class observation.count, observation.high %>"><%= observation.high %></td>
+  <td class="cell-divider-right <%= low_class observation.count, observation.high, observation.low %>"><%= observation.low %></td>
+  <td><%= observation.all_years %></td>
+  <td class="cell-divider-right"><%= observation.all_year_avg %></td>
+  <% observation.years.each do |year| %>
+    <td class="<%= count_class year.last, observation.high, observation.low %> <%= selected_year_class year.first, @survey.to_s %>"><%= year.last %></td>
+  <% end %>
+</tr>
