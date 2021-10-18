@@ -5,7 +5,7 @@ class Checklist < ActiveRecord::Base
   belongs_to :sector
   belongs_to :area
 
-  has_many :observations, -> { joins(:taxon).order('taxons.taxonomic_order') }, dependent: :destroy
+  has_many :observations, -> { joins(:taxon).includes(:taxon).order('taxons.taxonomic_order') }, dependent: :destroy
 
   accepts_nested_attributes_for :observations, allow_destroy: true
 
@@ -16,6 +16,11 @@ class Checklist < ActiveRecord::Base
 
   scope :has_start_time, -> { where('start_time is not null') }
   scope :has_end_time, -> { where('end_time is not null') }
+
+  ObservationData = Struct.new(
+    :survey_number,
+    :sector_number
+  )
 
   def to_s
     "#{survey.to_s}: #{feeder_watch ? location : area.to_s}"
@@ -29,24 +34,46 @@ class Checklist < ActiveRecord::Base
   end
 
   def aggregate_observations
-    aggregated = super
+    observations = super
+    observation_taxon_ids = observations.map {|o| o.taxon_id}
 
-    if sector
-      sector.sector_survey = survey 
-      sector_observations = sector.aggregate_observations
+    sector.sector_survey_id = survey.id
+
+    survey_observations = survey.observations.select {|o| observation_taxon_ids.include? o.taxon_id}
+    sector_observation_ids = sector.observations.select {|o| observation_taxon_ids.include? o.taxon_id}.map {|o| o.id}
+
+    observation_data = observations.reduce({}) do |data, observation|
+      data[observation.taxon_id] = ObservationData.new(0, 0)
+      data
     end
 
-    survey_observations = survey.aggregate_observations
+    survey_observations.each do |observation|
+      data = observation_data[observation.taxon_id]
 
-    aggregated.each do |observation|
-      if sector
-        sector_observation = sector_observations.find { |o| o.taxon == observation.taxon }
-        observation.sector_number = sector_observation.count_week ? 'Count Week' : sector_observation.number
+      if observation.count_week && data.survey_number == 0
+        data.survey_number == 'Count Week'
+      elsif observation.number
+        data.survey_number = 0 if data.survey_number == 'Count Week'
+        data.survey_number += observation.number
       end
 
-      survey_observation = survey_observations.find { |o| o.taxon == observation.taxon }
-      observation.survey_number = survey_observation.count_week ? 'Count Week' : survey_observation.number
+      next unless sector_observation_ids.include? observation.id
+
+      if observation.count_week && data.sector_number == 0
+        data.sector_number == 'Count Week'
+      elsif observation.number
+        data.sector_number = 0 if data.sector_number == 'Count Week'
+        data.sector_number += observation.number
+      end
     end
+
+    observations.each do |observation|
+      data = observation_data[observation.taxon_id]
+      observation.survey_number = data.survey_number
+      observation.sector_number = data.sector_number
+    end
+
+    observations
   end
 
   def times_match?

@@ -384,7 +384,7 @@ class ChecklistImport
   def set_observation(taxon, value, notes)
     return unless taxon && value
 
-    observation = @checklist.observations.build(taxon: taxon, notes: notes)
+    observation = @checklist.observations.build(survey: @checklist.survey, taxon: taxon, notes: notes)
 
     if value.is_a? Fixnum
       observation.number = value

@@ -3,27 +3,32 @@ class Survey < ActiveRecord::Base
 
   belongs_to :year
   has_many :checklists
-
-  has_many :observations, -> { joins(:taxon).includes(:taxon).order('taxons.taxonomic_order') }, through: :checklists
+  has_many :observations, -> { joins(:taxon).includes(:taxon).order('taxons.taxonomic_order') }
 
   validates :year, presence: true
 
   delegate :to_s, to: :year
 
-  SurveyCount = Struct.new(:species_list, :species_total, :count_week_list, :count_week_total, :individual_total)
+  SurveyCount = Struct.new(
+    :species_list,
+    :species_total,
+    :count_week_list,
+    :count_week_total,
+    :individual_total
+  )
   TaxonObservation = Struct.new(
-                      :name,
-                      :count,
-                      :years,
-                      :ten_year_avg,
-                      :ten_year_change,
-                      :prior_year_avg,
-                      :prior_year_change,
-                      :high,
-                      :low,
-                      :all_years,
-                      :all_year_avg
-                     )
+    :name,
+    :count,
+    :years,
+    :ten_year_avg,
+    :ten_year_change,
+    :prior_year_avg,
+    :prior_year_change,
+    :high,
+    :low,
+    :all_years,
+    :all_year_avg
+  )
 
   def aggregate_observations
     aggregated = super
@@ -136,8 +141,8 @@ class Survey < ActiveRecord::Base
   end
 
   def all_survey_observations
-    @all_survey_observations ||= Observation.joins(:taxon, :checklist => [survey: :year])
-      .includes(:taxon, :checklist => [survey: :year])
+    @all_survey_observations ||= Observation.joins(:taxon, survey: :year)
+      .includes(:taxon, survey: :year)
       .order('taxons.taxonomic_order, years.audubon_year DESC')
   end
 
@@ -178,7 +183,7 @@ class Survey < ActiveRecord::Base
       taxon_observation
     end
     }
-    logger.debug t
+    logger.debug 'all_survey_taxon_observations: ' + t.to_s
     @all_survey_taxon_observations
   end
 
@@ -255,7 +260,7 @@ class Survey < ActiveRecord::Base
       data.last.species_total
     end
   end
-    
+
   def all_survey_count_week_totals
     all_survey_counts.map do |data|
       data.last.count_week_total

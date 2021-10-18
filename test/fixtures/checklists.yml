@@ -2,7 +2,7 @@
 
 one:
   survey: survey_one
-  sector_id: 
+  sector: sector_one
   area_id: 
   max_parties: 1
   min_parties: 1
@@ -23,7 +23,7 @@ one:
 
 two:
   survey: survey_two
-  sector_id: 
+  sector: sector_two
   area_id: 
   max_parties: 1
   min_parties: 1

@@ -2,6 +2,8 @@ class ChecklistSpreadsheet::BaseData
 
   def initialize(checklist, rows)
     @checklist = checklist
+    @sector = checklist.sector
+    @survey = checklist.survey
     @rows = rows
   end
 
@@ -14,7 +16,7 @@ class ChecklistSpreadsheet::BaseData
 
     taxon = find_taxon taxon
 
-    observation = @checklist.observations.build(taxon: taxon)
+    observation = @checklist.observations.build(sector: @sector, survey: @survey, taxon: taxon)
 
     if count.is_a? Fixnum
       observation.number = count

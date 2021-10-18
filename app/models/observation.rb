@@ -3,9 +3,10 @@ class Observation < ActiveRecord::Base
 
   belongs_to :taxon
   belongs_to :checklist
+  belongs_to :survey
+  belongs_to :sector
 
   delegate :common_name, to: :taxon
-  delegate :survey, to: :checklist
 
   scope :by_common_name, ->(common_name) { joins(:taxon).where('taxons.common_name = ?', common_name) }
 
