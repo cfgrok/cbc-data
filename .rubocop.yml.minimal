@@ -1,0 +1,22 @@
+require:
+  # - rubocop-capybara
+  # - rubocop-factory_bot
+  - rubocop-performance
+  - rubocop-rails
+  # - rubocop-rspec
+  - standard
+
+inherit_gem:
+  standard: config/base.yml
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "bin/**/*"
+    - "db/schema.rb"
+    - "log/**/*"
+    - "node_modules/**/*"
+    - "public/**/*"
+    - "script/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
