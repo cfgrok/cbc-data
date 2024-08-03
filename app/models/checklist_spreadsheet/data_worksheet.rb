@@ -242,8 +242,13 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   def find_attribute(attribute)
     if found = row_search(attribute)
       @attribute_rows << found[1]
-      return found[0][found[2] + 1]
+      return extract_cell_value found[0][found[2] + 1]
     end
+  end
+
+  def extract_cell_value(cell_value)
+    return cell_value.value if cell_value.is_a? Spreadsheet::Formula
+    cell_value
   end
 
   def remove_attribute_rows
