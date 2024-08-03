@@ -1,15 +1,15 @@
 <table class="list_summary">
   <tr class="header_row">
     <th class="observation_text">Taxon</th>
-    <th>Count</th>
-    <th>10-Year Average</th>
-    <th>%&nbsp;Change</th>
-    <th>Historical Average</th>
-    <th>%&nbsp;Change</th>
+    <th class="cell-divider-right">Count</th>
     <th>High Count</th>
-    <th class="cell-divider-right">Low Count</th>
-    <th>Years Present</th>
-    <th class="cell-divider-right">Overall Average</th>
+    <th>Low Count</th>
+    <th class="cell-divider-right">Years Present</th>
+    <th>10-Year Average</th>
+    <th class="cell-divider-right">10-Year %&nbsp;Change</th>
+    <th>Historical Average</th>
+    <th class="cell-divider-right">Historical %&nbsp;Change</th>
+    <%# <th class="cell-divider-right">Overall Average</th> %>
     <% group.all_surveys.each do |survey| %>
       <th class="<%= selected_year_class survey, @survey %>"><%= survey.to_s %></th>
     <% end %>
@@ -17,15 +17,15 @@
   <%= render partial: 'survey_data_row', collection: @taxon_observations, as: :observation %>
   <tr>
     <th class="observation_text">Species Count</th>
-    <th class="<%= record_class group.try(:species_high_record?) || group.try(:species_low_record?) %>"><%= group.species_total %><%= count_week_helper group.count_week_total %></th>
-    <th><%= group.ten_year_species_avg %></th>
-    <th<%= raw change_style group.ten_year_species_change %>><%= change_percent group.ten_year_species_change %></th>
-    <th><%= group.prior_survey_species_avg %></th>
-    <th<%= raw change_style group.prior_survey_species_change %>><%= change_percent group.prior_survey_species_change %></th>
+    <th class="cell-divider-right <%= record_class group.try(:species_high_record?) || group.try(:species_low_record?) %>"><%= group.species_total %><%= count_week_helper group.count_week_total %></th>
     <th class="<%= record_class group.species_high_record? %>"><%= group.species_high %></th>
-    <th class="cell-divider-right <%= record_class group.species_low_record? %>"><%= group.species_low %></th>
-    <th><%= group.all_surveys.size %></th>
-    <th class="cell-divider-right"><%= group.all_survey_species_avg %></th>
+    <th class="<%= record_class group.species_low_record? %>"><%= group.species_low %></th>
+    <th class="cell-divider-right"><%= group.all_surveys.size %></th>
+    <th><%= group.ten_year_species_avg %></th>
+    <th class="cell-divider-right<%= change_class group.ten_year_species_change %>"><%= change_percent group.ten_year_species_change %></th>
+    <th><%= group.prior_survey_species_avg %></th>
+    <th class="cell-divider-right<%= change_class group.prior_survey_species_change %>"><%= change_percent group.prior_survey_species_change %></th>
+    <% if false %><th class="cell-divider-right"><%= group.all_survey_species_avg %></th><% end %>
     <% group.all_surveys.each do |survey|
       species_total = group.all_survey_counts[survey.to_s].species_total
       count_week_total = group.all_survey_counts[survey.to_s].count_week_total %>
@@ -34,15 +34,15 @@
   </tr>
   <tr>
     <th class="observation_text">Individual Count</th>
-    <th class="<%= record_class group.try(:individual_high_record?) || group.try(:individual_low_record?) %>"><%= group.individual_total %></th>
-    <th><%= group.ten_year_individual_avg %></th>
-    <th<%= raw change_style group.ten_year_individual_change %>><%= change_percent group.ten_year_individual_change %></th>
-    <th><%= group.prior_survey_individual_avg %></th>
-    <th<%= raw change_style group.prior_survey_individual_change %>><%= change_percent group.prior_survey_individual_change %></th>
+    <th class="cell-divider-right <%= record_class group.try(:individual_high_record?) || group.try(:individual_low_record?) %>"><%= group.individual_total %></th>
     <th class="<%= record_class group.individual_high_record? %>"><%= group.individual_high %></th>
-    <th class="cell-divider-right <%= record_class group.individual_low_record? %>"><%= group.individual_low %></th>
-    <th><%= group.all_surveys.size %></th>
-    <th class="cell-divider-right"><%= group.all_survey_individual_avg %></th>
+    <th class="<%= record_class group.individual_low_record? %>"><%= group.individual_low %></th>
+    <th class="cell-divider-right"><%= group.all_surveys.size %></th>
+    <th><%= group.ten_year_individual_avg %></th>
+    <th class="cell-divider-right<%= change_class group.ten_year_individual_change %>"><%= change_percent group.ten_year_individual_change %></th>
+    <th><%= group.prior_survey_individual_avg %></th>
+    <th class="cell-divider-right<%= change_class group.prior_survey_individual_change %>"><%= change_percent group.prior_survey_individual_change %></th>
+    <% if false %><th class="cell-divider-right"><%= group.all_survey_individual_avg %></th><% end %>
     <% group.all_surveys.each do |survey| %>
       <th class="<%= selected_year_class survey, @survey %>"><%= group.all_survey_counts[survey.to_s].individual_total %></th>
     <% end %>

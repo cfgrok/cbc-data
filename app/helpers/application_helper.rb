@@ -25,9 +25,9 @@ module ApplicationHelper
     end
   end
 
-  def change_style(value)
+  def change_class(value)
     return unless value.is_a? Float
-    ' class="red"' if value < 0
+    ' red' if value < 0
   end
 
   def count_class(count, high, low)
