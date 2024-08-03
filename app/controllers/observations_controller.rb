@@ -4,7 +4,7 @@ class ObservationsController < ApplicationController
   # GET /observations
   # GET /observations.json
   def index
-    @observations = Observation.all
+    @observations = Observation.all.includes(:taxon, :sector, checklist: [survey: [:year], area: [:sector]], survey: [:year])
   end
 
   # GET /observations/1

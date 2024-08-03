@@ -5,6 +5,7 @@ class ChecklistsController < ApplicationController
   # GET /checklists.json
   def index
     @checklists = Checklist.all
+                    .includes(:observations, :sector, area: [:sector], survey: [:year])
                     .joins('INNER JOIN surveys ON surveys.id = checklists.survey_id')
                     .joins('INNER JOIN years ON years.id = surveys.year_id')
                     .joins('LEFT OUTER JOIN areas ON areas.id = checklists.area_id')
