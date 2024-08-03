@@ -1,0 +1,31 @@
+---
+include:
+  - "**/*.rb"
+exclude:
+  - spec/**/*
+  - test/**/*
+  - vendor/**/*
+  - ".bundle/**/*"
+require:
+  - actioncable
+  - actionmailer
+  - actionpack
+  - actionview
+  - activejob
+  - activemodel
+  - activerecord
+  - activestorage
+  - activesupport
+domains: []
+reporters:
+  # - require_not_found
+  # - require_not_found:
+  #   exclude:
+  #     - spec/**/*
+  #     - test/**/*
+  - rubocop
+formatter: []
+require_paths: []
+plugins:
+  - solargraph-rails
+max_files: 5000

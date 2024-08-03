@@ -1,0 +1,13 @@
+---
+EnableDefaultLinters: true
+linters:
+  ErbSafety:
+    enabled: false
+    better_html_config: .better-html.yml
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      require: standard
+      inherit_gem:
+        standard: config/base.yml
+      inherit_from: .erb-lint-rubocop.yml
