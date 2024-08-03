@@ -236,7 +236,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
     standard (1.7.0)
       rubocop (= 1.25.0)
       rubocop-performance (= 1.13.2)
@@ -277,10 +276,12 @@ DEPENDENCIES
   solargraph-rails
   spreadsheet
   spring
-  sqlite3 (< 1.4)
   standard
   turbolinks
   uglifier
+
+RUBY VERSION
+   ruby 2.5.9p229
 
 BUNDLED WITH
    1.17.3
