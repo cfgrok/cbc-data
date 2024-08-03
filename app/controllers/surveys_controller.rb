@@ -11,6 +11,10 @@ class SurveysController < ApplicationController
   # GET /surveys/1.json
   def show
     @taxon_observations = @survey.all_survey_taxon_observations.values
+    respond_to do |format|
+      format.html
+      format.json { render json: @survey.all_survey_counts }
+    end
   end
 
   # GET /surveys/new
