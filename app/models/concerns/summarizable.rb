@@ -58,7 +58,7 @@ module Summarizable
   end
 
   def remove_duplicates(list, alternate_list=[])
-    patterns = ['Bald Eagle', 'Northern Flicker', 'Dark-eyed Junco']
+    patterns = ['Bald Eagle', 'Northern Flicker', 'Dark-eyed Junco', 'Yellow-rumped Warbler']
 
     patterns.each do |pattern|
       exclude_duplicate_taxon pattern, list, alternate_list

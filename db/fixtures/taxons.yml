@@ -2,15 +2,15 @@
   -
     common_name: "Swan Goose (Domestic type)"
     cbc_name: "Swan Goose (Domestic type)"
-    scientific_name: "Anser cygnoides"
+    scientific_name: "Anser cygnoides (Domestic type)"
   -
     common_name: "Greater White-fronted Goose"
     cbc_name: "Greater White-fronted Goose"
     scientific_name: "Anser albifrons"
   -
     common_name: "Domestic goose sp."
-    cbc_name: "Domestic goose sp."
-    scientific_name: "Anser sp."
+    cbc_name: "Domestic goose sp. (Domestic type)"
+    scientific_name: "Anser sp. (Domestic type)"
   -
     common_name: "Snow Goose"
     cbc_name: "Snow Goose"
@@ -32,6 +32,10 @@
     cbc_name: "Cackling/Canada Goose"
     scientific_name: "Branta hutchinsii/canadensis"
   -
+    common_name: "Domestic goose sp. x Canada Goose"
+    cbc_name: "Domestic goose sp. (Domestic type) x Canada Goose (hybrid)"
+    scientific_name: "Anser sp. (Domestic type) x Branta canadensis"
+  -
     common_name: "goose sp."
     cbc_name: "goose sp."
     scientific_name: "Anser/Chen/Branta sp."
@@ -48,6 +52,10 @@
     cbc_name: "Trumpeter/Tundra Swan"
     scientific_name: "Cygnus buccinator/columbianus"
   -
+    common_name: "Muscovy Duck (Domestic type)"
+    cbc_name: "Muscovy Duck (Domestic type)"
+    scientific_name: "Cairina moschata (Domestic type)"
+  -
     common_name: "Wood Duck"
     cbc_name: "Wood Duck"
     scientific_name: "Aix sponsa"
@@ -63,6 +71,10 @@
     common_name: "American Wigeon"
     cbc_name: "American Wigeon"
     scientific_name: "Anas americana"
+  -
+    common_name: "Eurasian x American Wigeon (hybrid)"
+    cbc_name: "Eurasian x American Wigeon (hybrid)"
+    scientific_name: "Anas penelope x americana"
   -
     common_name: "Mallard"
     cbc_name: "Mallard"
@@ -175,6 +187,10 @@
     common_name: "Ruddy Duck"
     cbc_name: "Ruddy Duck"
     scientific_name: "Oxyura jamaicensis"
+  -
+    common_name: "duck sp."
+    cbc_name: "duck sp."
+    scientific_name: "Anatinae sp."
   -
     common_name: "Mountain Quail"
     cbc_name: "Mountain Quail"
@@ -488,6 +504,10 @@
     cbc_name: "Barred Owl"
     scientific_name: "Strix varia"
   -
+    common_name: "Long-eared Owl"
+    cbc_name: "Long-eared Owl"
+    scientific_name: "Asio otus"
+  -
     common_name: "Short-eared Owl"
     cbc_name: "Short-eared Owl"
     scientific_name: "Asio flammeus"
@@ -508,6 +528,10 @@
     cbc_name: "Belted Kingfisher"
     scientific_name: "Megaceryle alcyon"
   -
+    common_name: "Acorn Woodpecker"
+    cbc_name: "Acorn Woodpecker"
+    scientific_name: "Melanerpes formicivorus"
+  -
     common_name: "Red-breasted Sapsucker"
     cbc_name: "Red-breasted Sapsucker"
     scientific_name: "Sphyrapicus ruber"
@@ -520,11 +544,15 @@
     cbc_name: "Hairy Woodpecker"
     scientific_name: "Picoides villosus"
   -
+    common_name: "Northern Flicker"
+    cbc_name: "Northern Flicker"
+    scientific_name: "Colaptes auratus"
+  -
     common_name: "Northern Flicker (Yellow-shafted)"
     cbc_name: "Northern Flicker (Yellow-shafted)"
     scientific_name: "Colaptes auratus auratus/luteus"
   -
-    common_name: "Northern Flicker"
+    common_name: "Northern Flicker (Red-shafted)"
     cbc_name: "Northern Flicker (Red-shafted)"
     scientific_name: "Colaptes auratus [cafer Group]"
   -
@@ -535,6 +563,10 @@
     common_name: "Pileated Woodpecker"
     cbc_name: "Pileated Woodpecker"
     scientific_name: "Dryocopus pileatus"
+  -
+    common_name: "woodpecker sp."
+    cbc_name: "woodpecker sp."
+    scientific_name: "Picidae sp."
   -
     common_name: "American Kestrel"
     cbc_name: "American Kestrel"
@@ -672,6 +704,10 @@
     cbc_name: "European Starling"
     scientific_name: "Sturnus vulgaris"
   -
+    common_name: "American Pipit"
+    cbc_name: "American Pipit"
+    scientific_name: "Anthus rubescens"
+  -
     common_name: "Cedar Waxwing"
     cbc_name: "Cedar Waxwing"
     scientific_name: "Bombycilla cedrorum"
@@ -685,6 +721,14 @@
     scientific_name: "Setophaga palmarum"
   -
     common_name: "Yellow-rumped Warbler"
+    cbc_name: "Yellow-rumped Warbler"
+    scientific_name: "Setophaga coronata"
+  -
+    common_name: "Yellow-rumped Warbler (Myrtle)"
+    cbc_name: "Yellow-rumped Warbler (Myrtle)"
+    scientific_name: "Setophaga coronata coronata"
+  -
+    common_name: "Yellow-rumped Warbler (Audubon's)"
     cbc_name: "Yellow-rumped Warbler (Audubon's)"
     scientific_name: "Setophaga coronata auduboni"
   -
@@ -699,6 +743,10 @@
     common_name: "Fox Sparrow"
     cbc_name: "Fox Sparrow"
     scientific_name: "Passerella iliaca"
+  -
+    common_name: "Dark-eyed Junco"
+    cbc_name: "Dark-eyed Junco"
+    scientific_name: "Junco hyemalis"
   -
     common_name: "Dark-eyed Junco (Slate-colored)"
     cbc_name: "Dark-eyed Junco (Slate-colored)"
