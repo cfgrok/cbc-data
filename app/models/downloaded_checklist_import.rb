@@ -1,8 +1,9 @@
-class DownloadedChecklistImport < ChecklistImport
+# frozen_string_literal: true
 
+class DownloadedChecklistImport < ChecklistImport
   def import(path)
     @file = File.open(path)
-    puts "Importing #{@file.path}"
+    Rails.logger.debug { "Importing #{@file.path}" }
     create_worksheet
     import_checklists
   end
@@ -22,30 +23,30 @@ class DownloadedChecklistImport < ChecklistImport
   end
 
   def find_header_index
-    re = Regexp.new /^Checklist$/
+    re = Regexp.new(/^Checklist$/)
 
     @worksheet.rows.each_with_index do |row, index|
-      return @header_index = index + 2 if row[2] && row[2].match(re)
+      return @header_index = index + 2 if row[2]&.match(re)
     end
   end
 
   def find_end_index
-    re = Regexp.new /^Compiler\(s\)$/
+    re = Regexp.new(/^Compiler\(s\)$/)
 
     @worksheet.rows.each_with_index do |row, index|
-      return @end_index = index - 3 if row[1] && row[1].match(re)
+      return @end_index = index - 3 if row[1]&.match(re)
     end
   end
 
   def find_columns
     @years = []
 
-    re = Regexp.new /^\d{4} \[(\d+)\]\nCount Date: (\d+)\/(\d+)\/(\d+)\n/
+    re = Regexp.new(%r{^\d{4} \[(\d+)\]\nCount Date: (\d+)/(\d+)/(\d+)\n})
 
     @header_row.each_with_index do |cell, index|
-      @taxon_index = index if cell == 'Species'
+      @taxon_index = index if cell == "Species"
 
-      match = cell && cell.match(re)
+      match = cell&.match(re)
       if match
         @years << [index, match[1], "#{match[4]}-#{match[2]}-#{match[3]}"]
       end
@@ -53,8 +54,8 @@ class DownloadedChecklistImport < ChecklistImport
   end
 
   def find_taxon_rows
-    @taxon_rows = @worksheet.rows.slice(@header_index+1..@end_index)
-                      .each_slice(3).map(&:first)
+    @taxon_rows = @worksheet.rows.slice(@header_index + 1..@end_index)
+      .each_slice(3).map(&:first)
   end
 
   def import_years
@@ -67,7 +68,7 @@ class DownloadedChecklistImport < ChecklistImport
     end
   end
 
-  def set_checklist_attributes(year)
+  def set_checklist_attributes(_year)
     create_survey
     set_survey
     set_feeder_watch
@@ -95,11 +96,11 @@ class DownloadedChecklistImport < ChecklistImport
     @taxon_rows.each do |row|
       value = row[@year.first]
 
-      unless value.nil?
-        taxon = find_taxon row
-        value = value.to_i if value =~ /^\d+$/
-        set_observation(taxon, value, nil)
-      end
+      next if value.nil?
+
+      taxon = find_taxon row
+      value = value.to_i if /^\d+$/.match?(value)
+      set_observation(taxon, value, nil)
     end
   end
 
@@ -110,5 +111,4 @@ class DownloadedChecklistImport < ChecklistImport
 
     taxon
   end
-
 end

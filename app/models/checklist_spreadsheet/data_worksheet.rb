@@ -1,5 +1,6 @@
-class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
+# frozen_string_literal: true
 
+class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   class NoSectorError < StandardError; end
   class NoAreaError < StandardError; end
 
@@ -43,7 +44,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def find_year
-    re = Regexp.new /#{Regexp.quote(get_cbc_config(:count_name))} ([0-9]+)/
+    re = Regexp.new(/#{Regexp.quote(get_cbc_config(:count_name))} ([0-9]+)/)
 
     @rows.each_with_index do |row, index|
       match = row[0].match re
@@ -56,19 +57,19 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def set_sector
-    name = find_attribute 'Sector'
+    name = find_attribute "Sector"
     sector = Sector.where(name: name).first
 
-    fail NoSectorError, "Sector #{name} not found" unless sector
+    raise NoSectorError, "Sector #{name} not found" unless sector
 
     @checklist.sector = sector
   end
 
   def set_area
-    name = find_attribute 'Area'
+    name = find_attribute "Area"
     area = Area.where(name: name, sector: @checklist.sector).first
 
-    fail NoAreaError, "Area #{name} not found" unless area || @filename =~ /feeder/
+    raise NoAreaError, "Area #{name} not found" unless area || @filename.include?("feeder")
 
     @checklist.area = area
   end
@@ -78,14 +79,14 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
       @checklist.feeder_watch = false
     else
       @checklist.feeder_watch = true
-      @checklist.location = find_attribute 'Area'
+      @checklist.location = find_attribute "Area"
     end
   end
 
   def set_parties
     unless @checklist.feeder_watch
-      @checklist.max_parties = find_attribute('Max Parties') || 1
-      @checklist.min_parties = find_attribute('Min Parties') || 1
+      @checklist.max_parties = find_attribute("Max Parties") || 1
+      @checklist.min_parties = find_attribute("Min Parties") || 1
     end
   end
 
@@ -96,15 +97,15 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def set_start_time
-    @checklist.start_time = find_attribute 'Start Time'
+    @checklist.start_time = find_attribute "Start Time"
   end
 
   def set_end_time
-    @checklist.end_time = find_attribute 'End Time'
+    @checklist.end_time = find_attribute "End Time"
   end
 
   def set_break_hours
-    @checklist.break_hours = find_attribute 'Break Hours'
+    @checklist.break_hours = find_attribute "Break Hours"
   end
 
   def set_hours
@@ -116,23 +117,23 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def set_hours_foot
-    @checklist.hours_foot = find_attribute 'Hours on foot'
+    @checklist.hours_foot = find_attribute "Hours on foot"
   end
 
   def set_hours_car
-    @checklist.hours_car = find_attribute 'Hours by car'
+    @checklist.hours_car = find_attribute "Hours by car"
   end
 
   def set_hours_boat
-    @checklist.hours_boat = find_attribute 'Hours by boat'
+    @checklist.hours_boat = find_attribute "Hours by boat"
   end
 
   def set_hours_owling
-    @checklist.hours_owling = find_attribute 'Hours owling'
+    @checklist.hours_owling = find_attribute "Hours owling"
   end
 
   def set_hours_total
-    @checklist.hours_total = find_attribute 'TOTAL PARTY HOURS'
+    @checklist.hours_total = find_attribute "TOTAL PARTY HOURS"
   end
 
   def set_miles
@@ -144,23 +145,23 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def set_miles_foot
-    @checklist.miles_foot = find_attribute 'Miles on foot'
+    @checklist.miles_foot = find_attribute "Miles on foot"
   end
 
   def set_miles_car
-    @checklist.miles_car = find_attribute 'Miles by car'
+    @checklist.miles_car = find_attribute "Miles by car"
   end
 
   def set_miles_boat
-    @checklist.miles_boat = find_attribute 'Miles by boat'
+    @checklist.miles_boat = find_attribute "Miles by boat"
   end
 
   def set_miles_owling
-    @checklist.miles_owling = find_attribute 'Miles owling'
+    @checklist.miles_owling = find_attribute "Miles owling"
   end
 
   def set_miles_total
-    @checklist.miles_total = find_attribute 'TOTAL PARTY MILES'
+    @checklist.miles_total = find_attribute "TOTAL PARTY MILES"
   end
 
   def set_observers
@@ -175,7 +176,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def find_observers_start
-    @rows.index { |row| row.include? 'PARTY MEMBERS & EMAIL ADDRESSES' } + 1
+    @rows.index { |row| row.include? "PARTY MEMBERS & EMAIL ADDRESSES" } + 1
   end
 
   def set_observer(row)
@@ -184,8 +185,8 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
     names = row[0].strip
     email = row[1].strip.downcase if row[1]
 
-    first_name = names.split(' ')[0..-2].join(' ').strip
-    last_name = names.split(' ')[-1].strip.gsub /_/, ' '
+    first_name = names.split[0..-2].join(" ").strip
+    last_name = names.split[-1].strip.tr("_", " ")
 
     observer = Observer.find_by(first_name: first_name, last_name: last_name) ||
       (email && Observer.find_by(last_name: last_name, email: email)) ||
@@ -203,7 +204,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
 
   def set_observer_first_name(observer, first_name)
     if observer.persisted? && observer.first_name != first_name
-      puts "First name changed for #{observer.first_name} #{observer.last_name} -- new: #{first_name}"
+      Rails.logger.debug { "First name changed for #{observer.first_name} #{observer.last_name} -- new: #{first_name}" }
     end
 
     observer.first_name = first_name
@@ -211,7 +212,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
 
   def set_observer_last_name(observer, last_name)
     if observer.persisted? && observer.last_name != last_name
-      puts "Last name changed for #{observer.first_name} #{observer.last_name} -- new: #{last_name}"
+      Rails.logger.debug { "Last name changed for #{observer.first_name} #{observer.last_name} -- new: #{last_name}" }
     end
 
     observer.last_name = last_name
@@ -219,14 +220,14 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
 
   def set_observer_email(observer, email)
     if observer.persisted? && observer.email != email
-      puts "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}"
+      Rails.logger.debug { "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}" }
     end
 
     observer.email = email
   end
 
   def set_observations
-    if (found = row_search('Species')) && found[0].include?('Sum')
+    if (found = row_search("Species")) && found[0].include?("Sum")
       ChecklistSpreadsheet::FaintlakeData.new(@checklist, @rows).process
     else
       ChecklistSpreadsheet::CustomData.new(@checklist, @rows).process
@@ -242,12 +243,13 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   def find_attribute(attribute)
     if found = row_search(attribute)
       @attribute_rows << found[1]
-      return extract_cell_value found[0][found[2] + 1]
+      extract_cell_value found[0][found[2] + 1]
     end
   end
 
   def extract_cell_value(cell_value)
     return cell_value.value if cell_value.is_a? Spreadsheet::Formula
+
     cell_value
   end
 
@@ -276,5 +278,4 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
       end
     end
   end
-
 end

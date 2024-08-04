@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Observation < ActiveRecord::Base
   attr_accessor :sector_number, :survey_number
 
@@ -8,7 +10,7 @@ class Observation < ActiveRecord::Base
 
   delegate :common_name, to: :taxon
 
-  scope :by_common_name, ->(common_name) { joins(:taxon).where('taxons.common_name = ?', common_name) }
+  scope :by_common_name, ->(common_name) { joins(:taxon).where(taxons: { common_name: common_name }) }
 
   def survey_year
     survey.to_s

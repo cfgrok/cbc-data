@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AreasController < ApplicationController
-  before_action :set_area, only: [:show, :edit, :update, :destroy]
+  before_action :set_area, only: %i[show edit update destroy]
 
   # GET /areas
   # GET /areas.json
@@ -9,8 +11,7 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   # GET /areas/1.json
-  def show
-  end
+  def show; end
 
   # GET /areas/new
   def new
@@ -18,8 +19,7 @@ class AreasController < ApplicationController
   end
 
   # GET /areas/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /areas
   # POST /areas.json
@@ -28,7 +28,7 @@ class AreasController < ApplicationController
 
     respond_to do |format|
       if @area.save
-        format.html { redirect_to @area, notice: 'Area was successfully created.' }
+        format.html { redirect_to @area, notice: "Area was successfully created." }
         format.json { render :show, status: :created, location: @area }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AreasController < ApplicationController
   def update
     respond_to do |format|
       if @area.update(area_params)
-        format.html { redirect_to @area, notice: 'Area was successfully updated.' }
+        format.html { redirect_to @area, notice: "Area was successfully updated." }
         format.json { render :show, status: :ok, location: @area }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class AreasController < ApplicationController
   def destroy
     @area.destroy
     respond_to do |format|
-      format.html { redirect_to areas_url, notice: 'Area was successfully destroyed.' }
+      format.html { redirect_to areas_url, notice: "Area was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_area
-      @area = Area.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def area_params
-      params.require(:area).permit(:name, :sector_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_area
+    @area = Area.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def area_params
+    params.require(:area).permit(:name, :sector_id)
+  end
 end

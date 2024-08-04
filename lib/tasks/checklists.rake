@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 namespace :checklists do
-
-  desc 'Import a checklist spreadsheet'
+  desc "Import a checklist spreadsheet"
   task import: :environment do
-    ChecklistSpreadsheet::File.new.import ENV['file']
+    ChecklistSpreadsheet::File.new.import ENV["file"]
   end
 
-  desc 'Import all checklist spreadsheets in a directory'
+  desc "Import all checklist spreadsheets in a directory"
   task import_all: :environment do
-    ChecklistSpreadsheet::File.new.import_all ENV['directory']
+    ChecklistSpreadsheet::File.new.import_all ENV["directory"]
   end
-
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SectorsController < ApplicationController
-  before_action :set_sector, only: [:show, :edit, :update, :destroy]
+  before_action :set_sector, only: %i[show edit update destroy]
 
   # GET /sectors
   # GET /sectors.json
@@ -9,8 +11,7 @@ class SectorsController < ApplicationController
 
   # GET /sectors/1
   # GET /sectors/1.json
-  def show
-  end
+  def show; end
 
   # GET /sectors/new
   def new
@@ -18,8 +19,7 @@ class SectorsController < ApplicationController
   end
 
   # GET /sectors/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /sectors
   # POST /sectors.json
@@ -28,7 +28,7 @@ class SectorsController < ApplicationController
 
     respond_to do |format|
       if @sector.save
-        format.html { redirect_to @sector, notice: 'Sector was successfully created.' }
+        format.html { redirect_to @sector, notice: "Sector was successfully created." }
         format.json { render :show, status: :created, location: @sector }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class SectorsController < ApplicationController
   def update
     respond_to do |format|
       if @sector.update(sector_params)
-        format.html { redirect_to @sector, notice: 'Sector was successfully updated.' }
+        format.html { redirect_to @sector, notice: "Sector was successfully updated." }
         format.json { render :show, status: :ok, location: @sector }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class SectorsController < ApplicationController
   def destroy
     @sector.destroy
     respond_to do |format|
-      format.html { redirect_to sectors_url, notice: 'Sector was successfully destroyed.' }
+      format.html { redirect_to sectors_url, notice: "Sector was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sector
-      @sector = Sector.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def sector_params
-      params.require(:sector).permit(:name, :code)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sector
+    @sector = Sector.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def sector_params
+    params.require(:sector).permit(:name, :code)
+  end
 end

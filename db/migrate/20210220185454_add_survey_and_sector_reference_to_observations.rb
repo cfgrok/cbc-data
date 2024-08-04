@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSurveyAndSectorReferenceToObservations < ActiveRecord::Migration
   def change
     add_reference :observations, :survey, index: true, foreign_key: true

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChecklistImport
   class NoSectorError < StandardError; end
   class NoAreaError < StandardError; end
@@ -10,7 +12,7 @@ class ChecklistImport
 
   def import(path)
     @file = File.open(path)
-    puts "Importing #{@file.path}"
+    Rails.logger.debug { "Importing #{@file.path}" }
     create_worksheet
     create_checklist
     set_checklist_attributes
@@ -44,12 +46,12 @@ class ChecklistImport
 
   def set_survey
     year = find_year
-    survey = Survey.joins(:year).where('years.audubon_year = ?', year).first
+    survey = Survey.joins(:year).where(years: { audubon_year: year }).first
     @checklist.survey = survey
   end
 
   def find_year
-    re = Regexp.new /Vashon CBC ([0-9]+)/
+    re = Regexp.new(/Vashon CBC ([0-9]+)/)
 
     @worksheet.rows.each do |row|
       match = row[0].match re
@@ -61,7 +63,7 @@ class ChecklistImport
     name = find_sector
     sector = Sector.where(name: name).first
 
-    fail NoSectorError, "Sector #{name} not found - #{@file.path.split('/').last}" unless sector
+    raise NoSectorError, "Sector #{name} not found - #{@file.path.split("/").last}" unless sector
 
     @checklist.sector = sector
   end
@@ -75,12 +77,12 @@ class ChecklistImport
   def set_area
     name = find_area
 
-    area = @checklist.sector.areas.where('name = ?', name).first
+    area = @checklist.sector.areas.where(name: name).first
 
     if area
       @checklist.area = area
     else
-      fail NoAreaError, "Area #{name} not found - #{@file.path.split('/').last}" unless @file.path =~ /feeder/
+      raise NoAreaError, "Area #{name} not found - #{@file.path.split("/").last}" unless /feeder/.match?(@file.path)
     end
   end
 
@@ -303,7 +305,7 @@ class ChecklistImport
   end
 
   def find_observers_start
-    @worksheet.rows.index {|row| row[0] == "PARTY MEMBERS & EMAIL ADDRESSES"} + 1
+    @worksheet.rows.index { |row| row[0] == "PARTY MEMBERS & EMAIL ADDRESSES" } + 1
   end
 
   def set_observer(row)
@@ -312,8 +314,8 @@ class ChecklistImport
     names = row[0].strip
     email = row[1].strip.downcase if row[1]
 
-    first_name = names.split(' ')[0..-2].join(' ').strip
-    last_name = names.split(' ')[-1].strip
+    first_name = names.split[0..-2].join(" ").strip
+    last_name = names.split[-1].strip
 
     observer = Observer.find_by(first_name: first_name, last_name: last_name) ||
       Observer.new(first_name: first_name, last_name: last_name)
@@ -325,7 +327,7 @@ class ChecklistImport
 
   def set_observer_email(observer, email)
     if observer.persisted? && observer.email != email
-      puts "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}"
+      Rails.logger.debug { "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}" }
     end
 
     observer.email = email
@@ -351,19 +353,19 @@ class ChecklistImport
   end
 
   def find_page_1_start
-    @worksheet.rows.index {|row| row[0] == "Greater White-fronted Goose"}
+    @worksheet.rows.index { |row| row[0] == "Greater White-fronted Goose" }
   end
 
   def find_page_1_end
-    @worksheet.rows.index {|row| row[0] == "Eared Grebe"}
+    @worksheet.rows.index { |row| row[0] == "Eared Grebe" }
   end
 
   def find_page_2_start
-    @worksheet.rows.index {|row| row[0] == "Rock Pigeon"}
+    @worksheet.rows.index { |row| row[0] == "Rock Pigeon" }
   end
 
   def find_page_2_end
-    @worksheet.rows.index {|row| row[0] == "wren sp."}
+    @worksheet.rows.index { |row| row[0] == "wren sp." }
   end
 
   def set_column_observations(rows, taxon_index, notes_index)
@@ -386,11 +388,10 @@ class ChecklistImport
 
     observation = @checklist.observations.build(survey: @checklist.survey, taxon: taxon, notes: notes)
 
-    if value.is_a? Fixnum
+    if value.is_a? Integer
       observation.number = value
     else
       observation.count_week = true
     end
   end
-
 end

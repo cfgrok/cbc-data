@@ -1,5 +1,6 @@
-class ChecklistSpreadsheet::CustomData < ChecklistSpreadsheet::BaseData
+# frozen_string_literal: true
 
+class ChecklistSpreadsheet::CustomData < ChecklistSpreadsheet::BaseData
   def initialize(*args)
     super
     @custom_row_format = Rails.configuration.cbc[:custom_row_format]
@@ -12,5 +13,4 @@ class ChecklistSpreadsheet::CustomData < ChecklistSpreadsheet::BaseData
       end
     end
   end
-
 end

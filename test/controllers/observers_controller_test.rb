@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ObserversControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +19,7 @@ class ObserversControllerTest < ActionController::TestCase
   end
 
   test "should create observer" do
-    assert_difference('Observer.count') do
+    assert_difference("Observer.count") do
       post :create, observer: { email: @observer.email, first_name: @observer.first_name, last_name: @observer.last_name }
     end
 
@@ -40,7 +42,7 @@ class ObserversControllerTest < ActionController::TestCase
   end
 
   test "should destroy observer" do
-    assert_difference('Observer.count', -1) do
+    assert_difference("Observer.count", -1) do
       delete :destroy, id: @observer
     end
 

@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 class ChecklistSpreadsheet::CommentsWorksheet < ChecklistSpreadsheet::BaseWorksheet
   include TaxonMapping
 
   def process(checklist)
     @checklist = checklist
 
-    info_end = @rows.index { |row| row.to_s.include? 'checklist comments' }
+    info_end = @rows.index { |row| row.to_s.include? "checklist comments" }
 
     @header = @rows.shift
     @rows = @rows.drop info_end
-    @taxon_index = @header.index 'Species'
+    @taxon_index = @header.index "Species"
     @header.shift @taxon_index + 1
 
     find_comments
@@ -33,16 +35,15 @@ class ChecklistSpreadsheet::CommentsWorksheet < ChecklistSpreadsheet::BaseWorksh
     notes = []
 
     comments.each_with_index do |cell, index|
-      notes << strip_location_name(@header[index]) + ': ' + cell unless cell.nil?
+      notes << ("#{strip_location_name(@header[index])}: #{cell}") if cell
     end
 
     observation.notes = notes.join "\n"
   end
 
   def strip_location_name(name)
-    name = name.gsub /\s*\(?-?\d+\.\d+, -?\d+\.\d+\)?/, ''
-    name = name.gsub /\s*US-\w{2}$/, ''
-    name = name.gsub /,[\w\s]+,\s+US$/, ''
+    name = name.gsub(/\s*\(?-?\d+\.\d+, -?\d+\.\d+\)?/, "")
+    name = name.gsub(/\s*US-\w{2}$/, "")
+    name = name.gsub(/,[\w\s]+,\s+US$/, "")
   end
-
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateJoinTableChecklistObserver < ActiveRecord::Migration
   def change
     create_join_table :checklists, :observers do |t|

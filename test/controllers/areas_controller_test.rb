@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class AreasControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +19,7 @@ class AreasControllerTest < ActionController::TestCase
   end
 
   test "should create area" do
-    assert_difference('Area.count') do
+    assert_difference("Area.count") do
       post :create, area: { name: @area.name, sector_id: @area.sector_id }
     end
 
@@ -40,7 +42,7 @@ class AreasControllerTest < ActionController::TestCase
   end
 
   test "should destroy area" do
-    assert_difference('Area.count', -1) do
+    assert_difference("Area.count", -1) do
       delete :destroy, id: @area
     end
 

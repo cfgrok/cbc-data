@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateYears < ActiveRecord::Migration
   def change
     create_table :years do |t|

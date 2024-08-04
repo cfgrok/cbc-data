@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class SectorsControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +19,7 @@ class SectorsControllerTest < ActionController::TestCase
   end
 
   test "should create sector" do
-    assert_difference('Sector.count') do
+    assert_difference("Sector.count") do
       post :create, sector: { code: @sector.code, name: @sector.name }
     end
 
@@ -40,7 +42,7 @@ class SectorsControllerTest < ActionController::TestCase
   end
 
   test "should destroy sector" do
-    assert_difference('Sector.count', -1) do
+    assert_difference("Sector.count", -1) do
       delete :destroy, id: @sector
     end
 

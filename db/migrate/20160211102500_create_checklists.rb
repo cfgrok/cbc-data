@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChecklists < ActiveRecord::Migration
   def change
     create_table :checklists do |t|

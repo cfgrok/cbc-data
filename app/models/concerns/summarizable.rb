@@ -1,20 +1,20 @@
+# frozen_string_literal: true
+
 module Summarizable
   extend ActiveSupport::Concern
 
   def aggregate_observations
-    @aggregate_observations ||= observations.reduce([]) do |aggregated, o|
-      if existing = aggregated.find {|e| e.common_name == o.common_name}
+    @aggregate_observations ||= observations.each_with_object([]) do |o, aggregated|
+      if existing = aggregated.find { |e| e.common_name == o.common_name }
         update_existing_observation(existing, o)
       else
         aggregated << o.dup
       end
-
-      aggregated
     end
   end
 
   def species_total
-    list = species_list.map { |o| o.common_name }.uniq
+    list = species_list.map(&:common_name).uniq
 
     remove_spuhs list
     remove_slashes list
@@ -24,8 +24,8 @@ module Summarizable
   end
 
   def count_week_total
-    s_list = species_list.map { |o| o.common_name }.uniq
-    cw_list = count_week_list.map { |o| o.common_name }.uniq
+    s_list = species_list.map(&:common_name).uniq
+    cw_list = count_week_list.map(&:common_name).uniq
 
     remove_spuhs cw_list
     remove_slashes cw_list
@@ -35,7 +35,7 @@ module Summarizable
   end
 
   def species_list
-    observations.reject { |o| o.number.nil? || o.number == 0 }
+    observations.reject { |o| o.number.nil? || o.number.zero? }
   end
 
   def count_week_list
@@ -47,18 +47,18 @@ module Summarizable
   end
 
   def remove_slashes(list)
-    slashes = list.select { |common_name| common_name =~ /\// }
+    slashes = list.grep(%r{/})
     slashes.each do |common_name|
-      names = common_name.split /[ \/]/
+      names = common_name.split(%r{[ /]})
       group = names.reverse!.shift
       names.each do |name|
-        list.delete common_name if list.index { |cn| cn == name + ' ' + group }
+        list.delete common_name if list.index { |cn| cn == "#{name} #{group}" }
       end
     end
   end
 
-  def remove_duplicates(list, alternate_list=[])
-    patterns = ['Bald Eagle', 'Northern Flicker', 'Dark-eyed Junco', 'Yellow-rumped Warbler']
+  def remove_duplicates(list, alternate_list = [])
+    patterns = ["Bald Eagle", "Northern Flicker", "Dark-eyed Junco", "Yellow-rumped Warbler"]
 
     patterns.each do |pattern|
       exclude_duplicate_taxon pattern, list, alternate_list
@@ -71,13 +71,13 @@ module Summarizable
 
   def first_start_time
     checklists.field.has_start_time
-      .map { |checklist| checklist.start_time }
+      .map(&:start_time)
       .reduce { |first, time| first && first < time ? first : time }
   end
 
   def last_end_time
     checklists.field.has_end_time
-      .map { |checklist| checklist.end_time }
+      .map(&:end_time)
       .reduce { |last, time| last && last > time ? last : time }
   end
 
@@ -88,17 +88,17 @@ module Summarizable
 
   def participant_total
     checklists
-      .reduce([]) { |observers, checklist| observers << checklist.observers}
+      .reduce([]) { |observers, checklist| observers << checklist.observers }
       .flatten.uniq.size
   end
 
   def participant_hours_total
     checklists
       .reduce(0) do |total, checklist|
-        if checklist.min_parties && checklist.min_parties > 1
-          hours = (checklist.hours_total.to_f / checklist.min_parties * 4).round / 4.0
+        hours = if checklist.min_parties && checklist.min_parties > 1
+          (checklist.hours_total.to_f / checklist.min_parties * 4).round / 4.0
         else
-          hours = checklist.hours_total.to_f
+          checklist.hours_total.to_f
         end
         total += hours * checklist.observers.size
       end
@@ -139,7 +139,7 @@ module Summarizable
 
   def checklist_observers(scope)
     scoped = checklists.send scope
-    scoped.map { |c| c.observers }.flatten.compact.uniq.sort_by { |o| [o.last_name, o.first_name] }
+    scoped.map(&:observers).flatten.compact.uniq.sort_by { |o| [o.last_name, o.first_name] }
   end
 
   def checklist_total(property)
@@ -148,7 +148,7 @@ module Summarizable
   end
 
   def ratio(method, base)
-    association = self.send(base)
-    self.send(method).fdiv(association.send(method))
+    association = send(base)
+    send(method).fdiv(association.send(method))
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Taxon < ActiveRecord::Base
   has_many :observations
 

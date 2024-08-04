@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Sector < ActiveRecord::Base
   include Summarizable
 
@@ -6,7 +8,7 @@ class Sector < ActiveRecord::Base
   has_many :areas
   has_many :checklists
 
-  has_many :observations, -> { joins(:taxon).includes(:taxon).order('taxons.taxonomic_order') }
+  has_many :observations, -> { joins(:taxon).includes(:taxon).order("taxons.taxonomic_order") }
 
   def to_s
     name

@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class TaxonsControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +19,7 @@ class TaxonsControllerTest < ActionController::TestCase
   end
 
   test "should create taxon" do
-    assert_difference('Taxon.count') do
+    assert_difference("Taxon.count") do
       post :create, taxon: { active: @taxon.active, cbc_name: @taxon.cbc_name, common_name: @taxon.common_name, generic: @taxon.generic, scientific_name: @taxon.scientific_name, taxonomic_order: get_taxonomic_order_index }
     end
 
@@ -40,7 +42,7 @@ class TaxonsControllerTest < ActionController::TestCase
   end
 
   test "should destroy taxon" do
-    assert_difference('Taxon.count', -1) do
+    assert_difference("Taxon.count", -1) do
       delete :destroy, id: @taxon
     end
 

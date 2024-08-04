@@ -1,5 +1,6 @@
-class ChecklistSpreadsheet::BaseData
+# frozen_string_literal: true
 
+class ChecklistSpreadsheet::BaseData
   def initialize(checklist, rows)
     @checklist = checklist
     @sector = checklist.sector
@@ -18,7 +19,7 @@ class ChecklistSpreadsheet::BaseData
 
     observation = @checklist.observations.build(sector: @sector, survey: @survey, taxon: taxon)
 
-    if count.is_a? Fixnum
+    if count.is_a? Integer
       observation.number = count
     else
       observation.count_week = true
@@ -34,5 +35,4 @@ class ChecklistSpreadsheet::BaseData
 
     taxon
   end
-
 end

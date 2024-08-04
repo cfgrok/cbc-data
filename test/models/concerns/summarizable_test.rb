@@ -1,8 +1,9 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class SummarizableTest < ActiveSupport::TestCase
-
-  test 'species total of zero' do
+  test "species total of zero" do
     summarizable = create_summarizable
 
     assert_equal 0, summarizable.observations.length
@@ -38,7 +39,7 @@ class SummarizableTest < ActiveSupport::TestCase
     assert_equal 0, summarizable.species_total, "Species total not zero with ignored ""spuh"" observation"
   end
 
-  test 'species total of one' do
+  test "species total of one" do
     summarizable = create_summarizable
     observation1 = observations(:cang)
     observation1.number = 1
@@ -62,7 +63,7 @@ class SummarizableTest < ActiveSupport::TestCase
     assert_equal 1, summarizable.species_total, "Species total not one with count week observation added"
   end
 
-  test 'species total with multiple species forms' do
+  test "species total with multiple species forms" do
     summarizable = create_summarizable
 
     observation1 = observations(:cang)
@@ -115,7 +116,7 @@ class SummarizableTest < ActiveSupport::TestCase
     assert_equal 4, summarizable.species_total, "Species total not accurate with slash observation"
   end
 
-  test 'count week total' do
+  test "count week total" do
     summarizable = create_summarizable
 
     observation1 = observations(:cang)
@@ -195,6 +196,6 @@ class SummarizableObject
   attr_accessor :observations
 
   def initialize
-    @observations = Array.new
+    @observations = []
   end
 end

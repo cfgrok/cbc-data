@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ObservationsController < ApplicationController
-  before_action :set_observation, only: [:show, :edit, :update, :destroy]
+  before_action :set_observation, only: %i[show edit update destroy]
 
   # GET /observations
   # GET /observations.json
@@ -9,8 +11,7 @@ class ObservationsController < ApplicationController
 
   # GET /observations/1
   # GET /observations/1.json
-  def show
-  end
+  def show; end
 
   # GET /observations/new
   def new
@@ -18,8 +19,7 @@ class ObservationsController < ApplicationController
   end
 
   # GET /observations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /observations
   # POST /observations.json
@@ -28,7 +28,7 @@ class ObservationsController < ApplicationController
 
     respond_to do |format|
       if @observation.save
-        format.html { redirect_to @observation, notice: 'Observation was successfully created.' }
+        format.html { redirect_to @observation, notice: "Observation was successfully created." }
         format.json { render :show, status: :created, location: @observation }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ObservationsController < ApplicationController
   def update
     respond_to do |format|
       if @observation.update(observation_params)
-        format.html { redirect_to @observation, notice: 'Observation was successfully updated.' }
+        format.html { redirect_to @observation, notice: "Observation was successfully updated." }
         format.json { render :show, status: :ok, location: @observation }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class ObservationsController < ApplicationController
   def destroy
     @observation.destroy
     respond_to do |format|
-      format.html { redirect_to observations_url, notice: 'Observation was successfully destroyed.' }
+      format.html { redirect_to observations_url, notice: "Observation was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_observation
-      @observation = Observation.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def observation_params
-      params.require(:observation).permit(:number, :taxon_id, :checklist_id, :count_week, :notes)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_observation
+    @observation = Observation.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def observation_params
+    params.require(:observation).permit(:number, :taxon_id, :checklist_id, :count_week, :notes)
+  end
 end

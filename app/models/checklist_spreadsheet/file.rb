@@ -1,15 +1,16 @@
-class ChecklistSpreadsheet::File
+# frozen_string_literal: true
 
+class ChecklistSpreadsheet::File
   def import_all(directory)
     Dir.glob("#{directory}/*.xls").sort.each do |path|
       import path
     end
   end
 
-  def import(path, original_filename=nil)
+  def import(path, original_filename = nil)
     @file = File.open path
     @filename = original_filename || File.basename(@file.path)
-    puts "Importing #{@filename}"
+    Rails.logger.debug { "Importing #{@filename}" }
     @workbook = create_workbook
     process_worksheets
   end
@@ -24,5 +25,4 @@ class ChecklistSpreadsheet::File
     checklist = ChecklistSpreadsheet::DataWorksheet.new(@workbook, @filename, 0).process
     ChecklistSpreadsheet::CommentsWorksheet.new(@workbook, @filename, 1).process(checklist) if @workbook.worksheets.size == 2
   end
-
 end

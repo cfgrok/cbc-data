@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class YearsControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +19,7 @@ class YearsControllerTest < ActionController::TestCase
   end
 
   test "should create year" do
-    assert_difference('Year.count') do
+    assert_difference("Year.count") do
       post :create, year: { audubon_year: @year.audubon_year, vashon_year: @year.vashon_year }
     end
 
@@ -40,7 +42,7 @@ class YearsControllerTest < ActionController::TestCase
   end
 
   test "should destroy year" do
-    assert_difference('Year.count', -1) do
+    assert_difference("Year.count", -1) do
       delete :destroy, id: @year
     end
 

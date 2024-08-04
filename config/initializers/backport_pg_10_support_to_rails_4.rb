@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_record/connection_adapters/postgresql/schema_statements'
+require "active_record/connection_adapters/postgresql/schema_statements"
 
 #
 # Monkey-patch the refused Rails 4.2 patch at https://github.com/rails/rails/pull/31330
@@ -13,7 +13,7 @@ module ActiveRecord
     module PostgreSQL
       module SchemaStatements
         # Resets the sequence of a table's primary key to the maximum value.
-        def reset_pk_sequence!(table, pk = nil, sequence = nil) #:nodoc:
+        def reset_pk_sequence!(table, pk = nil, sequence = nil) # :nodoc:
           unless pk && sequence
             default_pk, default_sequence = pk_and_sequence_for(table)
 
@@ -29,16 +29,16 @@ module ActiveRecord
             quoted_sequence = quote_table_name(sequence)
             max_pk = select_value("SELECT MAX(#{quote_column_name pk}) FROM #{quote_table_name(table)}")
             if max_pk.nil?
-              if postgresql_version >= 100_000
-                minvalue = select_value("SELECT seqmin FROM pg_sequence WHERE seqrelid = #{quote(quoted_sequence)}::regclass")
+              minvalue = if postgresql_version >= 100_000
+                select_value("SELECT seqmin FROM pg_sequence WHERE seqrelid = #{quote(quoted_sequence)}::regclass")
               else
-                minvalue = select_value("SELECT min_value FROM #{quoted_sequence}")
+                select_value("SELECT min_value FROM #{quoted_sequence}")
               end
             end
 
-            select_value <<-end_sql, 'SCHEMA'
+            select_value <<-END_SQL, "SCHEMA"
               SELECT setval(#{quote(quoted_sequence)}, #{max_pk || minvalue}, #{max_pk ? true : false})
-            end_sql
+            END_SQL
           end
         end
       end

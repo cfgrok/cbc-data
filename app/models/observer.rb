@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class Observer < ActiveRecord::Base
-  scope :sorted, -> { order 'last_name, first_name' }
+  scope :sorted, -> { order "last_name, first_name" }
 
   has_and_belongs_to_many :checklists
 
@@ -8,6 +10,6 @@ class Observer < ActiveRecord::Base
   end
 
   def has_email?
-    email && email.match(/@/)
+    email&.match(/@/)
   end
 end

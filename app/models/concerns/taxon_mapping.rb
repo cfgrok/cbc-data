@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TaxonMapping
   extend ActiveSupport::Concern
 
@@ -8,5 +10,4 @@ module TaxonMapping
       row[index] = taxon_mapping
     end
   end
-
 end

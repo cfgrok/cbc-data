@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Row
   attr_accessor :taxon, :observation
 
@@ -15,15 +17,15 @@ class Row
   end
 
   def id
-    @observation && @observation.id
+    @observation&.id
   end
 
   def number
-    @observation && @observation.number
+    @observation&.number
   end
 
   def count_week
-    @observation && @observation.count_week
+    @observation&.count_week
   end
 
   def persisted?

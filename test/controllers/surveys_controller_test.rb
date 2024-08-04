@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class SurveysControllerTest < ActionController::TestCase
   setup do
@@ -17,7 +19,7 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   test "should create survey" do
-    assert_difference('Survey.count') do
+    assert_difference("Survey.count") do
       post :create, survey: { date: @survey.date, year_id: @survey.year_id }
     end
 
@@ -40,7 +42,7 @@ class SurveysControllerTest < ActionController::TestCase
   end
 
   test "should destroy survey" do
-    assert_difference('Survey.count', -1) do
+    assert_difference("Survey.count", -1) do
       delete :destroy, id: @survey
     end
 

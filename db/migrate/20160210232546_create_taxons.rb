@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTaxons < ActiveRecord::Migration
   def change
     create_table :taxons do |t|

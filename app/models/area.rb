@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Area < ActiveRecord::Base
   belongs_to :sector
   has_many :checklists
