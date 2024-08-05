@@ -138,6 +138,7 @@ GEM
       pry (>= 0.13.0)
     racc (1.8.1)
     rack (1.6.13)
+    rack-rewrite (1.5.1)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.11)
@@ -272,6 +273,7 @@ DEPENDENCIES
   logging
   pg (~> 0.15)
   pry-rails
+  rack-rewrite
   rails (= 4.2.11)
   rubocop
   rubocop-rails

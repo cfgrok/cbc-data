@@ -28,5 +28,13 @@ module Cbc
     config.active_record.default_timezone = :local
 
     config.cbc = config_for(:cbc)
+
+    if Rails.env.development?
+      config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
+        r301 "/coverage", "/coverage/index.html"
+        r301 "/coverage/", "/coverage/index.html"
+      end
+      config.middleware.use Rack::Static, urls: ["/coverage"], root: Rails.root.to_s
+    end
   end
 end
