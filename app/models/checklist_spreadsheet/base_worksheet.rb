@@ -4,21 +4,15 @@ class ChecklistSpreadsheet::BaseWorksheet
   def initialize(workbook, filename, index)
     @workbook = workbook
     @filename = filename
-
-    set_worksheet index
-
+    @worksheet = @workbook.worksheet index
     @rows = trim_worksheet
   end
 
   private
 
-  def set_worksheet(index)
-    @worksheet = @workbook.worksheet index
-  end
-
   def trim_worksheet
     rows = trim_rows
-    rows = trim_columns rows
+    trim_columns rows
   end
 
   def trim_rows
@@ -40,7 +34,7 @@ class ChecklistSpreadsheet::BaseWorksheet
     @rows.each_with_index do |row, row_index|
       next if row.compact.empty?
 
-      column_index = row.index { |row| row.to_s.casecmp(content).zero? }
+      column_index = row.index { |r| r.to_s.casecmp(content).zero? }
 
       return [row, row_index, column_index] if column_index
     end

@@ -34,7 +34,7 @@ class ChecklistsController < ApplicationController
 
     respond_to do |format|
       if @checklist.save
-        format.html { redirect_to @checklist, notice: "Checklist was successfully created." }
+        format.html { redirect_to @checklist, notice: t(".success") }
         format.json { render :show, status: :created, location: @checklist }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class ChecklistsController < ApplicationController
   def update
     respond_to do |format|
       if @checklist.update(row_params)
-        format.html { redirect_to @checklist, notice: "Checklist was successfully updated." }
+        format.html { redirect_to @checklist, notice: t(".success") }
         format.json { render :show, status: :ok, location: @checklist }
       else
         format.html { render :edit }
@@ -62,20 +62,20 @@ class ChecklistsController < ApplicationController
   def destroy
     @checklist.destroy
     respond_to do |format|
-      format.html { redirect_to checklists_url, notice: "Checklist was successfully destroyed." }
+      format.html { redirect_to checklists_url, notice: t(".success") }
       format.json { head :no_content }
     end
   end
 
   def import
     ChecklistSpreadsheet::File.new.import params[:file].tempfile, params[:file].original_filename
-    flash[:notice] = "Checklist was successfully imported."
+    flash[:notice] = t(".success")
     redirect_to checklists_url
   end
 
   def import_downloaded
     DownloadedChecklistImport.new.import params[:file].tempfile
-    flash[:notice] = "Downloaded checklist was successfully imported."
+    flash[:notice] = t(".success")
     redirect_to checklists_url
   end
 
@@ -100,12 +100,12 @@ class ChecklistsController < ApplicationController
   def observation_attrs(observations, observation)
     attrs = observation.last
 
-    if attrs["number"].empty? && attrs["count_week"] == "0"
-      if attrs["id"].empty?
-        observations.delete observation.first
-      else
-        attrs["_destroy"] = true
-      end
+    return unless attrs["number"].empty? && attrs["count_week"] == "0"
+
+    if attrs["id"].empty?
+      observations.delete observation.first
+    else
+      attrs["_destroy"] = true
     end
   end
 

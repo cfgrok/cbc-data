@@ -1,8 +1,8 @@
 <tr>
   <td class="observation_text"><%= observation.name %></td>
-  <td class="cell-divider-right <%= count_class observation.count, observation.high, observation.low %>"><%= observation.count %></td>
-  <td class="<%= high_class observation.count, observation.high %>"><%= observation.high %></td>
-  <td class="<%= low_class observation.count, observation.high, observation.low %>"><%= observation.low %></td>
+  <td class="cell-divider-right <%= count_class observation.number, observation.high, observation.low %>"><%= observation.number %></td>
+  <td class="<%= high_class observation.number, observation.high %>"><%= observation.high %></td>
+  <td class="<%= low_class observation.number, observation.high, observation.low %>"><%= observation.low %></td>
   <td class="cell-divider-right"><%= observation.all_years %></td>
   <td><%= observation.ten_year_avg %></td>
   <td class="cell-divider-right<%= change_class observation.ten_year_change %>"><%= change_percent observation.ten_year_change %></td>

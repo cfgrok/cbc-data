@@ -28,7 +28,7 @@ class TaxonsController < ApplicationController
 
     respond_to do |format|
       if @taxon.save
-        format.html { redirect_to @taxon, notice: "Taxon was successfully created." }
+        format.html { redirect_to @taxon, notice: t(".success") }
         format.json { render :show, status: :created, location: @taxon }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class TaxonsController < ApplicationController
   def update
     respond_to do |format|
       if @taxon.update(taxon_params)
-        format.html { redirect_to @taxon, notice: "Taxon was successfully updated." }
+        format.html { redirect_to @taxon, notice: t(".success") }
         format.json { render :show, status: :ok, location: @taxon }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class TaxonsController < ApplicationController
   def destroy
     @taxon.destroy
     respond_to do |format|
-      format.html { redirect_to taxons_url, notice: "Taxon was successfully destroyed." }
+      format.html { redirect_to taxons_url, notice: t(".success") }
       format.json { head :no_content }
     end
   end

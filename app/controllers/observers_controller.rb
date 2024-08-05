@@ -28,7 +28,7 @@ class ObserversController < ApplicationController
 
     respond_to do |format|
       if @observer.save
-        format.html { redirect_to @observer, notice: "Observer was successfully created." }
+        format.html { redirect_to @observer, notice: t(".success") }
         format.json { render :show, status: :created, location: @observer }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ObserversController < ApplicationController
   def update
     respond_to do |format|
       if @observer.update(observer_params)
-        format.html { redirect_to @observer, notice: "Observer was successfully updated." }
+        format.html { redirect_to @observer, notice: t(".success") }
         format.json { render :show, status: :ok, location: @observer }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ObserversController < ApplicationController
   def destroy
     @observer.destroy
     respond_to do |format|
-      format.html { redirect_to observers_url, notice: "Observer was successfully destroyed." }
+      format.html { redirect_to observers_url, notice: t(".success") }
       format.json { head :no_content }
     end
   end

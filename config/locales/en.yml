@@ -21,3 +21,63 @@
 
 en:
   hello: "Hello world"
+  areas:
+    create:
+      success: "Area was successfully created."
+    update:
+      success: "Area was successfully updated."
+    destroy:
+      success: "Area was successfully destroyed."
+  checklists:
+    create:
+      success: "Checklist was successfully created."
+    update:
+      success: "Checklist was successfully updated."
+    destroy:
+      success: "Checklist was successfully destroyed."
+    import:
+      success: "Checklist was successfully imported."
+    import_downloaded:
+      success: "Downloaded checklist was successfully imported."
+  observations:
+    create:
+      success: "Observation was successfully created."
+    update:
+      success: "Observation was successfully updated."
+    destroy:
+      success: "Observation was successfully destroyed."
+  observers:
+    create:
+      success: "Observer was successfully created."
+    update:
+      success: "Observer was successfully updated."
+    destroy:
+      success: "Observer was successfully destroyed."
+  sectors:
+    create:
+      success: "Sector was successfully created."
+    update:
+      success: "Sector was successfully updated."
+    destroy:
+      success: "Sector was successfully destroyed."
+  surveys:
+    create:
+      success: "Survey was successfully created."
+    update:
+      success: "Survey was successfully updated."
+    destroy:
+      success: "Survey was successfully destroyed."
+  taxons:
+    create:
+      success: "Taxon was successfully created."
+    update:
+      success: "Taxon was successfully updated."
+    destroy:
+      success: "Taxon was successfully destroyed."
+  years:
+    create:
+      success: "Year was successfully created."
+    update:
+      success: "Year was successfully updated."
+    destroy:
+      success: "Year was successfully destroyed."

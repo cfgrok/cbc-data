@@ -1,6 +1,6 @@
-<table class='list_summary'>
+<table class="list_summary">
   <tr class="header_row">
-    <th class='observation_text'>Taxon</th>
+    <th class="observation_text">Taxon</th>
     <th>Count</th>
     <% if group.respond_to?(:sector) && group.sector %>
       <th>Sector Count</th>
@@ -11,12 +11,12 @@
       <th>Survey Ratio</th>
     <% end %>
     <% if group.is_a? Checklist %>
-      <th class='observation_text'>Notes</th>
+      <th class="observation_text">Notes</th>
     <% end %>
   </tr>
-  <%= render partial: 'shared/observations/taxon_row', collection: group.aggregate_observations, as: :observation, locals: { group: group } %>
+  <%= render partial: "shared/observations/taxon_row", collection: group.aggregate_observations, as: :observation, locals: { group: group } %>
   <tr>
-    <th class='observation_text'>Species Count</th>
+    <th class="observation_text">Species Count</th>
     <th class="<%= record_class group.try(:species_high_record?) || group.try(:species_low_record?) %>"><%= group.species_total %><%= count_week_helper group.count_week_total %></th>
     <% if group.respond_to?(:sector) && group.sector %>
       <th<%= ratio_style group.species_total_sector_ratio %>><%= group.sector.species_total %></th>
@@ -28,7 +28,7 @@
     <% end %>
   </tr>
   <tr>
-    <th class='observation_text'>Individual Count</th>
+    <th class="observation_text">Individual Count</th>
     <th class="<%= record_class group.try(:individual_high_record?) || group.try(:individual_low_record?) %>"><%= group.individual_total %></th>
     <% if group.respond_to?(:sector) && group.sector %>
       <th<%= ratio_style group.individual_total_sector_ratio %>><%= group.sector.individual_total %></th>

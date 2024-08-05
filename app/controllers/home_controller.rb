@@ -11,8 +11,12 @@ class HomeController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def list_paths
-    @paths = RouteRecognizer.new.initial_path_segments.reject do |path|
-      %w[assets rails].include? path
+    @paths = RouteRecognizer.new.initial_path_segments.select do |path|
+      exclusions.exclude? path
     end
+  end
+
+  def exclusions
+    %w[assets rails]
   end
 end

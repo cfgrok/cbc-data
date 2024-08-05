@@ -21,11 +21,11 @@ module ApplicationHelper
     return unless value.is_a? Float
 
     if value >= 0.75
-      " class=""ratio_red"""
+      " class=\"ratio_red\""
     elsif value >= 0.5
-      " class=""ratio_green"""
+      " class=\"ratio_green\""
     elsif value >= 0.25
-      " class=""ratio_blue"""
+      " class=\"ratio_blue\""
     end
   end
 
@@ -48,15 +48,15 @@ module ApplicationHelper
   end
 
   def high_class(count, high)
-    if count && count == high
-      "bold"
-    end
+    return unless count && count == high
+
+    "bold"
   end
 
   def low_class(count, high, low)
-    if count && count == low && count != high
-      "bold red"
-    end
+    return unless count && count == low && count != high
+
+    "bold red"
   end
 
   def record_class(is_record)
@@ -70,6 +70,6 @@ module ApplicationHelper
   def count_week_helper(count)
     return if count.zero?
 
-    "&nbsp;(#{count})".html_safe
+    " (#{count})"
   end
 end

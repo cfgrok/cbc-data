@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChecklistImport
+class ChecklistImport # rubocop:todo Metrics/ClassLength
   class NoSectorError < StandardError; end
   class NoAreaError < StandardError; end
 
@@ -30,7 +30,7 @@ class ChecklistImport
     @checklist = Checklist.new
   end
 
-  def set_checklist_attributes
+  def set_checklist_attributes # rubocop:todo Metrics/MethodLength
     set_survey
     set_sector
     set_area
@@ -40,7 +40,7 @@ class ChecklistImport
     set_time
     set_hours
     set_miles
-    set_observers
+    add_observers
     set_observations
   end
 
@@ -114,10 +114,10 @@ class ChecklistImport
   end
 
   def set_parties
-    unless @checklist.feeder_watch
-      @checklist.max_parties = find_max_parties
-      @checklist.min_parties = find_min_parties
-    end
+    return if @checklist.feeder_watch
+
+    @checklist.max_parties = find_max_parties
+    @checklist.min_parties = find_min_parties
   end
 
   def find_max_parties
@@ -296,11 +296,11 @@ class ChecklistImport
     end
   end
 
-  def set_observers
+  def add_observers
     rows = @worksheet.rows.to_a[find_observers_start..find_page_2_start - 1]
 
     rows.each do |row|
-      set_observer row
+      add_observer row
     end
   end
 
@@ -308,21 +308,33 @@ class ChecklistImport
     @worksheet.rows.index { |row| row[0] == "PARTY MEMBERS & EMAIL ADDRESSES" } + 1
   end
 
-  def set_observer(row)
+  def add_observer(row)
     return unless row[0]
 
     names = row[0].strip
     email = row[1].strip.downcase if row[1]
 
-    first_name = names.split[0..-2].join(" ").strip
-    last_name = names.split[-1].strip
+    first_name = observer_first_name names
+    last_name = observer_last_name names
 
-    observer = Observer.find_by(first_name: first_name, last_name: last_name) ||
-      Observer.new(first_name: first_name, last_name: last_name)
+    observer = find_observer first_name, last_name
 
     set_observer_email observer, email if email
 
     @checklist.observers << observer
+  end
+
+  def observer_first_name(names)
+    names.split[0..-2].join(" ").strip
+  end
+
+  def observer_last_name(names)
+    names.split[-1].strip
+  end
+
+  def find_observer(first_name, last_name)
+    Observer.find_by(first_name: first_name, last_name: last_name) ||
+      Observer.new(first_name: first_name, last_name: last_name)
   end
 
   def set_observer_email(observer, email)

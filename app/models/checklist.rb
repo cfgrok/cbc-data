@@ -7,11 +7,13 @@ class Checklist < ActiveRecord::Base
   belongs_to :sector
   belongs_to :area
 
-  has_many :observations, -> { joins(:taxon).includes(:taxon).order("taxons.taxonomic_order") }, dependent: :destroy
+  has_many :observations, -> { joins(:taxon).includes(:taxon).order("taxons.taxonomic_order") },
+    dependent: :destroy, inverse_of: :checklist
 
   accepts_nested_attributes_for :observations, allow_destroy: true
 
-  has_and_belongs_to_many :observers, -> { order "last_name, first_name" }
+  has_many :teams, dependent: :delete_all
+  has_many :observers, -> { order "last_name, first_name" }, through: :teams
 
   scope :field, -> { where(feeder_watch: false) }
   scope :feeder, -> { where(feeder_watch: true) }
@@ -35,6 +37,10 @@ class Checklist < ActiveRecord::Base
     end
   end
 
+  # rubocop:todo Metrics/AbcSize
+  # rubocop:todo Metrics/CyclomaticComplexity
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Metrics/PerceivedComplexity
   def aggregate_observations
     observations = super
     observation_taxon_ids = observations.map(&:taxon_id)
@@ -76,6 +82,10 @@ class Checklist < ActiveRecord::Base
 
     observations
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def times_match?
     duration && duration - (break_hours || 0) == hours_total

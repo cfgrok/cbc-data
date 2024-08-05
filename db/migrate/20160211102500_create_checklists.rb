@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CreateChecklists < ActiveRecord::Migration
-  def change
+  def change # rubocop:todo Metrics/MethodLength
     create_table :checklists do |t|
       t.references :survey, index: true, foreign_key: true
       t.references :sector, index: true, foreign_key: true

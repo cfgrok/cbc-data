@@ -42,8 +42,8 @@ class ChecklistSpreadsheet::CommentsWorksheet < ChecklistSpreadsheet::BaseWorksh
   end
 
   def strip_location_name(name)
-    name = name.gsub(/\s*\(?-?\d+\.\d+, -?\d+\.\d+\)?/, "")
-    name = name.gsub(/\s*US-\w{2}$/, "")
-    name = name.gsub(/,[\w\s]+,\s+US$/, "")
+    name.gsub!(/\s*\(?-?\d+\.\d+, -?\d+\.\d+\)?/, "")
+    name.gsub!(/\s*US-\w{2}$/, "")
+    name.gsub(/,[\w\s]+,\s+US$/, "")
   end
 end

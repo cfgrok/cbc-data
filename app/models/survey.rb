@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-class Survey < ActiveRecord::Base
+class Survey < ActiveRecord::Base # rubocop:todo Metrics/ClassLength
   include Summarizable
 
   belongs_to :year
-  has_many :checklists
-  has_many :observations, -> { joins(:taxon).includes(:taxon).order("taxons.taxonomic_order") }
+  has_many :checklists, -> { includes :observers }, dependent: :delete_all, inverse_of: :survey
+  has_many :observations, -> { joins(:taxon).includes(:taxon).order("taxons.taxonomic_order") },
+    dependent: :delete_all, inverse_of: :survey
 
   validates :year, presence: true
 
@@ -20,7 +21,7 @@ class Survey < ActiveRecord::Base
   )
   TaxonObservation = Struct.new(
     :name,
-    :count,
+    :number,
     :years,
     :ten_year_avg,
     :ten_year_change,
@@ -38,7 +39,7 @@ class Survey < ActiveRecord::Base
     taxons = Taxon.where("EXISTS(SELECT 1 FROM observations WHERE taxons.id = observations.taxon_id)")
 
     taxons.map do |t|
-      if existing = aggregated.find { |e| e.taxon_id == t.id }
+      if (existing = aggregated.find { |e| e.taxon_id == t.id })
         existing
       else
         Observation.new(taxon_id: t.id)
@@ -159,24 +160,28 @@ class Survey < ActiveRecord::Base
       .order("taxons.taxonomic_order, years.audubon_year DESC")
   end
 
+  # rubocop:todo Metrics/AbcSize
+  # rubocop:todo Metrics/CyclomaticComplexity
+  # rubocop:todo Metrics/MethodLength
+  # rubocop:todo Metrics/PerceivedComplexity
   def all_survey_taxon_observations
-    t = Benchmark.measure do
+    t = Benchmark.measure do # rubocop:todo Metrics/BlockLength
       @all_survey_taxon_observations ||= all_survey_observations.each_with_object({}) do |observation, collection|
-                                           collection[observation.taxon_id] = create_taxon_observation(observation.common_name) unless collection.key? observation.taxon_id
+        collection[observation.taxon_id] = create_taxon_observation(observation.common_name) unless collection.key? observation.taxon_id
 
-                                           taxon_observation = collection[observation.taxon_id]
+        taxon_observation = collection[observation.taxon_id]
 
-                                           if !taxon_observation.years[observation.survey_year]
-                                             taxon_observation.years[observation.survey_year] = observation.count_week ? "Count Week" : observation.number
-                                           elsif !observation.count_week
-                                             taxon_observation.years[observation.survey_year] = 0 if taxon_observation.years[observation.survey_year] == "Count Week"
-                                             taxon_observation.years[observation.survey_year] += observation.number
-                                           end
-                                         end.transform_values do |taxon_observation|
+        if !taxon_observation.years[observation.survey_year]
+          taxon_observation.years[observation.survey_year] = observation.count_week ? "Count Week" : observation.number
+        elsif !observation.count_week
+          taxon_observation.years[observation.survey_year] = 0 if taxon_observation.years[observation.survey_year] == "Count Week"
+          taxon_observation.years[observation.survey_year] += observation.number
+        end
+      end.transform_values do |taxon_observation| # rubocop:todo Style/MultilineBlockChain
         all_values = taxon_observation.years.values
         current = taxon_observation.years[to_s] == "Count Week" ? 0 : taxon_observation.years[to_s]
 
-        taxon_observation.count = taxon_observation.years[to_s]
+        taxon_observation.number = taxon_observation.years[to_s]
         taxon_observation.high = all_values.compact.reject { |v| v == "Count Week" }.max
         taxon_observation.low = all_values.compact.reject { |v| v == "Count Week" }.min
         taxon_observation.all_years = all_values.compact.size
@@ -197,7 +202,13 @@ class Survey < ActiveRecord::Base
     logger.debug "all_survey_taxon_observations: #{t}"
     @all_survey_taxon_observations
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/PerceivedComplexity
 
+  # rubocop:todo Metrics/AbcSize
+  # rubocop:todo Metrics/MethodLength
   def all_survey_counts
     @all_survey_counts ||= all_survey_observations.each_with_object(survey_count_collection) do |observation, collection|
       count = collection[observation.survey_year]
@@ -208,7 +219,7 @@ class Survey < ActiveRecord::Base
         count.species_list |= [observation.common_name]
         count.individual_total += observation.number
       end
-    end.transform_values do |count|
+    end.transform_values do |count| # rubocop:todo Style/MultilineBlockChain
       remove_invalid_count_week_observations count
       calculate_species_total count
       calculate_count_week_total count
@@ -216,6 +227,8 @@ class Survey < ActiveRecord::Base
       count
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   private
 

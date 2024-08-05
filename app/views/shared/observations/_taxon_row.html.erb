@@ -1,7 +1,7 @@
 <tr>
-  <td class='observation_text'><%= observation.common_name %></td>
+  <td class="observation_text"><%= observation.common_name %></td>
   <% if observation.count_week %>
-    <td class='count_week'>Count&nbsp;Week</td>
+    <td class="count_week">Count&nbsp;Week</td>
   <% else %>
     <td><%= observation.number %></td>
   <% end %>
@@ -14,6 +14,6 @@
     <td<%= ratio_style observation.survey_ratio %>><%= ratio_percent observation.survey_ratio %></td>
   <% end %>
   <% if group.is_a? Checklist %>
-    <%= simple_format(observation.notes, {class: 'observation_text'}, wrapper_tag: 'td') %>
+    <%= simple_format(observation.notes, { class: "observation_text" }, wrapper_tag: "td") %>
   <% end %>
 </tr>

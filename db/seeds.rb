@@ -9,7 +9,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 (100..124).each do |number|
-  year = Year.create([{ audubon_year: number, vashon_year: number - 99 }])
+  Year.create([{ audubon_year: number, vashon_year: number - 99 }])
 end
 
 sectors = YAML.load_file "db/fixtures/sectors.yml"
@@ -45,11 +45,15 @@ Survey.create([{ date: "2023-12-31", year: Year.all[-1] }])
 
 ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 116 - 01-03-2016/Data"
 
+# rubocop:todo Rails/SkipsModelValidations
 Taxon.where(common_name: "Western Scrub-Jay").update_all(common_name: "California Scrub-Jay")
+# rubocop:enable Rails/SkipsModelValidations
 
 ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 117 - 01-02-2017/Data"
 
+# rubocop:todo Rails/SkipsModelValidations
 Taxon.where(common_name: "Thayer's Gull").update_all(common_name: "Iceland Gull (Thayer's)")
+# rubocop:enable Rails/SkipsModelValidations
 
 ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 118 - 12-31-2017/Data"
 
@@ -59,11 +63,15 @@ ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 120 - 01-0
 
 ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 121 - 01-03-2021/Data"
 
+# rubocop:todo Rails/SkipsModelValidations
 Taxon.where(common_name: "Mew Gull").update_all(common_name: "Short-billed Gull")
+# rubocop:enable Rails/SkipsModelValidations
 
 ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 122 - 01-03-2022/Data"
 
+# rubocop:todo Rails/SkipsModelValidations
 Taxon.where(common_name: "Bald Eagle adult").update_all(common_name: "Bald Eagle")
+# rubocop:enable Rails/SkipsModelValidations
 
 ChecklistSpreadsheet::File.new.import_all "/home/ezra/Sync/CBC/Vashon 123 - 01-02-2023/Data"
 

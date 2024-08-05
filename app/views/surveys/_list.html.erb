@@ -14,7 +14,7 @@
       <th class="<%= selected_year_class survey, @survey %>"><%= survey.to_s %></th>
     <% end %>
   </tr>
-  <%= render partial: 'survey_data_row', collection: @taxon_observations, as: :observation %>
+  <%= render partial: "survey_data_row", collection: @taxon_observations, as: :observation %>
   <tr>
     <th class="observation_text">Species Count</th>
     <th class="cell-divider-right <%= record_class group.try(:species_high_record?) || group.try(:species_low_record?) %>"><%= group.species_total %><%= count_week_helper group.count_week_total %></th>

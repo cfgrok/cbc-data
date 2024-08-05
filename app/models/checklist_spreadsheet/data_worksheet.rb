@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
+class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet # rubocop:todo Metrics/ClassLength
   class NoSectorError < StandardError; end
   class NoAreaError < StandardError; end
 
@@ -12,7 +12,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
 
   def process
     set_checklist_attributes
-    set_observers
+    add_observers
 
     remove_empty_rows
     remove_custom_rows
@@ -84,10 +84,10 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def set_parties
-    unless @checklist.feeder_watch
-      @checklist.max_parties = find_attribute("Max Parties") || 1
-      @checklist.min_parties = find_attribute("Min Parties") || 1
-    end
+    return if @checklist.feeder_watch
+
+    @checklist.max_parties = find_attribute("Max Parties") || 1
+    @checklist.min_parties = find_attribute("Min Parties") || 1
   end
 
   def set_time
@@ -164,12 +164,12 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
     @checklist.miles_total = find_attribute "TOTAL PARTY MILES"
   end
 
-  def set_observers
+  def add_observers
     start = find_observers_start
     observer_rows = @rows[start, @rows.size - start].take_while { |row| !row.compact.empty? }
 
     observer_rows.each do |row|
-      set_observer row
+      add_observer row
     end
 
     remove_observer_rows start, observer_rows.size
@@ -179,7 +179,10 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
     @rows.index { |row| row.include? "PARTY MEMBERS & EMAIL ADDRESSES" } + 1
   end
 
-  def set_observer(row)
+  # rubocop:todo Metrics/AbcSize
+  # rubocop:todo Metrics/CyclomaticComplexity
+  # rubocop:todo Metrics/PerceivedComplexity
+  def add_observer(row)
     return unless row[0]
 
     names = row[0].strip
@@ -201,6 +204,9 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
 
     @checklist.observers << observer
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 
   def set_observer_first_name(observer, first_name)
     if observer.persisted? && observer.first_name != first_name
@@ -241,10 +247,10 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet
   end
 
   def find_attribute(attribute)
-    if found = row_search(attribute)
-      @attribute_rows << found[1]
-      extract_cell_value found[0][found[2] + 1]
-    end
+    return unless (found = row_search(attribute))
+
+    @attribute_rows << found[1]
+    extract_cell_value found[0][found[2] + 1]
   end
 
   def extract_cell_value(cell_value)

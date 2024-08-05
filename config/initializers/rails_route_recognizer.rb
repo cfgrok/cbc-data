@@ -19,8 +19,8 @@ class RouteRecognizer
   end
 
   def match_initial_path_segment(path)
-    if match = INITIAL_SEGMENT_REGEX.match(path)
-      match[1]
-    end
+    return unless (match = INITIAL_SEGMENT_REGEX.match(path))
+
+    match[1]
   end
 end

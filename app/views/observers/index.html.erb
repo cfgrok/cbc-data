@@ -19,10 +19,10 @@
       <tr>
         <td><%= observer.first_name %></td>
         <td><%= observer.last_name %></td>
-        <td<% unless observer.has_email? %> class='review'<% end %>><%= observer.email %></td>
-        <td><%= link_to 'Show', observer %></td>
-        <td><%= link_to 'Edit', edit_observer_path(observer) %></td>
-        <td><%= link_to 'Destroy', observer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td<% unless observer.email? %> class='review'<% end %>><%= observer.email %></td>
+        <td><%= link_to "Show", observer %></td>
+        <td><%= link_to "Edit", edit_observer_path(observer) %></td>
+        <td><%= link_to "Destroy", observer, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Observer', new_observer_path %>
+<%= link_to "New Observer", new_observer_path %>

@@ -63,12 +63,12 @@ class DownloadedChecklistImport < ChecklistImport
       @year = year
 
       create_checklist
-      set_checklist_attributes year
+      populate_checklist_attributes year
       @checklist.save!
     end
   end
 
-  def set_checklist_attributes(_year)
+  def populate_checklist_attributes(_year)
     create_survey
     set_survey
     set_feeder_watch
