@@ -74,7 +74,7 @@ class ChecklistsController < ApplicationController
   end
 
   def import_downloaded
-    DownloadedChecklistImport.new.import params[:file].tempfile
+    DownloadedChecklistImport.new.import params[:file].tempfile, params[:file].original_filename
     flash[:notice] = t(".success")
     redirect_to checklists_url
   end

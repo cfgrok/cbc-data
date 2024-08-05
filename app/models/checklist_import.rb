@@ -12,7 +12,7 @@ class ChecklistImport # rubocop:todo Metrics/ClassLength
 
   def import(path)
     @file = File.open(path)
-    Rails.logger.debug { "Importing #{@file.path}" }
+    Rails.logger.info { "Importing #{@file.path}" }
     create_worksheet
     create_checklist
     set_checklist_attributes
@@ -339,7 +339,7 @@ class ChecklistImport # rubocop:todo Metrics/ClassLength
 
   def set_observer_email(observer, email)
     if observer.persisted? && observer.email != email
-      Rails.logger.debug { "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}" }
+      Rails.logger.warn { "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}" }
     end
 
     observer.email = email

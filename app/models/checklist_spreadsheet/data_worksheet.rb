@@ -210,7 +210,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet 
 
   def set_observer_first_name(observer, first_name)
     if observer.persisted? && observer.first_name != first_name
-      Rails.logger.debug { "First name changed for #{observer.first_name} #{observer.last_name} -- new: #{first_name}" }
+      Rails.logger.warn { "First name changed for #{observer.first_name} #{observer.last_name} -- new: #{first_name}" }
     end
 
     observer.first_name = first_name
@@ -218,7 +218,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet 
 
   def set_observer_last_name(observer, last_name)
     if observer.persisted? && observer.last_name != last_name
-      Rails.logger.debug { "Last name changed for #{observer.first_name} #{observer.last_name} -- new: #{last_name}" }
+      Rails.logger.warn { "Last name changed for #{observer.first_name} #{observer.last_name} -- new: #{last_name}" }
     end
 
     observer.last_name = last_name
@@ -226,7 +226,7 @@ class ChecklistSpreadsheet::DataWorksheet < ChecklistSpreadsheet::BaseWorksheet 
 
   def set_observer_email(observer, email)
     if observer.persisted? && observer.email != email
-      Rails.logger.debug { "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}" }
+      Rails.logger.warn { "Email address changed for #{observer.first_name} #{observer.last_name} -- old: #{observer.email}, new: #{email}" }
     end
 
     observer.email = email

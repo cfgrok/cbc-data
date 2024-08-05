@@ -10,7 +10,7 @@ class ChecklistSpreadsheet::File
   def import(path, original_filename = nil)
     @file = File.open path
     @filename = original_filename || File.basename(@file.path)
-    Rails.logger.debug { "Importing #{@filename}" }
+    Rails.logger.info { "Importing #{@filename}" }
     @workbook = create_workbook
     process_worksheets
   end

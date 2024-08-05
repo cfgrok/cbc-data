@@ -199,7 +199,7 @@ class Survey < ActiveRecord::Base # rubocop:todo Metrics/ClassLength
         taxon_observation
       end
     end
-    logger.debug "all_survey_taxon_observations: #{t}"
+    logger.debug { "all_survey_taxon_observations: #{t}" }
     @all_survey_taxon_observations
   end
   # rubocop:enable Metrics/AbcSize

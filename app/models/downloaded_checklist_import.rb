@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class DownloadedChecklistImport < ChecklistImport
-  def import(path)
+  def import(path, original_filename = nil)
     @file = File.open(path)
-    Rails.logger.debug { "Importing #{@file.path}" }
+    @filename = original_filename || File.basename(@file.path)
+    Rails.logger.info { "Importing #{@filename}" }
     create_worksheet
     import_checklists
   end
