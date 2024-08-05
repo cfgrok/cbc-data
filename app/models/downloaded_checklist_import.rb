@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DownloadedChecklistImport < ChecklistImport
+class DownloadedChecklistImport
   def import(path, original_filename = nil)
     @file = File.open(path)
     @filename = original_filename || File.basename(@file.path)
@@ -10,6 +10,11 @@ class DownloadedChecklistImport < ChecklistImport
   end
 
   private
+
+  def create_worksheet
+    @workbook = Spreadsheet.open @file
+    @worksheet = @workbook.worksheet 0
+  end
 
   def import_checklists
     find_header_row
@@ -69,6 +74,10 @@ class DownloadedChecklistImport < ChecklistImport
     end
   end
 
+  def create_checklist
+    @checklist = Checklist.new
+  end
+
   def populate_checklist_attributes(_year)
     create_survey
     set_survey
@@ -87,6 +96,12 @@ class DownloadedChecklistImport < ChecklistImport
 
   def find_date
     @year[2]
+  end
+
+  def set_survey
+    year = find_year
+    survey = Survey.joins(:year).where(years: { audubon_year: year }).first
+    @checklist.survey = survey
   end
 
   def set_feeder_watch
@@ -111,5 +126,17 @@ class DownloadedChecklistImport < ChecklistImport
     raise "Taxon #{name} not found" if taxon.nil?
 
     taxon
+  end
+
+  def set_observation(taxon, value, notes)
+    return unless taxon && value
+
+    observation = @checklist.observations.build(survey: @checklist.survey, taxon: taxon, notes: notes)
+
+    if value.is_a? Integer
+      observation.number = value
+    else
+      observation.count_week = true
+    end
   end
 end
