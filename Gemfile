@@ -43,7 +43,13 @@ gem "ffi", "< 1.17.0"
 gem "bigdecimal", "1.3.5"
 
 group :development, :test do
+  gem "byebug"
+  gem "capybara"
+  gem "database_cleaner"
+  gem "factory_bot_rails"
   gem "pry-rails"
+  gem "rspec-rails"
+  gem "selenium-webdriver"
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   # gem 'web-console', '~> 2.0'
