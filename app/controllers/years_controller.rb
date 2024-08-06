@@ -31,7 +31,7 @@ class YearsController < ApplicationController
         format.html { redirect_to @year, notice: t(".success") }
         format.json { render :show, status: :created, location: @year }
       else
-        format.html { render :new }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @year.errors, status: :unprocessable_entity }
       end
     end
@@ -45,7 +45,7 @@ class YearsController < ApplicationController
         format.html { redirect_to @year, notice: t(".success") }
         format.json { render :show, status: :ok, location: @year }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @year.errors, status: :unprocessable_entity }
       end
     end
