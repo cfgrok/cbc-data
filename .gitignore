@@ -16,6 +16,7 @@
 /doc
 /log/*
 !/log/.keep
+/spec/examples.txt
 *.swp
 /tmp
 /.yardoc
