@@ -3,24 +3,13 @@
 require "rails_helper"
 
 RSpec.describe "years/edit", type: :view do
-  let(:year) do
-    Year.create!(
-      audubon_year: 1,
-      vashon_year: 1
-    )
-  end
-
-  before(:each) do
-    assign(:year, year)
-  end
-
   it "renders the edit year form" do
+    year = build_stubbed(:year)
+    assign :year, year
+
     render
 
-    assert_select "form[action=?][method=?]", year_path(year), "post" do
-      assert_select "input[name=?]", "year[audubon_year]"
-
-      assert_select "input[name=?]", "year[vashon_year]"
-    end
+    expect(rendered).to have_form_field year_path(year), "year[audubon_year]", 1
+    expect(rendered).to have_form_field year_path(year), "year[vashon_year]", 1
   end
 end
