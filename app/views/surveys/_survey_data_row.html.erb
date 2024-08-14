@@ -10,6 +10,8 @@
   <td class="cell-divider-right<%= change_class observation.prior_year_change %>"><%= change_percent observation.prior_year_change %></td>
   <% if false %><td class="cell-divider-right"><%= observation.all_year_avg %></td><% end %>
   <% observation.years.each do |year| %>
-    <td class="<%= count_class year.last, observation.high, observation.low %> <%= selected_year_class year.first, @survey.to_s %>"><%= year.last %></td>
+    <td
+      class="<%= count_class year.last, observation.high, observation.low %> <%= selected_year_class year.first, @survey.to_s %>"
+    ><%= year.last %></td>
   <% end %>
 </tr>

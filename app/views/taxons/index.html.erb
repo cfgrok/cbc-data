@@ -24,9 +24,9 @@
         <td><%= taxon.taxonomic_order %></td>
         <td><%= taxon.generic %></td>
         <td><%= taxon.active %></td>
-        <td><%= link_to 'Show', taxon %></td>
-        <td><%= link_to 'Edit', edit_taxon_path(taxon) %></td>
-        <td><%= link_to 'Destroy', taxon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", taxon %></td>
+        <td><%= link_to "Edit", edit_taxon_path(taxon) %></td>
+        <td><%= link_to "Destroy", taxon, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Taxon', new_taxon_path %>
+<%= link_to "New Taxon", new_taxon_path %>

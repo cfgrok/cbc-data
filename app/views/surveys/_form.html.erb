@@ -1,12 +1,13 @@
 <%= form_for(@survey) do |f| %>
   <% if @survey.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+      <h2><%= pluralize(@survey.errors.count, "error") %>
+        prohibited this survey from being saved:</h2>
 
       <ul>
-      <% @survey.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @survey.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -17,7 +18,7 @@
   </div>
   <div class="field">
     <%= f.label :year_id %><br>
-    <%= f.collection_select :year_id, Year.all, :id, :to_s, prompt: 'Select Year' %>
+    <%= f.collection_select :year_id, Year.all, :id, :to_s, prompt: "Select Year" %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -1,4 +1,4 @@
-<p class='summary'>
+<p class="summary">
   <strong>Species Count:</strong>
   <%= group.species_total %>
 </p>
@@ -8,7 +8,7 @@
   <%= group.individual_total %>
 </p>
 
-<p class='summary'>
+<p class="summary">
   <strong>Start Time:</strong>
   <%= time_12_format group.first_start_time %>
 </p>
@@ -18,7 +18,7 @@
   <%= time_12_format group.last_end_time %>
 </p>
 
-<p class='summary'>
+<p class="summary">
   <strong>Field Observers:</strong>
   <%= group.field_observers.length %>
 </p>
@@ -38,53 +38,53 @@
   <%= group.feeder_observers.length %>
 </p>
 
-<table class='summary'>
+<table class="summary">
   <caption>Effort</caption>
   <tr>
-  	<th>Transportation</th>
-  	<th>Hours</th>
-  	<th>Miles</th>
+    <th>Transportation</th>
+    <th>Hours</th>
+    <th>Miles</th>
   </tr>
   <tr>
-  	<td>Foot</td>
-  	<td><%= group.hours_foot_total %></td>
-  	<td><%= group.miles_foot_total %></td>
+    <td>Foot</td>
+    <td><%= group.hours_foot_total %></td>
+    <td><%= group.miles_foot_total %></td>
   </tr>
   <tr>
-  	<td>Car</td>
-  	<td><%= group.hours_car_total %></td>
-  	<td><%= group.miles_car_total %></td>
+    <td>Car</td>
+    <td><%= group.hours_car_total %></td>
+    <td><%= group.miles_car_total %></td>
   </tr>
   <tr>
-  	<td>Boat</td>
-  	<td><%= group.hours_boat_total %></td>
-  	<td><%= group.miles_boat_total %></td>
+    <td>Boat</td>
+    <td><%= group.hours_boat_total %></td>
+    <td><%= group.miles_boat_total %></td>
   </tr>
 </table>
 
-<p class='summary'>
+<p class="summary">
   <strong>Feeder Watch Hours:</strong>
   <%= group.feeder_hours_total %>
 </p>
 
-<table class='summary'>
+<table class="summary">
   <caption>Owling</caption>
   <tr>
-  	<th>Hours</th>
-  	<th>Miles</th>
+    <th>Hours</th>
+    <th>Miles</th>
   </tr>
   <tr>
-  	<td><%= group.hours_owling_total %></td>
-  	<td><%= group.miles_owling_total %></td>
+    <td><%= group.hours_owling_total %></td>
+    <td><%= group.miles_owling_total %></td>
   </tr>
 </table>
 
-<p class='summary'>
+<p class="summary">
   <strong>Total Participant Count:</strong>
   <%= group.participant_total %>
 </p>
 
-<p class='summary'>
+<p class="summary">
   <strong>Total Participant Hours:</strong>
   <%= group.participant_hours_total %>
 </p>

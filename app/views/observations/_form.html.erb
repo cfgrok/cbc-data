@@ -1,12 +1,13 @@
 <%= form_for(@observation) do |f| %>
   <% if @observation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
+      <h2><%= pluralize(@observation.errors.count, "error") %>
+        prohibited this observation from being saved:</h2>
 
       <ul>
-      <% @observation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @observation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -17,11 +18,11 @@
   </div>
   <div class="field">
     <%= f.label :taxon_id %><br>
-    <%= f.collection_select :taxon_id, Taxon.all, :id, :to_s, prompt: 'Select Taxon' %>
+    <%= f.collection_select :taxon_id, Taxon.all, :id, :to_s, prompt: "Select Taxon" %>
   </div>
   <div class="field">
     <%= f.label :checklist_id %><br>
-    <%= f.collection_select :checklist_id, Checklist.all, :id, :to_s, prompt: 'Select Checklist' %>
+    <%= f.collection_select :checklist_id, Checklist.all, :id, :to_s, prompt: "Select Checklist" %>
   </div>
   <div class="field">
     <%= f.label :count_week %><br>

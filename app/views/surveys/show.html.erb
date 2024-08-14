@@ -10,9 +10,10 @@
   <%= @survey.year %>
 </p>
 
-<%= render partial: 'shared/summary', locals: { group: @survey } %>
-<%= render partial: 'list', locals: { group: @survey } %>
-<%= render partial: 'shared/observers', locals: { group: @survey } %>
+<%= render partial: "shared/summary", locals: { group: @survey } %>
+<%= render partial: "list", locals: { group: @survey } %>
+<%= render partial: "shared/observers", locals: { group: @survey } %>
 
-<%= link_to 'Edit', edit_survey_path(@survey) %> |
-<%= link_to 'Back', surveys_path %>
+<%= link_to "Edit", edit_survey_path(@survey) %>
+|
+<%= link_to "Back", surveys_path %>

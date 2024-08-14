@@ -34,7 +34,9 @@
   </tr>
   <tr>
     <th class="observation_text">Individual Count</th>
-    <th class="cell-divider-right <%= record_class group.try(:individual_high_record?) || group.try(:individual_low_record?) %>"><%= group.individual_total %></th>
+    <th
+      class="cell-divider-right <%= record_class group.try(:individual_high_record?) || group.try(:individual_low_record?) %>"
+    ><%= group.individual_total %></th>
     <th class="<%= record_class group.individual_high_record? %>"><%= group.individual_high %></th>
     <th class="<%= record_class group.individual_low_record? %>"><%= group.individual_low %></th>
     <th class="cell-divider-right"><%= group.all_surveys.size %></th>

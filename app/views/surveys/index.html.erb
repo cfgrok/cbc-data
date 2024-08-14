@@ -16,9 +16,9 @@
       <tr>
         <td><%= survey.date %></td>
         <td><%= survey.year %></td>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", survey %></td>
+        <td><%= link_to "Edit", edit_survey_path(survey) %></td>
+        <td><%= link_to "Destroy", survey, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to "New Survey", new_survey_path %>

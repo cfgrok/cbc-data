@@ -2,12 +2,12 @@
 
 <%= form_tag import_checklists_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag 'Import' %>
+  <%= submit_tag "Import" %>
 <% end %>
 
 <h4>Import Downloaded Checklist</h4>
 
 <%= form_tag import_downloaded_checklists_path, multipart: true do %>
   <%= file_field_tag :file %>
-  <%= submit_tag 'Import' %>
+  <%= submit_tag "Import" %>
 <% end %>

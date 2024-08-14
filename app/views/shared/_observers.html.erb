@@ -1,13 +1,13 @@
-<table class='summary'>
+<table class="summary">
   <caption>Observers</caption>
   <tr>
-  	<th>Name</th>
-  	<th>Email</th>
+    <th>Name</th>
+    <th>Email</th>
   </tr>
-  <% group.all_observers.select {|observer| observer}.each do |observer| %>
+  <% group.all_observers.select { |observer| observer }.each do |observer| %>
     <tr>
-    	<td><%= observer.to_s %></td>
-    	<td><%= observer.email %></td>
+      <td><%= observer.to_s %></td>
+      <td><%= observer.email %></td>
     </tr>
   <% end %>
 </table>

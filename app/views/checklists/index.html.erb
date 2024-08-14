@@ -48,17 +48,17 @@
         <td><%= checklist.hours_car %></td>
         <td><%= checklist.hours_boat %></td>
         <td><%= checklist.hours_owling %></td>
-        <td<% unless checklist.hours_match? %> class='review'<% end %>><%= checklist.field_hours %></td>
-        <td<% unless checklist.times_match? %> class='review'<% end %>><%= checklist.duration %></td>
+        <td<% unless checklist.hours_match? %> class="review"<% end %>><%= checklist.field_hours %></td>
+        <td<% unless checklist.times_match? %> class="review"<% end %>><%= checklist.duration %></td>
         <td><%= checklist.break_hours %></td>
         <td><%= checklist.miles_foot %></td>
         <td><%= checklist.miles_car %></td>
         <td><%= checklist.miles_boat %></td>
         <td><%= checklist.miles_owling %></td>
-        <td<% unless checklist.miles_match? %> class='review'<% end %>><%= checklist.field_miles %></td>
-        <td><%= link_to 'Show', checklist %></td>
-        <td><%= link_to 'Edit', edit_checklist_path(checklist) %></td>
-        <td><%= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td<% unless checklist.miles_match? %> class="review"<% end %>><%= checklist.field_miles %></td>
+        <td><%= link_to "Show", checklist %></td>
+        <td><%= link_to "Edit", edit_checklist_path(checklist) %></td>
+        <td><%= link_to "Destroy", checklist, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -66,6 +66,6 @@
 
 <br>
 
-<%= link_to 'New Checklist', new_checklist_path %>
+<%= link_to "New Checklist", new_checklist_path %>
 
-<%= render 'import' %>
+<%= render "import" %>

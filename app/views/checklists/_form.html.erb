@@ -1,27 +1,28 @@
 <%= form_for(@checklist) do |f| %>
   <% if @checklist.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@checklist.errors.count, "error") %> prohibited this checklist from being saved:</h2>
+      <h2><%= pluralize(@checklist.errors.count, "error") %>
+        prohibited this checklist from being saved:</h2>
 
       <ul>
-      <% @checklist.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @checklist.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
   <div class="field">
     <%= f.label :survey_id %><br>
-    <%= f.collection_select :survey_id, Survey.all, :id, :to_s, prompt: 'Select Survey' %>
+    <%= f.collection_select :survey_id, Survey.all, :id, :to_s, prompt: "Select Survey" %>
   </div>
   <div class="field">
     <%= f.label :sector_id %><br>
-    <%= f.collection_select :sector_id, Sector.all, :id, :to_s, prompt: 'Select Sector' %>
+    <%= f.collection_select :sector_id, Sector.all, :id, :to_s, prompt: "Select Sector" %>
   </div>
   <div class="field">
     <%= f.label :area_id %><br>
-    <%= f.collection_select :area_id, Area.all, :id, :to_s, include_blank: 'None' %>
+    <%= f.collection_select :area_id, Area.all, :id, :to_s, include_blank: "None" %>
   </div>
   <div class="field">
     <%= f.label :max_parties %><br>
@@ -94,10 +95,10 @@
 
   <div class="field">
     <%= f.label :observers %><br>
-    <%= f.collection_select :observer_ids, Observer.sorted, :id, :to_s, { prompt: 'Select Observers' }, { multiple: true } %>
+    <%= f.collection_select :observer_ids, Observer.sorted, :id, :to_s, { prompt: "Select Observers" }, { multiple: true } %>
   </div>
 
-  <%= render partial: 'shared/observations/form', locals: { f: f } %>
+  <%= render partial: "shared/observations/form", locals: { f: f } %>
 
   <div class="actions">
     <%= f.submit %>
