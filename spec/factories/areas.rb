@@ -3,7 +3,6 @@
 FactoryBot.define do
   factory :area do
     name { "Area Name" }
-    on_island { false }
-    sector { nil }
+    sector
   end
 end

@@ -3,11 +3,10 @@
 FactoryBot.define do
   factory :observation do
     number { 1 }
-    taxon { nil }
-    checklist { nil }
+    taxon
+    checklist
     count_week { false }
-    notes { "MyString" }
-    survey { nil }
-    sector { nil }
+    survey
+    sector
   end
 end

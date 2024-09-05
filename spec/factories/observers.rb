@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :observer do
-    first_name { "MyString" }
-    last_name { "MyString" }
-    email { "MyString" }
+    first_name { "FirstName" }
+    last_name { "LastName" }
   end
 end
