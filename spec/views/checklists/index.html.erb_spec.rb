@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "checklists/index", type: :view do
-  before(:each) do
+  it "renders a list of checklists" do
     checklist = create(
       :checklist,
       survey: survey,
@@ -29,29 +29,27 @@ RSpec.describe "checklists/index", type: :view do
       checklist,
       checklist
     ])
-  end
 
-  it "renders a list of checklists" do
     render
-    cell_selector = Rails::VERSION::STRING >= "7" ? "div>p" : "tr>td"
-    assert_select cell_selector, text: Regexp.new("^#{survey}$"), count: 2
-    assert_select cell_selector, text: Regexp.new(sector.name), count: 2
-    assert_select cell_selector, text: Regexp.new(area.name), count: 2
-    assert_select cell_selector, text: Regexp.new("^2$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^3$"), count: 2
-    assert_select cell_selector, text: Regexp.new(false.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Location"), count: 2
-    assert_select cell_selector, text: Regexp.new("^4.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^5.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^6.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^7.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^8.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^9.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^10.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^11.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^12.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^13.5$"), count: 2
-    assert_select cell_selector, text: Regexp.new("^14.5$"), count: 2
+
+    expect(rendered).to have_index_view_row "survey", "1", 2
+    expect(rendered).to have_index_view_row "sector", "Sector Name", 2
+    expect(rendered).to have_index_view_row "area", "Sector Code - Area Name", 2
+    expect(rendered).to have_index_view_row "max_parties", "2", 2
+    expect(rendered).to have_index_view_row "min_parties", "3", 2
+    expect(rendered).to have_index_view_row "feeder_watch", "false", 2
+    expect(rendered).to have_index_view_row "location", "Location", 2
+    expect(rendered).to have_index_view_row "break_hours", "4.5", 2
+    expect(rendered).to have_index_view_row "hours_foot", "5.5", 2
+    expect(rendered).to have_index_view_row "hours_car", "6.5", 2
+    expect(rendered).to have_index_view_row "hours_boat", "7.5", 2
+    expect(rendered).to have_index_view_row "hours_owling", "8.5", 2
+    expect(rendered).to have_index_view_row "hours_total", "9.5", 2
+    expect(rendered).to have_index_view_row "miles_foot", "10.5", 2
+    expect(rendered).to have_index_view_row "miles_car", "11.5", 2
+    expect(rendered).to have_index_view_row "miles_boat", "12.5", 2
+    expect(rendered).to have_index_view_row "miles_owling", "13.5", 2
+    expect(rendered).to have_index_view_row "miles_total", "14.5", 2
   end
 end
 

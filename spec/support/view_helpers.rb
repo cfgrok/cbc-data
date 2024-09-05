@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module ViewHelpers
-  def have_index_view_row(id, text)
+  def have_index_view_row(id, text, count = 1)
     if Rails::VERSION::STRING >= "7"
-      have_css "div[itemscope]>p[itemprop='#{id}']", text: text, count: 1
+      have_css "div[itemscope]>p[itemprop='#{id}']", text: text, count: count
     else
       header = id.capitalize.tr("_", " ")
-      have_selector :table_row, header => text, count: 1
+      have_selector :table_row, header => text, count: count
     end
   end
 
@@ -17,6 +17,16 @@ module ViewHelpers
   def have_form_field(form_action, field_name, field_value)
     have_css "form[action='#{form_action}'][method='post']" do |form|
       form.has_field? field_name, with: field_value
+    end
+  end
+
+  def have_form_checked(form_action, field_name, field_checked)
+    have_css "form[action='#{form_action}'][method='post']" do |form|
+      if field_checked
+        form.has_checked_field? field_name
+      else
+        form.has_no_checked_field? field_name
+      end
     end
   end
 

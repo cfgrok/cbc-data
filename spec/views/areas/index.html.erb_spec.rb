@@ -3,25 +3,16 @@
 require "rails_helper"
 
 RSpec.describe "areas/index", type: :view do
-  before(:each) do
-    assign(:areas, [
-      Area.create!(
-        name: "Area Name",
-        on_island: false,
-        sector: Sector.create!(name: "Sector Name")
-      ),
-      Area.create!(
-        name: "Area Name",
-        on_island: false,
-        sector: Sector.create!(name: "Sector Name")
-      )
-    ])
-  end
-
   it "renders a list of areas" do
+    area1 = build_stubbed :area, name: "Area Name 1", sector: Sector.new(name: "Sector Name 1")
+    area2 = build_stubbed :area, name: "Area Name 2", sector: Sector.new(name: "Sector Name 2")
+    assign :areas, [area1, area2]
+
     render
-    cell_selector = Rails::VERSION::STRING >= "7" ? "div>p" : "tr>td"
-    assert_select cell_selector, text: Regexp.new("Area Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Sector Name".to_s), count: 2
+
+    expect(rendered).to have_index_view_row "name", "Area Name 1"
+    expect(rendered).to have_index_view_row "sector", "Sector Name 1"
+    expect(rendered).to have_index_view_row "name", "Area Name 2"
+    expect(rendered).to have_index_view_row "sector", "Sector Name 2"
   end
 end

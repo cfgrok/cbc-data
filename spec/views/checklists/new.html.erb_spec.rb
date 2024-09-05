@@ -3,15 +3,18 @@
 require "rails_helper"
 
 RSpec.describe "checklists/new", type: :view do
-  before(:each) do
+  it "renders new checklist form" do
+    sector = create(:sector)
     assign(:checklist, Checklist.new(
-      survey: nil,
-      sector: nil,
-      area: nil,
+      survey: create(:survey, year: create(:year)),
+      sector: sector,
+      area: create(:area, sector: sector),
       max_parties: 1,
       min_parties: 1,
       feeder_watch: false,
       location: "MyString",
+      start_time: "12:00",
+      end_time: "13:00",
       break_hours: 1.5,
       hours_foot: 1.5,
       hours_car: 1.5,
@@ -24,47 +27,30 @@ RSpec.describe "checklists/new", type: :view do
       miles_owling: 1.5,
       miles_total: 1.5
     ))
-  end
 
-  it "renders new checklist form" do
     render
 
-    assert_select "form[action=?][method=?]", checklists_path, "post" do
-      assert_select "select[name=?]", "checklist[survey_id]"
-
-      assert_select "select[name=?]", "checklist[sector_id]"
-
-      assert_select "select[name=?]", "checklist[area_id]"
-
-      assert_select "input[name=?]", "checklist[max_parties]"
-
-      assert_select "input[name=?]", "checklist[min_parties]"
-
-      assert_select "input[name=?]", "checklist[feeder_watch]"
-
-      assert_select "input[name=?]", "checklist[location]"
-
-      assert_select "input[name=?]", "checklist[break_hours]"
-
-      assert_select "input[name=?]", "checklist[hours_foot]"
-
-      assert_select "input[name=?]", "checklist[hours_car]"
-
-      assert_select "input[name=?]", "checklist[hours_boat]"
-
-      assert_select "input[name=?]", "checklist[hours_owling]"
-
-      assert_select "input[name=?]", "checklist[hours_total]"
-
-      assert_select "input[name=?]", "checklist[miles_foot]"
-
-      assert_select "input[name=?]", "checklist[miles_car]"
-
-      assert_select "input[name=?]", "checklist[miles_boat]"
-
-      assert_select "input[name=?]", "checklist[miles_owling]"
-
-      assert_select "input[name=?]", "checklist[miles_total]"
-    end
+    expect(rendered).to have_form_select checklists_path, "checklist[survey_id]", "1"
+    expect(rendered).to have_form_select checklists_path, "checklist[sector_id]", "Sector Name"
+    expect(rendered).to have_form_select checklists_path, "checklist[area_id]", "Sector Code - Area Name"
+    expect(rendered).to have_form_field checklists_path, "checklist[max_parties]", "1"
+    expect(rendered).to have_form_field checklists_path, "checklist[min_parties]", "1"
+    expect(rendered).to have_form_checked checklists_path, "checklist[feeder_watch]", false
+    expect(rendered).to have_form_field checklists_path, "checklist[location]", "MyString"
+    expect(rendered).to have_form_select checklists_path, "checklist[start_time(4i)]", "12"
+    expect(rendered).to have_form_select checklists_path, "checklist[start_time(5i)]", "00"
+    expect(rendered).to have_form_select checklists_path, "checklist[end_time(4i)]", "13"
+    expect(rendered).to have_form_select checklists_path, "checklist[end_time(5i)]", "00"
+    expect(rendered).to have_form_field checklists_path, "checklist[break_hours]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[hours_foot]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[hours_car]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[hours_boat]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[hours_owling]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[hours_total]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[miles_foot]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[miles_car]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[miles_boat]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[miles_owling]", "1.5"
+    expect(rendered).to have_form_field checklists_path, "checklist[miles_total]", "1.5"
   end
 end

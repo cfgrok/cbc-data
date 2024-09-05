@@ -9,7 +9,7 @@ RSpec.describe "years/edit", type: :view do
 
     render
 
-    expect(rendered).to have_form_field year_path(year), "year[audubon_year]", 1
-    expect(rendered).to have_form_field year_path(year), "year[vashon_year]", 1
+    expect(rendered).to have_form_field year_path(year), "year[audubon_year]", "1"
+    expect(rendered).to have_form_field year_path(year), "year[vashon_year]", "1"
   end
 end

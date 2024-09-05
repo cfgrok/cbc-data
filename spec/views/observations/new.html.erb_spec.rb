@@ -3,31 +3,47 @@
 require "rails_helper"
 
 RSpec.describe "observations/new", type: :view do
-  before(:each) do
+  it "renders new observation form" do
     assign(:observation, Observation.new(
       number: 1,
-      taxon: nil,
-      checklist: nil,
+      taxon: create(:taxon),
+      checklist: checklist,
       count_week: false,
       notes: "MyString",
-      survey: nil,
-      sector: nil
+      survey: survey,
+      sector: sector
     ))
-  end
 
-  it "renders new observation form" do
     render
 
-    assert_select "form[action=?][method=?]", observations_path, "post" do
-      assert_select "input[name=?]", "observation[number]"
-
-      assert_select "select[name=?]", "observation[taxon_id]"
-
-      assert_select "select[name=?]", "observation[checklist_id]"
-
-      assert_select "input[name=?]", "observation[count_week]"
-
-      assert_select "input[name=?]", "observation[notes]"
-    end
+    expect(rendered).to have_form_field observations_path, "observation[number]", "1"
+    expect(rendered).to have_form_select observations_path, "observation[taxon_id]", "MyString"
+    expect(rendered).to have_form_select observations_path, "observation[checklist_id]", "1: Sector Code - Area Name"
+    expect(rendered).to have_form_checked observations_path, "observation[count_week]", false
+    expect(rendered).to have_form_field observations_path, "observation[notes]", "MyString"
   end
+end
+
+def area
+  @area ||= create(:area, sector: sector)
+end
+
+def checklist
+  @checklist ||= create(
+    :checklist,
+    area: area,
+    survey: survey,
+    sector: sector
+  )
+end
+
+def sector
+  @sector ||= create(:sector)
+end
+
+def survey
+  @survey ||= create(
+    :survey,
+    year: create(:year)
+  )
 end

@@ -8,7 +8,7 @@ RSpec.describe "years/show", type: :view do
 
     render
 
-    expect(rendered).to have_p_with_label "Audubon year", 1
-    expect(rendered).to have_p_with_label "Vashon year", 1
+    expect(rendered).to have_p_with_label "Audubon year", "1"
+    expect(rendered).to have_p_with_label "Vashon year", "1"
   end
 end

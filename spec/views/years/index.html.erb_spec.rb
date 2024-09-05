@@ -10,9 +10,9 @@ RSpec.describe "years/index", type: :view do
 
     render
 
-    expect(rendered).to have_index_view_row "audubon_year", 1
-    expect(rendered).to have_index_view_row "vashon_year", 2
-    expect(rendered).to have_index_view_row "audubon_year", 3
-    expect(rendered).to have_index_view_row "vashon_year", 4
+    expect(rendered).to have_index_view_row "audubon_year", "1"
+    expect(rendered).to have_index_view_row "vashon_year", "2"
+    expect(rendered).to have_index_view_row "audubon_year", "3"
+    expect(rendered).to have_index_view_row "vashon_year", "4"
   end
 end

@@ -3,72 +3,64 @@
 require "rails_helper"
 
 RSpec.describe "checklists/edit", type: :view do
-  let(:checklist) do
-    Checklist.create!(
-      survey: nil,
-      sector: nil,
-      area: nil,
+  it "renders the edit checklist form" do
+    sector = create(:sector)
+    checklist = create(
+      :checklist,
+      survey: create(
+        :survey,
+        year: create(:year)
+      ),
+      sector: sector,
+      area: create(:area, sector: sector),
       max_parties: 1,
       min_parties: 1,
-      feeder_watch: false,
-      location: "MyString",
-      break_hours: 1.5,
-      hours_foot: 1.5,
-      hours_car: 1.5,
-      hours_boat: 1.5,
-      hours_owling: 1.5,
-      hours_total: 1.5,
-      miles_foot: 1.5,
-      miles_car: 1.5,
-      miles_boat: 1.5,
-      miles_owling: 1.5,
-      miles_total: 1.5
+      feeder_watch: 1,
+      location: "Location",
+      start_time: "18:00",
+      end_time: "19:30",
+      break_hours: 1,
+      hours_foot: 1,
+      hours_car: 1,
+      hours_boat: 1,
+      hours_owling: 1,
+      hours_total: 1,
+      miles_foot: 1,
+      miles_car: 1,
+      miles_boat: 1,
+      miles_owling: 1,
+      miles_total: 1
     )
-  end
+    observer1 = create(:observer, first_name: "First", last_name: "Observer")
+    observer2 = create(:observer, first_name: "Second", last_name: "Observer")
+    checklist.observers << observer1
+    checklist.observers << observer2
+    assign :checklist, checklist
 
-  before(:each) do
-    assign(:checklist, checklist)
-  end
-
-  it "renders the edit checklist form" do
     render
 
-    assert_select "form[action=?][method=?]", checklist_path(checklist), "post" do
-      assert_select "select[name=?]", "checklist[survey_id]"
-
-      assert_select "select[name=?]", "checklist[sector_id]"
-
-      assert_select "select[name=?]", "checklist[area_id]"
-
-      assert_select "input[name=?]", "checklist[max_parties]"
-
-      assert_select "input[name=?]", "checklist[min_parties]"
-
-      assert_select "input[name=?]", "checklist[feeder_watch]"
-
-      assert_select "input[name=?]", "checklist[location]"
-
-      assert_select "input[name=?]", "checklist[break_hours]"
-
-      assert_select "input[name=?]", "checklist[hours_foot]"
-
-      assert_select "input[name=?]", "checklist[hours_car]"
-
-      assert_select "input[name=?]", "checklist[hours_boat]"
-
-      assert_select "input[name=?]", "checklist[hours_owling]"
-
-      assert_select "input[name=?]", "checklist[hours_total]"
-
-      assert_select "input[name=?]", "checklist[miles_foot]"
-
-      assert_select "input[name=?]", "checklist[miles_car]"
-
-      assert_select "input[name=?]", "checklist[miles_boat]"
-
-      assert_select "input[name=?]", "checklist[miles_owling]"
-
-      assert_select "input[name=?]", "checklist[miles_total]"
-    end
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[survey_id]", "1"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[sector_id]", "Sector Name"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[area_id]", "Sector Code - Area Name"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[max_parties]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[min_parties]", "1"
+    expect(rendered).to have_form_checked checklist_path(checklist), "checklist[feeder_watch]", true
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[location]", "Location"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[start_time(4i)]", "18"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[start_time(5i)]", "00"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[end_time(4i)]", "19"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[end_time(5i)]", "30"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[break_hours]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[hours_foot]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[hours_car]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[hours_boat]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[hours_owling]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[hours_total]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[miles_foot]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[miles_car]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[miles_boat]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[miles_owling]", "1"
+    expect(rendered).to have_form_field checklist_path(checklist), "checklist[miles_total]", "1"
+    expect(rendered).to have_form_select checklist_path(checklist), "checklist[observer_ids][]", ["First Observer", "Second Observer"]
   end
 end
