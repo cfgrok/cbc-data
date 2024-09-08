@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "surveys/show", type: :view do
-  before(:each) do
+  before do
     assign(:survey, create(:survey, year: create(:year)))
   end
 

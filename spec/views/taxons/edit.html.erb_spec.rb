@@ -10,11 +10,11 @@ RSpec.describe "taxons/edit", type: :view do
       scientific_name: "MyString",
       taxonomic_order: 1,
       generic: false,
-      active: false
+      active: false,
     )
   end
 
-  before(:each) do
+  before do
     assign(:taxon, taxon)
   end
 

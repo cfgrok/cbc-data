@@ -3,11 +3,11 @@
 require "rails_helper"
 
 RSpec.describe "observers/new", type: :view do
-  before(:each) do
+  before do
     assign(:observer, Observer.new(
       first_name: "MyString",
       last_name: "MyString",
-      email: "MyString"
+      email: "MyString",
     ))
   end
 

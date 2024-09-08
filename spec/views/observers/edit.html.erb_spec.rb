@@ -7,11 +7,11 @@ RSpec.describe "observers/edit", type: :view do
     Observer.create!(
       first_name: "MyString",
       last_name: "MyString",
-      email: "MyString"
+      email: "MyString",
     )
   end
 
-  before(:each) do
+  before do
     assign(:observer, observer)
   end
 

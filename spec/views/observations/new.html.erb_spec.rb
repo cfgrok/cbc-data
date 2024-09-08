@@ -11,7 +11,7 @@ RSpec.describe "observations/new", type: :view do
       count_week: false,
       notes: "MyString",
       survey: survey,
-      sector: sector
+      sector: sector,
     ))
 
     render
@@ -33,7 +33,7 @@ def checklist
     :checklist,
     area: area,
     survey: survey,
-    sector: sector
+    sector: sector,
   )
 end
 
@@ -44,6 +44,6 @@ end
 def survey
   @survey ||= create(
     :survey,
-    year: create(:year)
+    year: create(:year),
   )
 end

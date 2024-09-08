@@ -11,7 +11,8 @@ class ObserversController < ApplicationController
 
   # GET /observers/1
   # GET /observers/1.json
-  def show; end
+  def show
+  end
 
   # GET /observers/new
   def new
@@ -19,7 +20,8 @@ class ObserversController < ApplicationController
   end
 
   # GET /observers/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /observers
   # POST /observers.json

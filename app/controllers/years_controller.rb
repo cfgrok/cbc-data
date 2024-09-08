@@ -11,7 +11,8 @@ class YearsController < ApplicationController
 
   # GET /years/1
   # GET /years/1.json
-  def show; end
+  def show
+  end
 
   # GET /years/new
   def new
@@ -19,7 +20,8 @@ class YearsController < ApplicationController
   end
 
   # GET /years/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /years
   # POST /years.json

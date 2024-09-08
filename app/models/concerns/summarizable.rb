@@ -47,7 +47,7 @@ module Summarizable # rubocop:todo Metrics/ModuleLength
   end
 
   def remove_slashes(list)
-    slashes = list.grep(%r{/})
+    slashes = list.select { |common_name| common_name.include?("/") }
     slashes.each do |common_name|
       names = common_name.split(%r{[ /]})
       group = names.reverse!.shift

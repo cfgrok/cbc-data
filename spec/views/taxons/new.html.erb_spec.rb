@@ -3,14 +3,14 @@
 require "rails_helper"
 
 RSpec.describe "taxons/new", type: :view do
-  before(:each) do
+  before do
     assign(:taxon, Taxon.new(
       common_name: "MyString",
       cbc_name: "MyString",
       scientific_name: "MyString",
       taxonomic_order: 1,
       generic: false,
-      active: false
+      active: false,
     ))
   end
 

@@ -44,7 +44,7 @@ module ActiveRecord
           end
 
           select_value <<-END_SQL, "SCHEMA"
-              SELECT setval(#{quote(quoted_sequence)}, #{max_pk || minvalue}, #{max_pk ? true : false})
+            SELECT setval(#{quote(quoted_sequence)}, #{max_pk || minvalue}, #{max_pk ? true : false})
           END_SQL
         end
         # rubocop:enable Metrics/AbcSize

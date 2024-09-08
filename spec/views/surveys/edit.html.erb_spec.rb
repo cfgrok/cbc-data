@@ -7,7 +7,7 @@ RSpec.describe "surveys/edit", type: :view do
     create :survey, year: create(:year)
   end
 
-  before(:each) do
+  before do
     assign(:survey, survey)
   end
 

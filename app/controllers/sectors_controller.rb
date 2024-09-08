@@ -11,7 +11,8 @@ class SectorsController < ApplicationController
 
   # GET /sectors/1
   # GET /sectors/1.json
-  def show; end
+  def show
+  end
 
   # GET /sectors/new
   def new
@@ -19,7 +20,8 @@ class SectorsController < ApplicationController
   end
 
   # GET /sectors/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /sectors
   # POST /sectors.json

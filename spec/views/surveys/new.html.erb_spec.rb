@@ -3,9 +3,9 @@
 require "rails_helper"
 
 RSpec.describe "surveys/new", type: :view do
-  before(:each) do
+  before do
     assign(:survey, Survey.new(
-      year: nil
+      year: nil,
     ))
   end
 

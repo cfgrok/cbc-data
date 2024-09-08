@@ -3,10 +3,10 @@
 require "rails_helper"
 
 RSpec.describe "sectors/new", type: :view do
-  before(:each) do
+  before do
     assign(:sector, Sector.new(
       name: "MyString",
-      code: "MyString"
+      code: "MyString",
     ))
   end
 

@@ -6,7 +6,7 @@ module ViewHelpers
       have_css "div[itemscope]>p[itemprop='#{id}']", text: text, count: count
     else
       header = id.capitalize.tr("_", " ")
-      have_selector :table_row, header => text, count: count
+      have_selector :table_row, header => text, :count => count
     end
   end
 

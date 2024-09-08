@@ -11,7 +11,8 @@ class TaxonsController < ApplicationController
 
   # GET /taxons/1
   # GET /taxons/1.json
-  def show; end
+  def show
+  end
 
   # GET /taxons/new
   def new
@@ -19,7 +20,8 @@ class TaxonsController < ApplicationController
   end
 
   # GET /taxons/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /taxons
   # POST /taxons.json

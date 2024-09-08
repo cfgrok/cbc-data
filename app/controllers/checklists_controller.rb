@@ -17,7 +17,8 @@ class ChecklistsController < ApplicationController
 
   # GET /checklists/1
   # GET /checklists/1.json
-  def show; end
+  def show
+  end
 
   # GET /checklists/new
   def new
@@ -25,7 +26,8 @@ class ChecklistsController < ApplicationController
   end
 
   # GET /checklists/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /checklists
   # POST /checklists.json

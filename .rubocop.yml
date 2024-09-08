@@ -3,7 +3,7 @@ require:
   # - rubocop-factory_bot
   - rubocop-performance
   - rubocop-rails
-  # - rubocop-rspec
+  - rubocop-rspec
   - standard
 
 inherit_gem:
@@ -180,10 +180,11 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Enabled: true
   Exclude:
-    - "spec/**/*.rb"
     - "config/environments/**/*.rb"
     - "config/routes.rb"
     - "db/**/*"
+    - "spec/**/*.rb"
+    - "test/**/*.rb"
 
 Metrics/BlockNesting:
   Enabled: true
@@ -196,6 +197,7 @@ Metrics/ClassLength:
     - heredoc
   Exclude:
     - "db/**/*"
+    - "test/**/*.rb"
 
 Metrics/CyclomaticComplexity:
   Enabled: true
@@ -206,6 +208,8 @@ Metrics/MethodLength:
     - array
     - hash
     - heredoc
+  Exclude:
+    - "db/**/*"
 
 Metrics/ModuleLength:
   Enabled: true
@@ -318,6 +322,62 @@ Performance/StringInclude:
 
 Performance/Sum:
   Enabled: true
+
+RSpec/AnyInstance:
+  Enabled: false
+
+RSpec/ContextWording:
+  Prefixes:
+    - and
+    - but
+    - when
+    - with
+    - without
+
+RSpec/Capybara/FeatureMethods:
+  Enabled: true
+  EnabledMethods:
+    - feature
+    - scenario
+
+RSpec/DescribeClass:
+  Exclude:
+    - "spec/system/**/*"
+    - "spec/views/**/*"
+
+RSpec/DescribedClass:
+  SkipBlocks: true
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/features/**/*"
+    - "spec/requests/**/*"
+    - "spec/system/**/*"
+    - "spec/views/**/*"
+
+RSpec/InstanceVariable:
+  Exclude:
+    - "spec/views/**/*"
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+# version
+# RSpec/NoExpectationExample:
+#   Enabled: false
+
+# version
+# RSpec/SortMetadata:
+#   Enabled: false
+
+RSpec/VerifiedDoubles:
+  Enabled: false
 
 Performance/TimesMap:
   Enabled: true
@@ -463,9 +523,6 @@ Style/DoubleNegation:
 # Style/EmptyHeredoc:
 #   Enabled: true
 
-Style/EmptyMethod:
-  EnforcedStyle: compact
-
 Style/EndlessMethod:
   Enabled: true
 
@@ -512,7 +569,7 @@ Style/HashLikeCase:
 
 Style/HashSyntax:
   Enabled: true
-  EnforcedStyle: ruby19
+  EnforcedStyle: ruby19_no_mixed_keys
 
 Style/HashTransformKeys:
   Enabled: true
@@ -668,9 +725,6 @@ Style/SignalException:
 Style/SingleArgumentDig:
   Enabled: true
 
-Style/SingleLineMethods:
-  AllowIfMethodIsEmpty: true
-
 Style/SoleNestedConditional:
   Enabled: true
 
@@ -694,6 +748,15 @@ Style/SymbolProc:
 
 Style/TernaryParentheses:
   EnforcedStyle: require_no_parentheses
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
 
 Style/TrailingUnderscoreVariable:
   Enabled: true

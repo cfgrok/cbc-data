@@ -23,7 +23,7 @@ RSpec.describe "checklists/show", type: :view do
       miles_car: 11.5,
       miles_boat: 12.5,
       miles_owling: 13.5,
-      miles_total: 14.5
+      miles_total: 14.5,
     ))
 
     render

@@ -9,7 +9,7 @@ RSpec.describe "checklists/edit", type: :view do
       :checklist,
       survey: create(
         :survey,
-        year: create(:year)
+        year: create(:year),
       ),
       sector: sector,
       area: create(:area, sector: sector),
@@ -29,7 +29,7 @@ RSpec.describe "checklists/edit", type: :view do
       miles_car: 1,
       miles_boat: 1,
       miles_owling: 1,
-      miles_total: 1
+      miles_total: 1,
     )
     observer1 = create(:observer, first_name: "First", last_name: "Observer")
     observer2 = create(:observer, first_name: "Second", last_name: "Observer")

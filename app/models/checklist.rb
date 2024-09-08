@@ -23,7 +23,7 @@ class Checklist < ActiveRecord::Base
 
   ObservationData = Struct.new(
     :survey_number,
-    :sector_number
+    :sector_number,
   )
 
   def to_s

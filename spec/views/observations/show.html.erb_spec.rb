@@ -11,7 +11,7 @@ RSpec.describe "observations/show", type: :view do
       count_week: false,
       notes: "Notes",
       survey: nil,
-      sector: nil
+      sector: nil,
     ))
 
     render

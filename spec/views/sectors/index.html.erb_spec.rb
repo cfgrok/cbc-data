@@ -3,16 +3,16 @@
 require "rails_helper"
 
 RSpec.describe "sectors/index", type: :view do
-  before(:each) do
+  before do
     assign(:sectors, [
       Sector.create!(
         name: "Name",
-        code: "Code"
+        code: "Code",
       ),
       Sector.create!(
         name: "Name",
-        code: "Code"
-      )
+        code: "Code",
+      ),
     ])
   end
 

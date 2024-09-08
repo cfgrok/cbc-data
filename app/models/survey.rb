@@ -17,7 +17,7 @@ class Survey < ActiveRecord::Base # rubocop:todo Metrics/ClassLength
     :species_total,
     :count_week_list,
     :count_week_total,
-    :individual_total
+    :individual_total,
   )
   TaxonObservation = Struct.new(
     :name,
@@ -30,7 +30,7 @@ class Survey < ActiveRecord::Base # rubocop:todo Metrics/ClassLength
     :high,
     :low,
     :all_years,
-    :all_year_avg
+    :all_year_avg,
   )
 
   def aggregate_observations

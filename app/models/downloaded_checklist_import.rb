@@ -69,7 +69,7 @@ class DownloadedChecklistImport
       @year = year
 
       create_checklist
-      populate_checklist_attributes year
+      populate_checklist_attributes
       @checklist.save!
     end
   end
@@ -78,7 +78,7 @@ class DownloadedChecklistImport
     @checklist = Checklist.new
   end
 
-  def populate_checklist_attributes(_year)
+  def populate_checklist_attributes
     create_survey
     set_survey
     set_feeder_watch

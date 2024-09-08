@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class SummarizableTest < ActiveSupport::TestCase # rubocop:todo Metrics/ClassLength
+class SummarizableTest < ActiveSupport::TestCase
   test "species total of zero" do
     summarizable = create_summarizable
 
@@ -63,7 +63,7 @@ class SummarizableTest < ActiveSupport::TestCase # rubocop:todo Metrics/ClassLen
     assert_equal 1, summarizable.species_total, "Species total not one with count week observation added"
   end
 
-  test "species total with multiple species forms" do # rubocop:todo Metrics/BlockLength
+  test "species total with multiple species forms" do
     summarizable = create_summarizable
 
     observation1 = observations(:cang)
@@ -116,7 +116,7 @@ class SummarizableTest < ActiveSupport::TestCase # rubocop:todo Metrics/ClassLen
     assert_equal 4, summarizable.species_total, "Species total not accurate with slash observation"
   end
 
-  test "count week total" do # rubocop:todo Metrics/BlockLength
+  test "count week total" do
     summarizable = create_summarizable
 
     observation1 = observations(:cang)

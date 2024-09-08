@@ -23,7 +23,7 @@ RSpec.describe "GET /years", type: :request, skip: "Skip this for now..." do
   it "creates a year" do
     year_params = attributes_for :year
 
-    expect { post years_path, year: year_params }.to change { Year.count }.by 1
+    expect { post years_path, year: year_params }.to change(Year, :count).by 1
 
     expect(response).to redirect_to assigns(:year)
     follow_redirect!
@@ -36,7 +36,7 @@ RSpec.describe "GET /years", type: :request, skip: "Skip this for now..." do
   it "does not create an invalid year" do
     year_params = attributes_for :year, audubon_year: "", vashon_year: ""
 
-    expect { post years_path, year: year_params }.not_to(change { Year.count })
+    expect { post years_path, year: year_params }.not_to(change(Year, :count))
 
     expect(response).to render_template :new
     expect(response.body).to include "Audubon year can&#39;t be blank"

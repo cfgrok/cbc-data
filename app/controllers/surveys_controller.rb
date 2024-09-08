@@ -25,7 +25,8 @@ class SurveysController < ApplicationController
   end
 
   # GET /surveys/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /surveys
   # POST /surveys.json

@@ -11,7 +11,8 @@ class AreasController < ApplicationController
 
   # GET /areas/1
   # GET /areas/1.json
-  def show; end
+  def show
+  end
 
   # GET /areas/new
   def new
@@ -19,7 +20,8 @@ class AreasController < ApplicationController
   end
 
   # GET /areas/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /areas
   # POST /areas.json

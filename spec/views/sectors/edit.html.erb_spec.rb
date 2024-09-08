@@ -6,11 +6,11 @@ RSpec.describe "sectors/edit", type: :view do
   let(:sector) do
     Sector.create!(
       name: "MyString",
-      code: "MyString"
+      code: "MyString",
     )
   end
 
-  before(:each) do
+  before do
     assign(:sector, sector)
   end
 

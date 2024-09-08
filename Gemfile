@@ -62,6 +62,7 @@ group :development, :test do
   gem "erb_lint"
   gem "rubocop"
   gem "rubocop-rails"
+  gem "rubocop-rspec"
   gem "solargraph"
   gem "solargraph-rails"
   gem "standard"

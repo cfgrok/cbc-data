@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "taxons/index", type: :view do
-  before(:each) do
+  before do
     assign(:taxons, [
       Taxon.create!(
         common_name: "Common Name",
@@ -11,7 +11,7 @@ RSpec.describe "taxons/index", type: :view do
         scientific_name: "Scientific Name",
         taxonomic_order: 1,
         generic: false,
-        active: false
+        active: false,
       ),
       Taxon.create!(
         common_name: "Common Name",
@@ -19,8 +19,8 @@ RSpec.describe "taxons/index", type: :view do
         scientific_name: "Scientific Name",
         taxonomic_order: 2,
         generic: false,
-        active: false
-      )
+        active: false,
+      ),
     ])
   end
 

@@ -12,7 +12,7 @@ RSpec.describe "observations/edit", type: :view do
       count_week: false,
       notes: "MyString",
       survey: survey,
-      sector: sector
+      sector: sector,
     )
     assign :observation, observation
 
@@ -30,7 +30,7 @@ def checklist
   @checklist ||= create(
     :checklist,
     survey: survey,
-    sector: sector
+    sector: sector,
   )
 end
 
@@ -41,6 +41,6 @@ end
 def survey
   @survey ||= create(
     :survey,
-    year: create(:year)
+    year: create(:year),
   )
 end

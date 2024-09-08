@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "observations/index", type: :view do
-  before(:each) do
+  before do
     assign(:observations, [
       create(
         :observation,
@@ -13,7 +13,7 @@ RSpec.describe "observations/index", type: :view do
         count_week: false,
         notes: "Notes",
         survey: survey,
-        sector: sector
+        sector: sector,
       ),
       create(
         :observation,
@@ -23,8 +23,8 @@ RSpec.describe "observations/index", type: :view do
         count_week: false,
         notes: "Notes",
         survey: survey,
-        sector: sector
-      )
+        sector: sector,
+      ),
     ])
   end
 

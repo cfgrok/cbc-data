@@ -3,10 +3,10 @@
 require "rails_helper"
 
 RSpec.describe "surveys/index", type: :view do
-  before(:each) do
+  before do
     assign(:surveys, [
       create(:survey, year: create(:year)),
-      create(:survey, year: create(:year))
+      create(:survey, year: create(:year)),
     ])
   end
 
